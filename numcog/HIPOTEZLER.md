@@ -69,3 +69,43 @@ yazılmış yedek **(b)** devreye girer. Ölçüt, sonuç görüldükten sonra D
 Sayı→VPN ataması **keyfîdir** (bizim kodlamamız); gerçek olan yalnızca VPN→KC aşağı akış
 kablolamasıdır. Bu ayrım raporda açıkça yazılacaktır.
 
+---
+
+## FAZ 2 — Büyüklük karşılaştırması ("hangisi büyük")
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 1'de ölçülen hiperparametreler
+kullanılır: `coarse_kc` için σ=1.5, top_k=40; iki sayı **ayrı popülasyonlarla** sunulur.
+
+### Eğitim protokolü (sabitlenmiştir; sonuca göre DEĞİŞTİRİLMEZ)
+
+- Öğrenme kuralı: delta kuralı (LMS); hedefler ±1 (sol büyük = +1); tahmin = sign(w·x + b).
+- Öğrenme oranı **lr = 0.01**.
+- Epoch = **500** (sabit; erken durma YOK).
+- Batch = **tam batch** (10 eğitim çiftinin tamamı, ortalama gradyan).
+- Başlatma: w = tohumlu küçük Gauss gürültüsü (std 0.01), b = 0.
+- Tohum, (a) VPN→sayı atama permütasyonunu **ve** (b) ağırlık başlatmasını DEĞİŞTİRİR (≥20 tohum).
+
+### Veri
+
+- Eğitim: (1,2),(2,3),(4,5),(5,6),(1,3) + tersleri → 10 çift.
+- Test1 (aralık içi): (3,5),(3,6),(2,5) + tersleri → 6 çift.
+- Test2 (aralık dışı): (7,8),(8,9),(7,9) + tersleri → 6 çift.
+- Sızıntı: hiçbir test çifti eğitimde yoktur; otomatik assert ile doğrulanır.
+
+### Hipotezler
+
+- **H2.1 (aralık içi):** `coarse_direct` ve `coarse_kc`, aralık içi test çiftlerinde %50'nin
+  anlamlı üstünde; `hash` %50'de kalır.
+- **H2.2 (aralık dışı — kademeli düşüş):** geniş σ=1.5 kaba kodlaması nedeniyle aralık dışında
+  ANİDEN şansa düşüş beklenmez; doğruluk eğitim aralığına uzaklıkla orantılı kademeli azalır
+  (7 vs 8, 8 vs 9'dan daha iyi sonuç verir).
+- **H2.3 (mesafe etkisi):** doğruluk |n−m| ile pozitif korelasyon gösterir. Eğitimde fark=2
+  çifti (1,3) olduğundan mesafe etkisi, test çiftleri içindeki varyansla da ayrıca yorumlanır.
+- **H2.4 (gerçek vs karıştırılmış):** Faz 1 sonuçlarına dayanarak gerçek VPN→KC matrisi,
+  derece-koruyan karıştırılmış (shuffled) matristen anlamlı bir öğrenme farkı yaratmaz.
+
+### Asıl soru
+
+"KC katmanı (gerçek veya rastgele) `coarse_direct`'e kıyasla ne kadar kayıp yaratıyor?"
+
+
