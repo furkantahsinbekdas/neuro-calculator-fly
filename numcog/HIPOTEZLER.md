@@ -317,6 +317,30 @@ top-k=40'ta aktif KC'lerin kaçı ALPN girdisi alıyor; ALPN sinyalinin hayatta 
 - **H4a2.3:** kanal başına inhibisyon ölçütü sağlar. Çürütme: sağlamaz.
 - **H4a2.4:** birleşim KC seti ölçütü sağlar. Çürütme: sağlamaz.
 
+---
+
+## FAZ 4B-0 — Central complex keşfi + çarpma düzeltmesi (kod YOK; keşif + küçük ölçüm)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4A-2 DEĞİŞTİRİLMEDİ.
+
+### A) Çarpma ölçümü (Faz 4A-2 nominal çekirdek, N=40)
+
+- **H4b0.1:** a,b ∈ 1..6 (çarpım ≤36 < 40) çarpma doğruluğu **1.000** olur.
+- **H4b0.2:** 1..9 çiftlerinde aralık içi (≤40) yüksek, aralık dışı (>40) düşük; ikisi AYRI raporlanır.
+- **H4b0.3:** zincir hataları RASTGELE değil; belirli (n,op) girdilerinde toplanır (aralık sınırı
+  civarı, ör. n≈0 ve n≈N). Çürütme: hatalar n boyunca homojen dağılırsa.
+
+### B) Central complex keşfi
+
+- **H4b0.4:** anotasyonlarda EPG / PEN / Delta7 hücre tipleri VAR (en az bir sütunda). Yoksa:
+  bunu raporla ve dur (NaN tuzağı: boş kolonlar açıkça sayılır).
+- **H4b0.5:** EPG wedge'leri dairesel komşuluk (halka) oluşturur; wedge sayısı ~16–18.
+- **H4b0.6:** İşaret bilgisi mevcut ve literatürle uyumlu: EPG kolinerjik (uyarıcı), PEN kolinerjik,
+  Delta7 glutamaterjik (inhibitör) — `top_nt` ile doğrulanır.
+- **H4b0.7:** Karar: halka (hız) simülasyonu bu veriyle **mümkün** (ağırlıklar + işaretler + wedge
+  halkası varsa), aksi halde gerekçeleriyle "mümkün değil" yazılır.
+
+
 
 
 
