@@ -1,0 +1,10 @@
+model,metric,mean,std
+coarse_direct,train,1.0,0.0
+coarse_direct,test1,1.0,0.0
+coarse_direct,test2,0.0,0.0
+coarse_kc,train,1.0,0.0
+coarse_kc,test1,0.9666666666666665,0.08719139396343284
+coarse_kc,test2,0.23333333333333334,0.20519567041703082
+coarse_kc_shuffled,train,1.0,0.0
+coarse_kc_shuffled,test1,0.9916666666666668,0.03726779962499648
+coarse_kc_shuffled,test2,0.19166666666666665,0.17333164641554297
