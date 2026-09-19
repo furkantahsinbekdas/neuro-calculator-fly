@@ -340,6 +340,48 @@ Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4A-2 DEĞİ�
 - **H4b0.7:** Karar: halka (hız) simülasyonu bu veriyle **mümkün** (ağırlıklar + işaretler + wedge
   halkası varsa), aksi halde gerekçeleriyle "mümkün değil" yazılır.
 
+---
+
+## FAZ 4C — Sistematik başlangıç hatası ve N=81 kapasitesi (mühendislik)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4B0 DEĞİŞTİRİLMEDİ.
+**Seçim ölçütü YALNIZCA tablo doğruluğudur** (tüm 2(N+1) (n,op) girdisinin doğru öğrenilmesi);
+çarpma/bölme testi seçim için KULLANILMAZ.
+
+### Adım 0 — Tanı (kod değişmeden; N=40, 100 tohum)
+
+Kaç tohumda tablo tam doğru? Bozuk tohumlarda hangi girdiler yanlış, eğitim doğruluğu ve **marj**
+(doğru sınıf skoru − en yüksek yanlış skor). (0,+),(1,+) ve kenar girdilerinin komşularıyla kod
+benzerliği.
+
+### Hipotezler ve çürütme eşikleri
+
+- **H4c.1 (optimizasyon):** bozukluk epoch/lr yetersizliğinden; epoch ×4 ve ×10 tam-doğru tohum
+  oranını belirgin artırır. **Çürütme:** ×4 ve ×10 sonrası tam-doğru oranı %95'e ulaşmazsa.
+- **H4c.2 (kenar temsili):** n=0 ve n=N eksenin kenarında (kesilmiş Gauss) olduğu için bozuluyor;
+  **dolgulu eksen** (n=0,N kenarda kalmaz) düzeltir. **Çürütme:** dolgu tam-doğru oranını artırmazsa.
+- **Başarı ölçütü (ön-kayıtlı):** tohumların **≥%95'i** tabloyu **%100** öğrenir.
+- **H4c.3 (N=81):** top-k ∈ {40,60,80,120} × σ ∈ {1.0,1.5} taramasında en az bir konfigürasyon
+  ≥%95 başarı sağlar. **Çürütme:** hiçbiri sağlamazsa → iki haneli yedek (etiketli).
+
+### Kollar (N=40; her düzeltme "TASARIM DEĞİŞİKLİĞİ")
+
+1. Referans (Faz 4A-2: σ=1.5, top-k=40, lr=0.01, 1000 epoch).
+2. Epoch ×4 ve ×10.
+3. Sayı ekseninde dolgu (n=0 ve N kenarda kalmasın; eksen [−3, N+3]).
+4. Sınıf dengeli kayıp (1/frekans ağırlık) ve farklı lr ızgarası {0.005, 0.02, 0.05}.
+
+### Kontrolcü tarafı (KONTROLCÜ İŞİ, etiketli)
+
+Açılışta kalibrasyon: sinek tüm tablo girdilerini sınar, geçemeyen sinek reddedilir. Bu bir **kalite
+kontrolüdür; sinek kural öğrenmez**. Kaç tohum reddedildi raporlanır. Adım 1-4 başarılıysa gerekmez.
+
+### Son ölçüm
+
+Donmuş konfigürasyonla 1..9 tüm çarpma/bölme; tohum başına doğruluk dağılımı; zincir p^k
+karşılaştırması. **Sinek durum taşımaz, kontrolcü taşır.**
+
+
 
 
 
