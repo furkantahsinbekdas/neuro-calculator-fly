@@ -174,6 +174,18 @@ Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-2b hipotezle
 Sayı→VPN ve operatör→ALPN atamaları **keyfîdir**; gerçek olan yalnızca VPN→KC ve ALPN→KC
 aşağı akış kablolamasıdır. Kol 7 bir **dış yardımdır**. Bu ayrımlar raporda açıkça yazılacaktır.
 
+### VERİ TASARIMI DÜZELTMESİ (ölçüm sırasında bulundu; hipotez DEĞİL)
+
+Ön-kayıtlı "dönüşümlü op" bölümü (her n tek op'la, 6 çift) ölçüldüğünde **tüm kolların
+TEST_KOMBINASYON'da 0.000** verdiği görüldü. Neden: bu bölüm n-paritesi ↔ op arasında mükemmel
+bir korelasyon yaratıyor; model op'u yok sayıp "n → sonuç"u ezberliyor ("sadece-n" kontrolü de
+0.000). Bu, H3.2'yi (kural mı ezber mi) test edilemez kılar. Bu bir VERİ KUSURU'dur (hipotez
+değişikliği değil). Düzeltme: bazı n'ler (1,2,3) İKİ op'la eğitilir, böylece op kullanımı
+zorlanır; TEST_KOMBINASYON = tek op'la eğitilmiş n'lerin (4,5,6) eksik op'u. Yeni EĞİTİM:
+(1,+),(1,−),(2,+),(2,−),(3,+),(3,−),(4,+),(5,−),(6,+) [9 çift]; TEST_KOMBINASYON:
+(4,−),(5,+),(6,−) [3 çift]. Hipotezler aynıdır; yalnızca veri bölümü düzeltildi.
+
+
 
 
 
