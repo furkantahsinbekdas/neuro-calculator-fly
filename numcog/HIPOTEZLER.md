@@ -272,6 +272,52 @@ Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-3c DEĞİŞT
 - **H4a.3 (gürültü):** girdi gürültüsü arttıkça tek adım doğruluğu monoton azalır. Çürütme:
   monoton olmayan bir eğri.
 
+---
+
+## FAZ 4A-2 — Operatör yıkanmasının tanısı ve düzeltme denemesi
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4A DEĞİŞTİRİLMEDİ.
+
+### Ön-kayıt (sabit)
+
+- **Çıktı: nominal sınıf okuması** (Faz 3 tarzı, one-vs-all ±1, argmax) — Faz 4A'nın MSE sürekli
+  çıktısı DEĞİL. Sebep: Faz 3'te eğitim 1.0, MSE kimliğe çöktü. Bu bir **TASARIM SEÇİMİ**dir.
+- Aralık: **N=10 ana, N=20 ikincil**. Öğrenme: lr=0.01, epoch=1000, tam batch, erken durma yok
+  (Faz 3 ile aynı).
+- **Başarı ölçütü (ölçümden önce):** N=10 eğitim doğruluğu **≥0.99** VE **op-duyarlılık ≥%95**
+  (op çevrilince argmax tahmin değişir).
+- g ∈ {1,2,4,8} **validasyonda** seçilir; hesap makinesi testi (multiply/divide) seçim için
+  KULLANILMAZ.
+
+### Adım 0 — Tanı (kod değişmeden)
+
+top-k=40'ta aktif KC'lerin kaçı ALPN girdisi alıyor; ALPN sinyalinin hayatta kalma oranı;
+(n,op+) vs (n,op−) kod kosinüs benzerliği (n başına); bunların g ile değişimi.
+
+### Kollar (aynı öğrenme protokolü)
+
+1. Referans (Faz 3 mimarisi, nominal, N=10).
+2. Operatör kazancı ×g.
+3. **Kanal başına inhibisyon (TASARIM DEĞİŞİKLİĞİ):** k_vpn ve k_alpn ayrı; ortak KC'ler için
+   birleşik kural. Biyolojik yakınlığı raporda tartışılır (APL tek, global).
+4. **Birleşim KC seti (VPN∪ALPN, ~5.000 hücre):** top-k tüm birleşimde; ALPN geniş, VPN dar kanal.
+5. Kontroller: karıştırılmış matris, ortak-KC ablasyonu, örtüşme-kontrol, rastgele etiket.
+
+### Karar
+
+- Bir kol ölçütü sağlarsa: aynı CyborgFly kontrolcüsüyle add/sub/multiply/divide ölçülür (1..9,
+  zincir k, gürültü). Sinek durum taşımaz, kontrolcü taşır.
+- Hiçbir kol sağlamazsa: net raporlanır ve durulur. Kanal başına inhibisyon dahi başarısızsa
+  **"feedforward KC + okuma, operatörlü ±1 tablosunda yetersiz"** denir.
+
+### Hipotezler ve çürütme eşikleri
+
+- **H4a2.1:** referans (g=1) ölçütü SAĞLAMAZ (operatör yıkanıyor). Çürütme: referans ≥0.99 & ≥%95.
+- **H4a2.2:** g>1 operatörü kurtarır; bazı g ölçütü sağlar. Çürütme: hiçbir g sağlamaz.
+- **H4a2.3:** kanal başına inhibisyon ölçütü sağlar. Çürütme: sağlamaz.
+- **H4a2.4:** birleşim KC seti ölçütü sağlar. Çürütme: sağlamaz.
+
+
 
 
 
