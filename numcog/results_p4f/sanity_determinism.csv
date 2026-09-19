@@ -1,0 +1,4 @@
+seed,n_rows,identical,diff_cells,table_acc
+15,324,1,0,1.0
+43,324,1,0,1.0
+71,324,1,0,1.0
