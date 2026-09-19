@@ -185,6 +185,58 @@ zorlanır; TEST_KOMBINASYON = tek op'la eğitilmiş n'lerin (4,5,6) eksik op'u. 
 (1,+),(1,−),(2,+),(2,−),(3,+),(3,−),(4,+),(5,−),(6,+) [9 çift]; TEST_KOMBINASYON:
 (4,−),(5,+),(6,−) [3 çift]. Hipotezler aynıdır; yalnızca veri bölümü düzeltildi.
 
+---
+
+## FAZ 3c — Kural öğrenimi: sürekli/topolojik çıktı (nominal sınıf yerine)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 3'ün nominal-çıktı kısıtını aşmak
+için çıktı, girdi ile AYNI topolojik kaba kodla temsil edilir (kaydırma = kural/dönüşüm).
+
+### Kilitli ön-kayıt (DEĞİŞTİRİLMEZ)
+
+- Çıktı kodu: ana kol **Gauss σ=1.5**; ayrı kontrol kolu **Termometre** (t → ilk ⌊t·265/10⌋
+  birim). Hedef aralığı 0..10. Eksen [0,10], 265 birim, girdi sayısı da aynı eksende Gauss.
+- Kayıp: **MSE**. Eğitim: **lr=0.01, epoch=500, tam batch, erken durma YOK**.
+- Çıkarım (decode): üretilen vektörün 0..10 ideal vektörlerine **kosinüs** benzerliğiyle argmax.
+  Ana metrik = kesin eşleşme; yan metrik = ±1 tolerans.
+
+### Veri bölmesi (sabit; asserts zorunlu)
+
+- Eğitim n∈{1..7}: (n,+) tümü (7) + (n,−) n∈{1,2,3} (3) = **10 çift**. TEST_YENI_N = {8,9} (4 çift).
+- TEST_KOMBINASYON (aynı n, görülmemiş op): (4,−),(5,−),(6,−),(7,−).
+  - **Grup 1 (komşu bilinen):** (4,−) [komşu (3,−) eğitimde]. (1 öğe)
+  - **Grup 2 (izole/kural):** (5,−),(6,−),(7,−) [ne (n−1,−) ne (n+1,−) eğitimde]. (3 öğe)
+- Asserts: (1) eğitimde n-paritesi↔op korelasyonu YOK; (2) sızıntı YOK; (3) Grup 2 izolasyonu
+  kesin; (4) eğitim hedefleri bitişik (ölü çıktı birimi yok). Grup 2 < 6 → "istatistiksel güç
+  düşük" notu rapora eklenir.
+
+### Kollar
+
+coarse_direct (VPN⊕ALPN, KC yok, Gauss çıktı) · coarse_kc_gercek (151 ortak, Gauss) ·
+coarse_kc_shuffled (derece-koruyan, Gauss) · coarse_kc_ablasyon (151 ortak çıkarılmış, Gauss) ·
+coarse_kc_ortusme_kontrol (rastgele aynı-sayı ortak, Gauss) · coarse_kc_gercek_termometre
+(151 ortak, **Termometre çıktı**).
+Taban çizgileri: "hep n+1", "op yok say, n kopyala (kimlik)", "rastgele".
+
+### Hipotezler ve çürütme eşikleri
+
+- **H3c.1 (kural):** Grup 1'de interpolasyon başarısı beklenir; asıl test **Grup 2'de**
+  coarse_kc_gercek şans/taban çizgilerinin anlamlı üstünde. Çürütme: Grup 2'de coarse_kc_gercek
+  %95 GA'sının en iyi taban çizgisini içermesi ya da altında kalması.
+- **H3c.2 (ekstrapolasyon sınırı):** TEST_YENI_N'de başarısızlık BEKLENİR (eğitimde aktif
+  olmayan çıktı birimleri = ölü piksel). Şans yalnızca ulaşılabilir hedeflere göre. Çürütme:
+  TEST_YENI_N %95 GA'sının şans düzeyini içermesi.
+- **H3c.3 (biyolojik katkı):** coarse_kc_gercek, coarse_direct'i geçmeli; Kol 4 (ablasyon)
+  Kol 2'ye göre anlamlı çökmeli. Çürütme: Kol 4/Kol 2 GA örtüşmesi VEYA coarse_direct'in
+  gerçek KC'den ayırt edilememesi.
+
+### Ek ölçümler
+
+Eğitimde hiç hedef olmamış çıktı birimlerinin tespiti · op-duyarlılık (op çevrilince yön değişme
+yüzdesi) · ≥20 tohum, ort±std+%95 GA · shuffle kontrolü. Sayı→VPN ve operatör→ALPN atamaları
+keyfîdir; termometre bir DIŞ YARDIMdır.
+
+
 
 
 
