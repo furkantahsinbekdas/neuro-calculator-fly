@@ -236,6 +236,43 @@ Eğitimde hiç hedef olmamış çıktı birimlerinin tespiti · op-duyarlılık 
 yüzdesi) · ≥20 tohum, ort±std+%95 GA · shuffle kontrolü. Sayı→VPN ve operatör→ALPN atamaları
 keyfîdir; termometre bir DIŞ YARDIMdır.
 
+---
+
+## FAZ 4A — Ardışık hesap makinesi (mühendislik; iş bölümü açık)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-3c DEĞİŞTİRİLMEDİ.
+
+### Tasarım (sabit)
+
+- **Sinek çekirdeği:** yalnızca n→n±1 tablosu (Faz 3c mimarisi: coarse_kc + (n,op), sürekli
+  Gauss çıktı, MSE, kosinüs decode), aralık 0..N. σ=1.5, top-k=40, lr=0.01, 500 epoch, 20 tohum.
+- **Kontrolcü (Python):** sayaç, döngü, durma koşulu, durum geri beslemesi, sonuç okuma.
+  **SİNEK DURUMU TAŞIMAZ; KONTROLCÜ TAŞIR.** "Uçuş simülatörü" gibi yeniden adlandırma YOK.
+- Operatör kodu Faz 3'teki gibi (iki ayrık ALPN alt kümesi); değiştirilmedi.
+
+### Adımlar
+
+1. Kapasite (ÖNCE): N∈{10,20,40,81}, TÜM (n,op) çiftleri eğitimde; her N için eğitim doğruluğu,
+   çıkarım güveni, süre. %100 çalışan en büyük N raporlanır.
+2. (gerekirse) çok haneli: onlar/birler ayrı kanal, elde/borç kontrolcüde.
+3. `numcog/calculator.py`: CyborgFly — add(a,b)= b kez +1; subtract(a,b)= b kez −1;
+   multiply(a,b)= a'yı b kez topla; divide(a,b)= tekrarlı çıkarma + kalan. Kontrolcünün yaptıkları
+   kodda ve raporda listelenir.
+4. Ölçüm: 1..9 tüm a×b, a÷b; zincir uzunluğu k'ya göre doğruluk (p^k ile karşılaştır); gürültü;
+   çağrı başına sinek çağrı sayısı.
+5. Terminal demosu: her tick'te "Tick i: n → n±1, güven" logu.
+
+### Hipotezler ve çürütme eşikleri
+
+- **H4a.1 (kapasite):** sinek çekirdeği N≤20 için %100 eğitim doğruluğuna ulaşır; N=40 ve 81
+  başarısız olur (KC kodu çarpışması). Çürütme: hiçbir N %100'e ulaşmazsa (kapasite <10) ya da
+  N=81 bile %100 kalırsa.
+- **H4a.2 (zincir bozulması):** k adımlı zincirin doğruluğu ≈ p^k (p = tek adım doğruluğu).
+  Çürütme: ölçülen zincir doğruluğu p^k'dan belirgin saparsa (hata birikmiyor ya da fazla birikiyor).
+- **H4a.3 (gürültü):** girdi gürültüsü arttıkça tek adım doğruluğu monoton azalır. Çürütme:
+  monoton olmayan bir eğri.
+
+
 
 
 
