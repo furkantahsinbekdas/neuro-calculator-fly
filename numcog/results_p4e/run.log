@@ -142,3 +142,83 @@ kabul edilen 54 tohumda (N=81; tum 9x9=81 <= 81 temsil edilebilir):
   subtract  ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
   multiply  ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
   divide    ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
+
+=== ADIM 4 (zincir p^k): 54 kabul edilen sinek, 0 zaten olculdu ===
+  tohum   0:   324 zincir adimi, hepsi dogru=True (14s)
+  tohum   3:   324 zincir adimi, hepsi dogru=True (14s)
+  tohum   5:   324 zincir adimi, hepsi dogru=True (14s)
+  tohum   7:   324 zincir adimi, hepsi dogru=True (12s)
+  tohum   8:   324 zincir adimi, hepsi dogru=True (13s)
+  tohum   9:   324 zincir adimi, hepsi dogru=True (14s)
+  tohum  10:   324 zincir adimi, hepsi dogru=True (11s)
+  tohum  11:   324 zincir adimi, hepsi dogru=True (11s)
+  tohum  12:   324 zincir adimi, hepsi dogru=True (17s)
+  tohum  14:   324 zincir adimi, hepsi dogru=True (15s)
+  tohum  15:   324 zincir adimi, hepsi dogru=True (12s)
+
+=== ADIM 4 (zincir p^k) shard 1/4: 11 tohum olculecek (toplam 54 kabul) ===
+
+=== ADIM 4 (zincir p^k) shard 4/4: 11 tohum olculecek (toplam 54 kabul) ===
+
+=== ADIM 4 (zincir p^k) shard 3/4: 10 tohum olculecek (toplam 54 kabul) ===
+
+=== ADIM 4 (zincir p^k) shard 2/4: 11 tohum olculecek (toplam 54 kabul) ===
+  [shard 3] tohum  23:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 1] tohum  21:   324 zincir adimi, hepsi dogru=True (20s)
+  [shard 2] tohum  22:   324 zincir adimi, hepsi dogru=True (20s)
+  [shard 4] tohum  20:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 3] tohum  31:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 2] tohum  28:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 1] tohum  25:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 4] tohum  24:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 3] tohum  39:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 2] tohum  35:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 1] tohum  34:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 4] tohum  32:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 3] tohum  48:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 1] tohum  43:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 2] tohum  47:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 4] tohum  42:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 3] tohum  58:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 1] tohum  54:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 2] tohum  57:   324 zincir adimi, hepsi dogru=True (16s)
+  [shard 3] tohum  65:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 1] tohum  61:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 4] tohum  59:   324 zincir adimi, hepsi dogru=True (17s)
+  [shard 2] tohum  63:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 1] tohum  69:   324 zincir adimi, hepsi dogru=True (20s)
+  [shard 3] tohum  71:   324 zincir adimi, hepsi dogru=True (20s)
+  [shard 4] tohum  68:   324 zincir adimi, hepsi dogru=True (20s)
+  [shard 2] tohum  70:   324 zincir adimi, hepsi dogru=True (21s)
+  [shard 3] tohum  77:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 1] tohum  74:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 4] tohum  73:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 2] tohum  75:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 3] tohum  83:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 1] tohum  79:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 4] tohum  78:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 2] tohum  80:   324 zincir adimi, hepsi dogru=True (19s)
+  [shard 3] tohum  91:   324 zincir adimi, hepsi dogru=True (18s)
+shard 3 bitti.
+  [shard 1] tohum  85:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 4] tohum  84:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 2] tohum  88:   324 zincir adimi, hepsi dogru=True (18s)
+  [shard 1] tohum  95:   324 zincir adimi, hepsi dogru=True (16s)
+shard 1 bitti.
+  [shard 4] tohum  94:   324 zincir adimi, hepsi dogru=True (17s)
+shard 4 bitti.
+  [shard 2] tohum  98:   324 zincir adimi, hepsi dogru=True (17s)
+shard 2 bitti.
+zincir BIRLESTIRILDI: 17496 adim / 54 tohum; hepsi dogru = True
+ k    n  acc  p_k
+ 0 1944  1.0  1.0
+ 1 1080  1.0  1.0
+ 2 1242  1.0  1.0
+ 3 1296  1.0  1.0
+ k   n  acc  p_k
+63 108  1.0  1.0
+64  54  1.0  1.0
+72 108  1.0  1.0
+81  54  1.0  1.0
+
+Zincir olcumu tamamlandi.

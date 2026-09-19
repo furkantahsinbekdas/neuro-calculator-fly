@@ -119,10 +119,24 @@ REDDEDİLİR**. Bu bir **kalite kontrol**tür, kural öğrenme değildir.
 - **İş bölümü (değişmedi):** sinek yalnızca (n,op)→n±1 tek adımını yapar; **sayma, döngü, durma
   koşulu, basamak/taşıma ve kötü tabloyu reddetme KONTROLCÜDE**dir. **Sinek durum taşımaz, kontrolcü taşır.**
 
-## 5. Zincir uzunluğu k vs p^k
+## 5. Zincir uzunluğu k vs p^k — ÖLÇÜLDÜ
 
-`results_p4e/final81_chain.csv` (k = kontrolcünün tetiklediği sinek adımı sayısı). Kabul edilen
-sineklerin tablosu %100 olduğundan zincirdeki her adım doğrudur.
+`results_p4e/final81_chain.csv` (k = kontrolcünün tetiklediği sinek adımı sayısı; n = o k'ya düşen
+çağrı sayısı). 54 kabul edilen sineğin tamamında **17 496 zincir adımı ölçüldü; adımların
+%100'ü doğru**:
+
+| k | 0 | 1 | 2 | 3 | … | 40 | 63 | 64 | 72 | **81** |
+|---|---|---|---|---|---|---|---|---|---|---|
+| n | 1944 | 1080 | 1242 | 1296 | … | 108 | 108 | 54 | 108 | **54** |
+| acc | 1.0 | 1.0 | 1.0 | 1.0 | … | 1.0 | 1.0 | 1.0 | 1.0 | **1.0** |
+| p^k | 1.0 | 1.0 | 1.0 | 1.0 | … | 1.0 | 1.0 | 1.0 | 1.0 | **1.0** |
+
+- Zincir **k=0..81** aralığının tamamında doğru; **en derin zincir k=81 (9×9) 54/54 doğru**.
+- 4C'nin N=40'taki tablosuyla karşılaştırma: orada k>40 zincirleri **aralık** nedeniyle 0.000'a
+  düşüyordu; N=81'de aralık yeterli olduğu için düşme YOK.
+- Kabaca: 4 işlem türünde toplam 17 496 adımın tamamı doğru → **zincir birikimi sorunu yok**
+  (her adım %100 olduğu için p^k = 1).
+
 
 ## 6. Sınırlılıklar
 
@@ -141,9 +155,12 @@ sineklerin tablosu %100 olduğundan zincirdeki her adım doğrudur.
 - Sayı→VPN ve operatör→ALPN atamaları **keyfî**; yalnızca VPN→KC / ALPN→KC kablolaması gerçek veridir.
   Termometre kodu **dış yardımcı**dır (biyolojik değil).
 - **Simülasyon**, canlı sinek değil (bkz. `SINIRLILIKLAR.md`, Faz 6).
-- **Koşu kesintisi:** Adım 4 hesap makinesi döngüsü yeniden çalıştırıldı (aynı deterministik kod
-  yolu, `seed+1000` ile aynı ağırlık başlangıcı → aynı sonuç). Kalibrasyon çıktısı yeniden
-  üretilmedi, kesintiden önceki `calib81.csv` kullanıldı.
+- **Koşu koşulları:** makine ağır yüklüydü (tarayıcı/IDE) ve koşu iki kez kesildi. Bu nedenle
+  Adım 4'ün hesap makinesi ve zincir kısımları **aynı deterministik kod yoluyla** yeniden çalıştırıldı
+  (`seed+1000` sabit ağırlık başlangıcı → aynı sonuç) ve zincir ölçümü **4 paralel shard** ile
+  yapıldı (aynı hesap, yalnızca paralel yürütüm; `merge` ile birleştirildi). Ön-kayıt, konfigürasyon
+  ve tohum listesi **değişmedi**; kalibrasyon çıktısı (`calib81.csv`) kesintiden önceki koşudan geldi.
+  Kesintiler sonucu **değiştirmez** (deterministik), yalnızca duvar saatini etkiler.
 
 ## 7. Yeniden üretilebilirlik
 
@@ -151,11 +168,17 @@ sineklerin tablosu %100 olduğundan zincirdeki her adım doğrudur.
 cd flyputer
 .venv/Scripts/python.exe -X utf8 numcog/phase4e.py             # Adım 1-3 + Adım 4 kalibrasyon
 .venv/Scripts/python.exe -X utf8 numcog/phase4e_step4_calc.py   # Adım 4 hesap makinesi (resumable)
+# Adım 4 zincir p^k (kesintiye dayanıklı; istenirse shard'li paralel):
+.venv/Scripts/python.exe -X utf8 numcog/phase4e_chain.py 0 4
+.venv/Scripts/python.exe -X utf8 numcog/phase4e_chain.py 1 4
+.venv/Scripts/python.exe -X utf8 numcog/phase4e_chain.py 2 4
+.venv/Scripts/python.exe -X utf8 numcog/phase4e_chain.py 3 4
+.venv/Scripts/python.exe -X utf8 numcog/phase4e_chain.py merge
 ```
 
 CSV: `results_p4e/` → `diag81_seeds.csv`, `diag81_wrong.csv`, `diag81_sim.csv`, `diag81_sep.csv`,
 `diag81_ncount.csv`, `diag81_nhist.csv`, `shuffle81.csv`, `grid81_4e.csv`, `calib81.csv`,
-`final81_seeds.csv`, `final81_chain.csv`, `run.log`.
+`final81_seeds.csv`, `final81_chain.csv`, ham zincir satırları `chain81_rows.csv`, `run.log`.
 
 ## 8. KARAR (özet)
 
@@ -167,5 +190,12 @@ CSV: `results_p4e/` → `diag81_seeds.csv`, `diag81_wrong.csv`, `diag81_sim.csv`
 4. **Eksen dolgusu en güçlü iyileştirme** (σ=1.0: %40→%83.3); en iyi hücre %93.3 < %95 → **donma yok**.
 5. **Kontrolcü kalibrasyonu ile N=81 hesap makinesi tam çalışıyor:** kabul edilen 54/100 tohumda
    1..9 tüm **çarpma ve bölme 1.0000** (4C'deki 0.790 aralık artefaktı yok).
-6. **Sinek durum taşımaz, kontrolcü taşır.**
+6. **Zincir p^k = 1.0 (k=0..81):** 54 sinekte 17 496 adım ölçüldü, hepsi doğru; en derin zincir
+   k=81 (9×9) sorunsuz. 4C'de k>40'ta görülen aralık kaynaklı çöküş N=81'de YOK.
+7. **Sinek durum taşımaz, kontrolcü taşır.**
+
+**Açık kalan:** N=81'de *tüm* tohumlarda %100 tablo hâlâ yok (en iyi ızgara hücresi %93.3); sistem
+şu anda **kalibrasyon kapısıyla** çalışıyor (kabul %54, kalanı reddediliyor). Kapı olmadan tam
+kapsama için eksen dolgusu + daha geniş σ (σ>2.0) veya iki haneli yedek gerekir — bu, sonraki fazın
+kararıdır.
 
