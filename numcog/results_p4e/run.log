@@ -1,0 +1,144 @@
+FAZ 4E basladi (N=81, hucre={'epochs': 25000, 'lr': 0.05, 'topk': 80}, 30 tohum)
+
+=== ADIM 1: TANIS (N=81, 30 tohum, hucre={'epochs': 25000, 'lr': 0.05, 'topk': 80}) ===
+  tohum  0: TAM-DOGRU (11s)
+  tohum  1: 1 hatali -> [(64, '+', 66)] (14s)
+  tohum  2: 1 hatali -> [(1, '+', 1)] (13s)
+  tohum  3: TAM-DOGRU (14s)
+  tohum  4: 1 hatali -> [(81, '-', 79)] (11s)
+  tohum  5: TAM-DOGRU (12s)
+  tohum  6: 1 hatali -> [(80, '-', 80)] (14s)
+  tohum  7: TAM-DOGRU (15s)
+  tohum  8: TAM-DOGRU (12s)
+  tohum  9: TAM-DOGRU (15s)
+  tohum 10: TAM-DOGRU (15s)
+  tohum 11: TAM-DOGRU (13s)
+  tohum 12: TAM-DOGRU (15s)
+  tohum 13: 1 hatali -> [(62, '+', 64)] (15s)
+  tohum 14: TAM-DOGRU (13s)
+  tohum 15: TAM-DOGRU (14s)
+  tohum 16: 1 hatali -> [(2, '-', 0)] (12s)
+  tohum 17: 5 hatali -> [(1, '+', 1), (15, '+', 14), (15, '-', 16), (79, '-', 80), (80, '-', 80)] (14s)
+  tohum 18: 1 hatali -> [(1, '+', 1)] (14s)
+  tohum 19: 1 hatali -> [(78, '+', 80)] (13s)
+  tohum 20: TAM-DOGRU (12s)
+  tohum 21: TAM-DOGRU (17s)
+  tohum 22: TAM-DOGRU (20s)
+  tohum 23: TAM-DOGRU (11s)
+  tohum 24: TAM-DOGRU (34s)
+  tohum 25: TAM-DOGRU (14s)
+  tohum 26: 1 hatali -> [(80, '-', 80)] (16s)
+  tohum 27: 1 hatali -> [(67, '+', 69)] (13s)
+  tohum 28: TAM-DOGRU (24s)
+  tohum 29: 1 hatali -> [(81, '-', 79)] (22s)
+
+--- Adim 1 ozet ---
+tablo TAM dogru tohum: 18/30 (60.0%)  egitim ort=0.9967 min=0.9695
+hatali tohum: 12  toplam hatali girdi: 16
+hatali (n,op) ilk 12:
+ n op  count
+ 1  +      3
+80  -      3
+81  -      2
+15  +      1
+ 2  -      1
+15  -      1
+62  +      1
+67  +      1
+64  +      1
+79  -      1
+78  +      1
+hatali girdilerin n dagilimi: 1:3, 2:1, 15:2, 62:1, 64:1, 67:1, 78:1, 79:1, 80:3, 81:2
+KENAR (n in [0, 1, 80, 81]): 8/16 = 50.0%  (taban 4.88%) -> H4e.1 DESTEK
+kenar hatalarinin (n,op) dagilimi:
+n   op
+1   +     3
+80  -     3
+81  -     2
+komsu kod kosinus benzerligi: yanlis=0.998  dogru=0.902
+ayrilabilirlik: rank==164 (tum tohum) = False | ozdes-kod catismasi = 27 | kapali form min = 0.9756
+kapali form (one-hot) ort=0.9967 | delta kurali (ayni kodlar) ort=0.9967
+-> H4e.2 CURUTULDU
+
+=== ADIM 2: SHUFFLE KONTROLU (N=81, 30 tohum, hucre={'epochs': 25000, 'lr': 0.05, 'topk': 80}) ===
+derece-korunmus shuffle: seed=999 swaps=200000, kenar 1843 -> 1843 (3s)
+  real      tam-dogru=18/30 (60.0%) GA95=[42.3%,75.4%] egitim=0.9967 (0s)
+  shuffled  tam-dogru=22/30 (73.3%) GA95=[55.6%,85.8%] egitim=0.9980 (468s)
+  overlap   tam-dogru=15/30 (50.0%) GA95=[33.2%,66.8%] egitim=0.9961 (466s)
+gercek 60.0% vs shuffle 73.3% (GA95 55.6-85.8) -> AYIRT EDILEMEDI
+gercek 60.0% vs ortusme-kontrol 50.0% (GA95 33.2-66.8)
+
+=== ADIM 3: KUCUK IZGARA (dolgu x sigma, 30 tohum) ===
+  sigma=1.0 dolgu=False tam-dogru=12/30 (40.0%) GA95=[24.6%,57.7%] egitim=0.9931 (435s)
+  sigma=1.0 dolgu=True  tam-dogru=25/30 (83.3%) GA95=[66.4%,92.7%] egitim=0.9988 (471s)
+  sigma=1.5 dolgu=False tam-dogru=18/30 (60.0%) GA95=[42.3%,75.4%] egitim=0.9967 (0s)
+  sigma=1.5 dolgu=True  tam-dogru=25/30 (83.3%) GA95=[66.4%,92.7%] egitim=0.9980 (364s)
+  sigma=2.0 dolgu=False tam-dogru=24/30 (80.0%) GA95=[62.7%,90.5%] egitim=0.9984 (343s)
+  sigma=2.0 dolgu=True  tam-dogru=28/30 (93.3%) GA95=[78.7%,98.2%] egitim=0.9996 (362s)
+>=%%95 saglayan hucre YOK -> donma yok
+
+=== ADIM 4: KONTROLCU KALIBRASYONU + HESAP MAKINESI ===
+konfigurasyon: 4D-en-iyi sigma=1.5 {'epochs': 25000, 'lr': 0.05, 'topk': 80}
+KONTROLCU ISI (etiketli): acilista 164 (n,op) girdisi sinanir; gecmeyen sinek REDDEDILIR.
+100 tohum: kabul=54 reddedilen=46 (54.0%, GA95 36.6-55.7)
+
+=== ADIM 4 (devam): HESAP MAKINESI (kabul edilen 54 tohum) ===
+  tohum   0: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum   3: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (32s)
+  tohum   5: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum   7: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum   8: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum   9: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  10: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (18s)
+  tohum  11: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  12: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  14: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  15: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  20: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  21: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  22: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (21s)
+  tohum  23: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  24: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  25: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  28: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  31: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  32: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  34: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  35: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (15s)
+  tohum  39: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (28s)
+  tohum  42: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (26s)
+  tohum  43: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  47: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  48: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  52: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  54: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  57: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  58: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  59: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  61: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  63: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  65: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (24s)
+  tohum  68: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (20s)
+  tohum  69: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (23s)
+  tohum  70: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (24s)
+  tohum  71: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  73: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  74: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (10s)
+  tohum  75: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  77: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (24s)
+  tohum  78: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  79: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  80: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  83: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  84: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  85: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  88: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+  tohum  91: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  94: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  95: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (12s)
+  tohum  98: tablo=1.0000 add=1.000 sub=1.000 mul=1.000 div=1.000 (11s)
+kabul edilen 54 tohumda (N=81; tum 9x9=81 <= 81 temsil edilebilir):
+  add       ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
+  subtract  ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
+  multiply  ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
+  divide    ort=1.0000 +- 0.0000  min=1.0000  GA95=[1.0000,1.0000]  dagilim={1.0: np.int64(54)}
