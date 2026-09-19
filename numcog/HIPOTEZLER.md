@@ -131,5 +131,49 @@ bu bölüm yeni, keşifsel bir tanıdır.
 - **H2b.5 (shuffle):** tüm kollarda gerçek W ile derece-koruyan karıştırılmış W arasında
   anlamlı fark yoktur (Faz 1/2 ile tutarlı).
 
+---
+
+## FAZ 3 — Toplama/çıkarma (n±1), operatör = koku, sayı = görsel
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-2b hipotezleri/raporları DEĞİŞTİRİLMEDİ.
+
+### Tasarım (sabitlenmiştir)
+
+- Sayı: Faz 1-2 en iyi kodlayıcı — σ=1.5 Gauss, top-k=40, gerçek VPN→KC (427 KC × 265 VPN,
+  min_syn=1). Operatör: iki ayrık rastgele ALPN alt kümesi (op+, op−), her biri 319 ALPN'in
+  ~%10'u (32 birim), ikili 1.0, tohum başına yeniden seçilir. KC: skor = W_vpn·g(n) +
+  W_alpn·op (AYNI 427 hücrede toplanır), top-k=40 global inhibisyon. Çıktı: sonuç 0..10
+  (11 sınıf, şans ≈ %9.1); çok-sınıflı delta kuralı (one-vs-all, doğru +1 / diğerleri −1,
+  argmax), lr=0.01, epoch=1000, tam batch, erken durma yok. 20 tohum (VPN permütasyonu +
+  operatör ALPN alt kümeleri + ağırlık başlatması).
+
+- Veri: EĞİTİM n∈{1..6} dönüşümlü op (6 çift); TEST_KOMBINASYON aynı n'lerin diğer op'u
+  (6 çift, her n ve her op eğitimde görüldü); TEST_YENI_N n∈{7,8,9} iki op (6 çift,
+  ekstrapolasyon). Sızıntı otomatik assert.
+
+### Kollar
+
+1. hash · 2. coarse_direct (VPN⊕ALPN birleşik, KC yok) · 3. coarse_kc gerçek ·
+4. coarse_kc derece-koruyan karıştırılmış · 5. coarse_kc ortak 151 KC çıkarılmış ·
+6. coarse_kc ALPN girdisi aynı sayıda rastgele KC'ye verilmiş (örtüşme sayısı kontrolü) ·
+7. termometre/rampa kodu (n → ilk ⌊n·265/9⌋ birim aktif) + aynı KC katmanı (**DIŞ YARDIM**).
+
+### Hipotezler ve çürütme eşikleri
+
+- **H3.1:** coarse_direct EĞİTİM doğruluğu 1.0'ın belirgin altında kalır (toplamsal okuma
+  (n,op) konjunksiyonunu çözemez). Çürütme eşiği: eğitim doğruluğu ≥ 0.90 olursa çürür.
+- **H3.2:** coarse_kc EĞİTİM ve TEST_KOMBINASYON doğruluğu coarse_direct'ten yüksektir.
+  Çürütme eşiği: %95 GA'ların örtüşmesi.
+- **H3.3:** Kol 5 (ortak KC çıkarılmış) doğruluğu Kol 3'ten anlamlı düşer. Çürütme eşiği: GA örtüşmesi.
+- **H3.4:** Kol 4 ve Kol 6, Kol 3'ten ayırt edilemez (GA örtüşür). Ayrışırlarsa bu ÖNE ÇIKARILIR.
+- **H3.5:** TEST_YENI_N doğruluğu tüm gerçek-kod kollarında şansa (~%9.1) yakın ya da altında;
+  yalnızca Kol 7 belirgin daha iyi. Çürütme eşiği: Kol 7'nin GA'sı gerçek-kod kollarıyla örtüşürse.
+
+### Yorum disiplini (önceden yazılmıştır)
+
+Sayı→VPN ve operatör→ALPN atamaları **keyfîdir**; gerçek olan yalnızca VPN→KC ve ALPN→KC
+aşağı akış kablolamasıdır. Kol 7 bir **dış yardımdır**. Bu ayrımlar raporda açıkça yazılacaktır.
+
+
 
 
