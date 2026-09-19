@@ -1,3 +1,6 @@
 # Üretilmiş ham kenar listeleri — explore_p0c.py ile yeniden üretilir.
 results_p0/alpn2kc_edges.csv
 results_p0/vpn2kc_edges.csv
+
+# Üretilmiş grafikler — number_coding.py ile yeniden üretilir.
+results_p1/*.png
