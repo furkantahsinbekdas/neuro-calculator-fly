@@ -33,3 +33,39 @@ zaten kullanıyor (`sniff.circuit()` gerçek ALPN→KC matrisini, 5177 KC × 685
   küçük/seyrekse) strateji **(b)** olur: kaba kodlama ALPN/PN girdisi üzerine uygulanır ve
   raporda "görsel kanal gerçek bir görsel devre değil, soyut bir sayı kodudur" ifadesi
   açıkça yazılır.
+
+---
+
+## FAZ 1 — Sayı kodlama katmanı
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır.
+
+### Kullanılabilirlik ölçütü (coarse_kc "kullanılabilir" sayılması için ÜÇÜ birden)
+
+- **U1 (monotonluk):** Spearman ρ(kosinüs benzerlik, |n−m|) ≤ **−0.5**.
+- **U2 (kapsama):** tarama içindeki en az bir (aktivasyon kuralı, parametre)
+  yapılandırmasında, 9 sayının tamamında aktif KC ≥ 1 **VE** ortanca aktif KC ≥ **5**.
+- **U3 (çökme yok):** max_{n≠m} kosinüs(kod_n, kod_m) < **0.95**.
+
+Üç koşuldan herhangi biri sağlanmazsa `coarse_kc` "kullanılamaz" sayılır ve önceden
+yazılmış yedek **(b)** devreye girer. Ölçüt, sonuç görüldükten sonra DEĞİŞTİRİLMEZ.
+
+### Beklentiler
+
+- **E1:** `coarse_direct`'te ρ < −0.9 (Gauss kaba kod neredeyse kusursuz monoton).
+- **E2:** `hash`'te |ρ| < 0.2 (yapı yok).
+- **E3:** `coarse_kc`'de ρ, `coarse_direct`'ten zayıf ama `hash`'ten belirgin güçlü
+  (beklenti −0.9 < ρ ≤ −0.5); gerçek VPN→KC matrisi yalnızca γ-d KC'lerine dar bir kanal
+  olduğu için monotonluğun bir kısmını kaybetmesi beklenir.
+- **E4:** sabit eşik (coincidence ≥2/3/4) kuralları çok az KC aktif bırakır (çoğu sayı
+  için 0 ya da birkaç); top-k (APL-benzeri global inhibisyon) yeterli KC üretir — U2'yi
+  ancak top-k sağlar.
+- **E5:** VPN→sayı-ekseni atama permütasyonları arasında ρ varyansı KÜÇÜK olacak
+  (std ≤ ~0.1), çünkü 265 VPN üzerinde 9 Gauss merkezi homojen dağılır. Belirgin büyük
+  çıkarsa bu, ayrı bir bulgu olarak raporlanır.
+
+### Yorum disiplini (önceden yazılmıştır)
+
+Sayı→VPN ataması **keyfîdir** (bizim kodlamamız); gerçek olan yalnızca VPN→KC aşağı akış
+kablolamasıdır. Bu ayrım raporda açıkça yazılacaktır.
+
