@@ -383,6 +383,55 @@ karşılaştırması. **Sinek durum taşımaz, kontrolcü taşır.**
 
 ---
 
+## FAZ 4E — N=81 teşhisi, kalibrasyon ve shuffle (KISA)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4D DEĞİŞTİRİLMEDİ.
+**Seçim ölçütü YALNIZCA tablo doğruluğudur**; çarpma/bölme testi seçim için KULLANILMAZ.
+
+### Sabit hücre
+
+N=81, 4D en iyi hücre: **epoch 25000, lr 0.05, top-k 80, σ=1.5**; 30 tohum (Adım 4 son ölçüm 100).
+
+### Adım 1 — Teşhis (hipotezler ölçümden önce)
+
+Kenar kümesi **E = {(n,op) : n ∈ {0,1,80,81}}** → 8/164 = **%4.88 taban oranı**.
+
+- **H4e.1 (kenar):** başarısız tohumlarda hatalar **kenar girdilerinde toplanır**.
+  **Destek:** hatalı girdilerin E payı ≥ **2× taban oranı (≥%9.76)**. **Çürütme:** E payı < %9.76.
+- **H4e.2 (ayrılabilirlik):** aynı kodlar üzerinde **kapalı formlu** (en küçük norm, `lstsq`)
+  doğrusal sınıflandırıcı 164 girdiyi **tam ayırır** → sorun kod çakışması değil, **öğrenme
+  kuralı / optimizasyon tavanı**. **Destek:** rank(X) = 164 VE farklı etiketli özdeş kod YOK VE
+  kapalı form eğitim doğruluğu = 1.000. **Çürütme:** rank < 164 VEYA özdeş-kod çakışması VAR VEYA
+  kapalı form < 1.000.
+- Ek (tanımlayıcı, hipotez değil): hatalı girdilerin komşu kod kosinüs benzerliği (doğrularla
+  karşılaştırmalı).
+
+### Adım 2 — Shuffle kontrolü (aynı hücre, 30 tohum)
+
+Kollar: **gerçek** (`W_vpn`); **derece-korunmuş shuffle**
+(`nc.degree_preserving_shuffle(W_vpn, seed=999, swaps=200000)`, tek ve deterministik);
+**örtüşme-kontrol** (`W_alpn_r` yerine `W_alpn_r_rand`). Ölçüt: tablo tam-doğru tohum oranı ± %95 GA.
+**Yorum kuralı:** gerçek kolun oranı shuffle kolunun %95 GA'sı içindeyse **"ayırt edilemedi"**
+(connectome'a özgü yapının bu tabloda ölçülebilir katkısı yok).
+
+### Adım 3 — Küçük ızgara (YALNIZCA H4e.1 DESTEKLENİRSE)
+
+Eksen dolgusu ∈ {yok, [−3, N+3]} × σ ∈ {1.0, 1.5, 2.0} = **6 hücre × 30 tohum**; hücre sabit
+(epoch 25000, lr 0.05, top-k 80). **(σ=1.5, dolgu yok) hücresi Adım 1/2 ile aynıdır → yeniden
+hesaplanmaz.** **Başarı: tohumların ≥%95'i tam-doğru.** Sağlanırsa **tek konfigürasyon donar**
+(önce tam-doğru oranı, eşitlikte eğitim doğruluğu). Sağlanmazsa donma yok.
+
+### Adım 4 — Kontrolcü kalibrasyonu (KONTROLCÜ İŞİ — etiketli)
+
+Açılışta tüm 164 (n,op) girdisi sınanır; **herhangi biri yanlışsa sinek REDDEDİLİR**. Bu bir
+**kalite kontrol kapısıdır**, kural öğrenme DEĞİL. 100 tohumda kaç tohum reddedildi rapor edilir.
+Kabul edilen sineklerle 1..9 tüm çarpma ve bölme çiftleri; tohum başına doğruluk dağılımı + zincir
+p^k. **Sinek durum taşımaz, kontrolcü taşır.** Adım 4 konfigürasyonu: Adım 3 donduysa **donmuş**,
+durmadıysa **4D en iyi hücre**.
+
+
+---
+
 ## FAZ 4D — N=81 tablo kapasitesi, uzun optimizasyonla (KISA)
 
 Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4C DEĞİŞTİRİLMEDİ.
