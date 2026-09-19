@@ -383,6 +383,40 @@ karşılaştırması. **Sinek durum taşımaz, kontrolcü taşır.**
 
 ---
 
+## FAZ 4F — N=81: dolgu + σ genişletme (KISA, ön-kayıtlı)
+
+Kayıt tarihi: 2026-09-20. Ölçümden ÖNCE yazılmıştır. Faz 0-4E dosyaları/sonuçları DEĞİŞTİRİLMEDİ.
+**Seçim ölçütü YALNIZCA tablo doğruluğudur**; çarpma/bölme seçim için KULLANILMAZ.
+
+### Izgara (sabit)
+
+N=81; **dolgu sabit = 4E'nin en iyi dolgusu `lo=−3, hi=N+3`**; **σ ∈ {2.0, 2.5, 3.0, 4.0}** ×
+**top-k ∈ {80, 120}** = 8 hücre × **30 tohum**; **epoch 25000, lr 0.05**. Başarı: tohumların
+**≥%95'i** tabloyu **%100** öğrenir.
+
+### Hipotez ve çürütme
+
+- **H4f.1:** dolgu altında **σ arttıkça tam-doğru oranı monoton artar** (4E: σ=1.0 %83.3, σ=1.5 %83.3,
+  σ=2.0 %93.3). **Çürütme:** σ=3.0 veya σ=4.0'un tam-doğru oranı σ=2.0'ın **altına düşerse**.
+- Ek ölçüm (hipotez değil, mekanizma kontrolü): çok geniş σ kodları aşırı benzeştirebilir → **her
+  hücrede özdeş-kod + farklı-etiket çatışma sayısı ve rank** raporlanır (4E: σ=1.5'te 27 çatışma).
+
+### Karar
+
+- **≥%95 hücre varsa:** tek konfigürasyon donar; **KALİBRASYON KAPISI OLMADAN 100 tohum** ile 1..9
+  tüm çarpma ve bölme çiftleri ölçülür (tohum başına doğruluk dağılımı + zincir p^k). Kapı olmadığı
+  için **başarısız tohumlar da** raporlanır.
+- **Yoksa:** "bu ızgarada ulaşılamadı" diye net raporlanır; **kalibrasyon kapısı** çözüm olarak kalır.
+
+### Sağlama (determinizm)
+
+4E'de shard'lı koşup birleştirilen zincir sonucundan **3 tohum** (deterministik seçim:
+`RandomState(2026)` ile 54 kabul edilen tohum arasından) **baştan** çalıştırılır ve zincir satırları
+`chain81_rows.csv` ile **birebir** karşılaştırılır; aynı/aynı değil raporlanır.
+
+
+---
+
 ## FAZ 4E — N=81 teşhisi, kalibrasyon ve shuffle (KISA)
 
 Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4D DEĞİŞTİRİLMEDİ.
