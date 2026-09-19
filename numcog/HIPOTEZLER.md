@@ -381,6 +381,31 @@ kontrolüdür; sinek kural öğrenmez**. Kaç tohum reddedildi raporlanır. Adı
 Donmuş konfigürasyonla 1..9 tüm çarpma/bölme; tohum başına doğruluk dağılımı; zincir p^k
 karşılaştırması. **Sinek durum taşımaz, kontrolcü taşır.**
 
+---
+
+## FAZ 4D — N=81 tablo kapasitesi, uzun optimizasyonla (KISA)
+
+Kayıt tarihi: 2026-09-19. Ölçümden önce yazılmıştır. Faz 0-4C DEĞİŞTİRİLMEDİ.
+**Seçim ölçütü YALNIZCA tablo doğruluğudur**; çarpma/bölme testi seçim için KULLANILMAZ.
+
+### Izgara (sabit)
+
+N=81, σ=1.5; **epoch ∈ {10000, 25000}** × **lr ∈ {0.01, 0.05}** × **top-k ∈ {40, 80}** = 8 hücre;
+**30 tohum**. Başarı: tohumların **≥%95'i** tabloyu **%100** öğrenir.
+
+### Hipotez ve çürütme
+
+- **H4d.1:** 4C'deki N=81 başarısızlığı **optimizasyon kaynaklıydı** (epoch/lr yetersiz); uzun
+  optimizasyonla en az bir hücre ≥%95'e ulaşır. **Çürütme:** hiçbir hücre ≥%95'e ulaşmazsa.
+
+### Karar
+
+- **Başarılıysa:** tek konfigürasyon donar; **100 tohumla** 1..9 tüm çarpma ve bölme çiftleri
+  (tohum başına doğruluk dağılımı, zincir p^k) ölçülür. **Sinek durum taşımaz, kontrolcü taşır.**
+- **Başarısızsa:** "bu ızgarada ulaşılamadı" diye net raporlanır; **iki haneli yedek** (onlar/birler
+  ayrı kanal, elde/borç kontrolcüde) TASARIM olarak etiketlenip uygulanır.
+
+
 
 
 
