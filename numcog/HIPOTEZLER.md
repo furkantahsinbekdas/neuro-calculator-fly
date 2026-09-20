@@ -684,13 +684,11 @@ sürücüsü çıkarılır**. **Birincil = merkezlemesiz**; merkezlemeli sürüm
 - **Dizi kuralı:** her adımda koşan toplam **[−8, +8]** içinde.
 - **T1:** k ∈ {2,4,6,8,10}; **bekleme H ∈ {0,10,20,40}** adım (girdi tamamen sıfır); okuma **bekleme
   sonunda** son durum vektöründen.
-- **Bölme (teknik bütçe nedeniyle SIKILAŞTIRILMIŞ — açık sapma):** **eğitim 500, validasyon 200,
-  test 200** dizi/tohum (çakışma yok, **otomatik assert**). *Gerekçe (ölçülmüş):* scipy CSR × yoğun
-  durum matrisi **14,9 ms/adım (B=64, E=298.532)** → 2000/500/500 (3.000 dizi) tasarımı
-  **~70 s/tohum-kol** ve **~7 saat** toplam sürerdi; 900 dizi ile **~21 s/tohum-kol** ve **~2 saat**
-  hedeflenir. Okuma **dual (kernel) ridge** ile çözüldüğü için **500 eğitim örneği 10–21 sınıflı
-  nominal okuma için yeterlidir**. Diğer her şey (ızgara, ölçütler, kollar, 30 tohum) **değişmedi**;
-  sapma raporda ayrıca yazılır.
+- **Bölme (teknik bütçe nedeniyle SIKILAŞTIRILMIŞ — açık sapma):** **eğitim 300, validasyon 120,
+  test 120** (=540) **+ 180 T3-ekstrapolasyon** dizisi/tohum (çakışma yok, **otomatik assert**).
+  *Gerekçe:* §Teknik bütçe (ölçülmüş 9,8 ms/adım); 2000/500/500 tasarımı **~7 saat** sürerdi.
+  Okuma **dual (kernel) ridge** olduğundan 300 eğitim örneği 10–21 sınıflı nominal okuma için
+  yeterlidir. Diğer her şey (ızgara, ölçütler, kollar, 30 tohum) **değişmedi**; sapma raporda yazılır.
 - **Okuma her (k,H) koşulu için ayrı eğitilir** (birincil). Tek bir **101 adımlık yörünge**, tüm
   (k,H) okuma zamanlarını **paylaşır** (nedensellik gereği aynı sonucu verir).
 - **Okuma:** **ridge**, λ yalnızca **validasyonda**; okuma özelliklerine **gözlem gürültüsü
@@ -733,11 +731,19 @@ sürücüsü çıkarılır**. **Birincil = merkezlemesiz**; merkezlemeli sürüm
 
 ### Teknik bütçe (ÖLÇÜLMÜŞ; ölçümden önce)
 
-- scipy CSR × yoğun durum matrisi: **14,9 ms/adım (B=64)**; yoğun BLAS f64: 155 ms/adım (B=500).
-- 900 dizi × 101 adım → **~21 s/tohum-kol** (A, E=298.532); **MB** (E=523.784) → **~37 s**.
-- Tahmini toplam: A kolları (6 matris kolu + 2 bedava) 30 tohum ≈ **70 dk**; MB kolları (3)
-  15 tohum ≈ **28 dk**; pilot ≈ **10 dk**; T2/T3/T4 ekleri ≈ **%25** → **~2 saat**.
-- **MB kolları 15 tohumla** koşar (KEŞİFSEL/"kural dışı" oldukları için; güç sınırı raporda yazılır).
+- **scipy CSR (sort_indices) × yoğun durum matrisi: 9,8 ms/adım (B=64, E=298.532)**; yoğun BLAS f64:
+  155 ms/adım (B=500); indeks sıralamasız CSR: 14,9 ms/adım.
+- **Bölme nihai sayılar (ölçülen bütçeye göre):** **eğitim 300, validasyon 120, test 120** (=540)
+  **+ 180 T3-ekstrapolasyon** dizisi = **720 dizi/tohum** (dizi çakışması yok, **otomatik assert**).
+  *Gerekçe:* 355 adım/dizi (5 k-grubu × ortalama 71 adım) → **~39 s/tohum-kol** (A) ve **~68 s**
+  (MB, E=523.784). 3.000 dizi (2000/500/500) tasarımı **~7 saat** sürerdi; bu sayılarla **~2,9 saat**
+  hedeflenir. Okuma **dual (kernel) ridge** olduğundan 300 eğitim örneği 10–21 sınıflı nominal okuma
+  için yeterlidir. Diğer her şey (ızgara, ölçütler, kollar) **değişmedi**; sapma raporda yazılır.
+- Tahmini toplam: **6 matris kolu × 30 tohum** (A) ≈ **2,0 saat**; **3 MB kolu × 15 tohum** ≈
+  **51 dk**; pilot ≈ **10 dk**; T2/T3/T4 ekleri ≈ **%15** → **~2,9 saat**.
+- **MB kolları 15 tohumla** (KEŞİFSEL/"kural dışı"); güç sınırı raporda yazılır. **110 adımlık
+  k-grubu yapısı:** her k için ayrı yörünge (k'nın ardından gelen darbeler H beklemesini
+  bozacağından paylaşılamaz); aynı k içinde 4 H okuması **tek yörüngeyi paylaşır**.
 
 ### Sonuç dili ve yasaklar
 
