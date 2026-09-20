@@ -434,6 +434,68 @@ bu yapısal bulguyu bir işlev iddiasına bağlayacak ölçümümüz **yok**; ra
 
 Ön-kayıttan sonra eklenen her analiz raporda ayrı **"KEŞİFSEL"** başlığı altında verilir.
 
+---
+
+## FAZ 6-0 — CX halka geometrisi keşfi (yalnızca ölçüm; DİNAMİK SİMÜLASYON YOK)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır. Faz 0–5 dosyaları/sonuçları DEĞİŞTİRİLMEDİ.
+Yeni kod: **`numcog/cx_geometry.py`**. Eşzamanlı süreç **≤ 2**. **Dinamik simülasyon YASAK.**
+
+### Adım 0 (envanter, ön-kayıttan önce)
+
+EPG 51 (`hemibrain_type` EPG 47 + EPGt 4), PEN 42 (**PEN_a(PEN1) 20, PEN_b(PEN2) 22**),
+Delta7 42. `pos_x/y/z` ve `soma_x/y/z` **hepsinde dolu** (51/51, 42/42, 42/42). EPG'de pos↔soma
+mesafesi: medyan **0.00**, ortalama 1.621,6, en büyük 40.699. EPG→PEN 663 kenar (ağırlık 6.852),
+PEN→EPG 698 kenar (ağırlık 9.753).
+
+### Sabitlenen seçimler (ölçümden önce)
+
+- **Konum sütunu (birincil): `soma_x/y/z`** ("EPG somaları"). **İkincil (KEŞİFSEL): `pos_x/y/z`.**
+- **Açı düzlemi (birincil): EPG soma noktalarının (merkezlenmiş) PCA'sının İLK İKİ bileşeni.**
+  Merkez = bu düzlemdeki 2B ağırlık merkezi; açı θ_i = atan2(pc2, pc1).
+- **PEN açıları:** aynı EPG PCA tabanına izdüşümle ve **aynı merkezle** elde edilir (yeniden PCA yok).
+- **EPG↔PEN bağlantısı (birincil): yönsüz toplam** W_ij = syn(EPG→PEN) + syn(PEN→EPG)
+  (W_ij > 0 olan çiftler). Yön ayrımı (EPG→PEN / PEN→EPG) **KEŞİFSEL** bölümde raporlanır.
+- **"Wedge" tanımı (veriden):** wedge ≈ EPG'lerin **medyan açısal aralığı** (derece); hiçbir yerde
+  wedge sayısı önceden VARSAYILMAZ.
+
+### Hipotezler ve çürütme eşikleri
+
+- **H6.1 (halka):** EPG soma konumları PCA düzleminde **halka benzeri** dağılır.
+  İstatistik: **yarıçap değişim katsayısı r_cv = std(r)/mean(r)** (halkada küçük, elipsoid bulutta
+  ~0,5). Null: **aynı 3B kovaryansa sahip elipsoid** nokta bulutu (1000 örnek, aynı n=51, PCA aynı
+  biçimde). **Destek:** r_cv null'un **5. persentilinin altında** VE **en büyük açısal boşluk
+  g_max ≤ 60°** (halka tam turu kapsar). **Çürütme:** r_cv ≥ null 5. persentil VEYA g_max > 60°.
+  (Ek tanımlayıcı: Rayleigh R, Kuiper V_n — raporlanır, karar için kullanılmaz.)
+- **H6.2 (yerellik):** EPG↔PEN ağırlığı açısal uzaklıkla **azalır**.
+  İstatistik: W_ij ile Δθ_ij (dairesel uzaklık) arasında **Spearman ρ** (W>0 çiftleri).
+  **Beklenen işaret: ρ < 0.** Null: **EPG açı etiketlerinin permütasyonu** (1000).
+  **Çürütme:** **Holm düzeltmesi sonrası p ≥ 0,05** (iki-yanlı).
+  **Ek kontrol (etiketli):** derece-korunmuş rasgele bağlantı (çift-kenar takası, ≥10× kenar)
+  → ρ aynı yönde kalıyorsa sinyal derece/yapı kaynaklıdır, spesifik kablolamaya bağlanamaz.
+- **H6.3 (tanı; YÖN beklentisi YOK):** PEN_a ve PEN_b, EPG açısına göre **sistematik yön kayması**
+  gösterir. İstatistik: her PEN i için EPG-girdi ağırlıklı **dairesel ortalama açısı** θ_in(i) ve
+  kendi soma açısı θ_own(i); δ_i = circdiff(θ_in, θ_own). Kol istatistiği =
+  **circdiff(circmean(δ | PEN_a), circmean(δ | PEN_b))**. Null: **alt tip etiketlerinin
+  permütasyonu** (1000). **Çürütme:** **Holm sonrası p ≥ 0,05**.
+  Kayma ayrıca **derece** ve **wedge birimi** (medyan EPG aralığı) cinsinden raporlanır.
+
+### Test ailesi ve düzeltme
+
+**m = 3** (H6.1, H6.2, H6.3) → **Holm**. Ham p, ham etki (r_cv farkı / ρ / kayma derecesi) ve
+düzeltilmiş p raporlanır; 1000 örnek → **p ≥ 1/1001**.
+
+### Zorunlu raporlama kuralları
+
+- **Adım 5:** bu koordinatlardan çıkarılan açıların **wedge etiketi OLMADIĞI**, bunların **çıkarım**
+  olduğu raporda açıkça yazılır (bu veri sürümünde wedge/glomerulus ROI etiketi yoktu — Faz 5 §5).
+- **Adım 4 (karar, kod yok):** halka simülasyonu için yeterli geometri var mı, **kaç wedge
+  çıkarılabildi (ölçümden)**, hangi parametreler elle ayarlanacak (kazançlar, inhibisyon), belirsizlik
+  ne kadar — hepsi ölçüme dayanarak yazılır.
+- **"İşlev/hesaplama katkısı" ve "evrimsel tasarım" iddiası YASAK** (Faz 5 yorum kuralı geçerli).
+- Sonradan eklenen her analiz **KEŞİFSEL** başlığı altında.
+
+
 
 ---
 
