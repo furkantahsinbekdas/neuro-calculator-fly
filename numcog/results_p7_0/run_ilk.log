@@ -1,0 +1,79 @@
+=== ADIM: ETİKET SAYIMI (NaN'lar sayıldı; dropna=False) ===
+  KC                         n=5177  top_nt=5177  known_nt=5177  nt_used=0     (+0/-0)
+  MBON                       n=96    top_nt=96    known_nt=68    nt_used=74    (+39/-35)
+  DAN-benzeri(PAM/PPL1/PPL2) n=331   top_nt=331   known_nt=331   nt_used=162   (+162/-0)
+  APL                        n=2     top_nt=2     known_nt=2     nt_used=0     (+0/-0)
+  DPM                        n=2     top_nt=2     known_nt=2     nt_used=0     (+0/-0)
+  NT etiket değerleri (tüm annotation, ilk 10): {'acetylcholine': 64116, nan: 41019, 'glutamate': 19793, 'gaba': 12820, 'serotonin': 1026, 'dopamine': 386, 'octopamine': 88}
+
+=== ADIM C: PARÇA PARÇA TARAMA (batch=65536, float64) ===
+  MB hücre kümesi (KC+MBON+DAN+APL+DPM): 5608
+  40/258 batch (2621440 satır, 6s, hücre 134100, nöropil anahtar 79)
+  80/258 batch (5242880 satır, 13s, hücre 136684, nöropil anahtar 79)
+  120/258 batch (7864320 satır, 19s, hücre 137728, nöropil anahtar 79)
+  160/258 batch (10485760 satır, 25s, hücre 138207, nöropil anahtar 79)
+  200/258 batch (13107200 satır, 31s, hücre 138445, nöropil anahtar 79)
+  240/258 batch (15728640 satır, 37s, hücre 138593, nöropil anahtar 79)
+  tarama bitti: 16847997 satır, 138639 benzersiz hücre (40s)
+  önbellek yazıldı: C:\Users\Administrator\Desktop\Genesis_Fly\flyputer\numcog\results_p7_0\scan_cache.npz (91 MB)
+  MB içi kenar: 654483 | nöropil anahtarı: 79
+
+=== ADIM C: ADAY METRİKLERİ ===
+  A (CX core: EB/PB/FB/NO)   hücre=4236   (NT etiketli 2263, %53.1) kenar=298532  sinaps=1339370   karşılıklı=0.399 SCC=3711   rho(+/-)=43.9640 (|W| 65.8047)
+  A_genis (duyarlılık)       hücre=19033  (NT etiketli 10230, %53.7) kenar=1039675 sinaps=3871768   karşılıklı=0.237 SCC=18916  rho(+/-)=43.9083 (|W| 102.6564)
+  B (MB: KC/MBON/DAN/APL/DPM) hücre=5608   (NT etiketli 236, %4.2) kenar=523784  sinaps=1216234   karşılıklı=0.345 SCC=5608   rho(+/-)=11.6224 (|W| 22.3859)
+
+  C kontrolü: 79 uygun nöropil (>=1000 satır)
+  tüm uygun nöropiller için SCC hesaplandı (18s)
+  C (30 rastgele nöropil): SCC medyan=3514 min=248 max=36396 | hücre medyan=4929
+  C referans (en büyük SCC): ME_L (hücre=36841, kenar=2426813, SCC=36438)
+
+=== SEÇİM KURALI (ön-kayıtlı: SCC 300-5000; A uygunsa A, değilse B) ===
+  A (CX core: EB/PB/FB/NO)   SCC=3711   uygun=1  rol=BIRINCIL
+  A_genis (duyarlılık)       SCC=18916  uygun=0  rol=uygun degil
+  B (MB: KC/MBON/DAN/APL/DPM) SCC=5608   uygun=0  rol=uygun degil
+  => BİRİNCİL: A (CX core: EB/PB/FB/NO)
+  maliyet (birincil, N=4236, E=298532): seyrek W ~5 MB; adım başına ~298532 çarpma; T=500 adım ~149.3 M işlem
+  doğrusal kararlılık: g_crit = 1/rho = 0.023
+=== ADIM: ETİKET SAYIMI (NaN'lar sayıldı; dropna=False) ===
+  KC                         n=5177  top_nt=5177  known_nt=5177  imza=5177  (+5177/-0)
+  MBON                       n=96    top_nt=96    known_nt=68    imza=96    (+51/-45)
+  DAN-benzeri(PAM/PPL1/PPL2) n=331   top_nt=331   known_nt=331   imza=331   (+331/-0)
+  APL                        n=2     top_nt=2     known_nt=2     imza=2     (+0/-2)
+  DPM                        n=2     top_nt=2     known_nt=2     imza=2     (+2/-0)
+  NT kaynağı (tüm annotation): {'known_nt': np.int64(71337), 'top_nt': np.int64(67335), 'yok': np.int64(576)}
+  ham top_nt değerleri (ilk 8): {'acetylcholine': 86193, 'glutamate': 24875, 'gaba': 19171, 'dopamine': 5909, 'serotonin': 2282, nan: 602, 'octopamine': 216}
+  ham known_nt değerleri (ilk 8): {nan: 51411, 'acetylcholine': 33222, 'histamine': 9795, 'glutamate': 9261, 'acetylcholine; acetylcholine': 7335, 'gaba-negative': 4913, 'gaba': 4188, 'acetylcholine; sNPF; acetylcholine, sNPF': 4133}
+  NOT (veri gözlemi): KC'lerde top_nt çoğunlukla 'dopamine' (5172/5177) görünüyor ki bu
+  biyolojik beklentiyle çelişir (KC kolinerjik); ön-kayıtlı kural gereği known_nt öncelikli
+  olduğu için KC'lerde imza 'acetylcholine' kaynaklı +1 olur. Bu bir VERİ gözlemidir.
+
+=== ADIM C: PARÇA PARÇA TARAMA (batch=65536, float64) ===
+  MB hücre kümesi (KC+MBON+DAN+APL+DPM): 5608
+  40/258 batch (2621440 satır, 6s, hücre 134100, nöropil anahtar 79)
+  80/258 batch (5242880 satır, 12s, hücre 136684, nöropil anahtar 79)
+  120/258 batch (7864320 satır, 19s, hücre 137728, nöropil anahtar 79)
+  160/258 batch (10485760 satır, 25s, hücre 138207, nöropil anahtar 79)
+  200/258 batch (13107200 satır, 31s, hücre 138445, nöropil anahtar 79)
+  240/258 batch (15728640 satır, 38s, hücre 138593, nöropil anahtar 79)
+  tarama bitti: 16847997 satır, 138639 benzersiz hücre (41s)
+  önbellek yazıldı: C:\Users\Administrator\Desktop\Genesis_Fly\flyputer\numcog\results_p7_0\scan_cache.npz (91 MB)
+  MB içi kenar: 654483 | nöropil anahtarı: 79
+
+=== ADIM C: ADAY METRİKLERİ ===
+  A (CX core: EB/PB/FB/NO)   hücre=4236   (NT etiketli 4258, %100.0) kenar=298532  sinaps=1339370   karşılıklı=0.399 SCC=3711   rho(+/-)=66.5602 (|W| 142.6138)
+  A_genis (duyarlılık)       hücre=19033  (NT etiketli 19044, %100.0) kenar=1039675 sinaps=3871768   karşılıklı=0.237 SCC=18916  rho(+/-)=83.5887 (|W| 150.8384)
+  B (MB: KC/MBON/DAN/APL/DPM) hücre=5608   (NT etiketli 5608, %100.0) kenar=523784  sinaps=1216234   karşılıklı=0.345 SCC=5608   rho(+/-)=108.7536 (|W| 164.5892)
+
+  C kontrolü: 79 uygun nöropil (>=1000 satır)
+  tüm uygun nöropiller için SCC hesaplandı (18s)
+  C (30 rastgele nöropil): SCC medyan=3514 min=248 max=36396 | hücre medyan=4929
+  C referans (en büyük SCC): ME_L (hücre=36841, kenar=2426813, SCC=36438)
+
+=== SEÇİM KURALI (ön-kayıtlı: SCC 300-5000; A uygunsa A, değilse B) ===
+  A (CX core: EB/PB/FB/NO)   SCC=3711   uygun=1  rol=BIRINCIL
+  A_genis (duyarlılık)       SCC=18916  uygun=0  rol=uygun degil
+  B (MB: KC/MBON/DAN/APL/DPM) SCC=5608   uygun=0  rol=uygun degil
+  => BİRİNCİL: A (CX core: EB/PB/FB/NO)
+  maliyet (birincil, N=4236, E=298532): seyrek W ~5 MB; adım başına ~298532 çarpma; T=500 adım ~149.3 M işlem
+  doğrusal kararlılık: g_crit = 1/rho = 0.015

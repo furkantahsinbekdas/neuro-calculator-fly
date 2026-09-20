@@ -1,0 +1,18 @@
+
+=== ADIM C: ADAY METRİKLERİ ===
+  A (CX core: EB/PB/FB/NO)   alt-graf hücre=4236   (CX küme=4259) kenar=298532  sinaps=1339370   karşılıklı=0.399 SCC=3711   rho(+/-)=66.560 (|W| 142.614) | kenar imzası: +0.51 -0.49 belirsiz 0.00
+  A_genis (duyarlılık)       alt-graf hücre=19033  (CX küme=19045) kenar=1039675 sinaps=3871768   karşılıklı=0.237 SCC=18916  rho(+/-)=83.589 (|W| 150.838) | kenar imzası: +0.61 -0.39 belirsiz 0.00
+  B (MB: KC/MBON/DAN/APL/DPM) hücre=5608   kenar=523784  sinaps=1216234   karşılıklı=0.345 SCC=5608   rho(+/-)=108.754 (|W| 164.589) | kenar imzası: +0.97 -0.03 belirsiz 0.00
+
+  C kontrolü: 79 uygun nöropil (>=1000 satır)
+  tüm uygun nöropiller için SCC hesaplandı (18s)
+  C (30 rastgele nöropil): SCC medyan=3514 min=248 max=36396 | hücre medyan=4929
+  C referans (en büyük SCC): ME_L (hücre=36841, kenar=2426813, SCC=36438)
+
+=== SEÇİM KURALI (ön-kayıtlı: SCC 300-5000; A uygunsa A, değilse B) ===
+  A (CX core: EB/PB/FB/NO)   SCC=3711   uygun=1  rol=BIRINCIL
+  A_genis (duyarlılık)       SCC=18916  uygun=0  rol=uygun degil
+  B (MB: KC/MBON/DAN/APL/DPM) SCC=5608   uygun=0  rol=uygun degil
+  => BİRİNCİL: A (CX core: EB/PB/FB/NO)
+  maliyet (birincil, N=4236, E=298532): seyrek W ~5 MB; adım başına ~298532 çarpma; T=500 adım ~149.3 M işlem
+  doğrusal kararlılık: g_crit = 1/rho = 0.015
