@@ -161,6 +161,13 @@ Dil kalıbı: **"bu veride, bu modelde, bu ızgarada"**.
 - **Tek connectome** (hemibrain 783); **simülasyon**; işlev/evrimsel tasarım iddiası **YASAK**
   (Faz 5 kuralı).
 - **Ölçüm sırasında hiçbir ızgara/ölçüt/kapı değiştirilmedi**; sonradan eklenen analiz **yok**.
+- **Uygulama düzeltmesi (ölçüm ÖNCESİ, ön-kayıt `3d7d638`'den sonra):** pilotun **ilk** koşusunda
+  tüm η/ρ ayarlarında doğrulama **0,525** (şans) çıktı; neden **`np.clip(..., out=self.W[m])`**
+  çağrısının boolean maskelemede **kopya** üzerinde çalışmasıydı → W negatife iniyor, ReLU tüm
+  plastisite etkisini siliyordu. Düzeltme: **satır indeksli** güncelleme
+  (`self.W[rows] = np.maximum(self.W[rows] − η·kc, 0)`). Düzeltmeden sonra bir ödül denemesi
+  skoru **−0,27 → +0,91**'e çeviriyor. **Hiçbir ızgara/ölçüt/kapı değişmedi**; yalnızca kod hatası
+  giderildi ve düzeltilmiş sürüm G1'i (0,982) geçti.
 
 ## 6. Yeniden üretilebilirlik
 
