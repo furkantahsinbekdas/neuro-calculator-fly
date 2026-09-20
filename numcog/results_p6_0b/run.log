@@ -1,0 +1,80 @@
+=== ADIM 1: ETIKET/NaN SAYIMI ===
+  EPG  n=51 | hemibrain_type: {'EPG': np.int64(47), 'EPGt': np.int64(4)}
+  PEN  n=42 | hemibrain_type: {'PEN_b(PEN2)': np.int64(22), 'PEN_a(PEN1)': np.int64(20)}
+
+=== ADIM 2: GÖMME (Laplasyen, ilk iki nontrivial özvektör) ===
+  M(93x93)    n=93  r_cv=1.7668 r_mean=0.072 g_max=92.3 deg Kuiper V=0.504 lam1..4=[0.     0.     6.5392 7.6408] dejen(lam2~lam3)=False
+  S(51x51)    n=51  r_cv=2.0597 r_mean=0.087 g_max=93.7 deg Kuiper V=0.527 lam1..4=[   0.        0.     1291.0935 1534.1854] dejen(lam2~lam3)=False
+=== ADIM 1: ETIKET/NaN SAYIMI ===
+  EPG  n=51 | hemibrain_type: {'EPG': np.int64(47), 'EPGt': np.int64(4)}
+  PEN  n=42 | hemibrain_type: {'PEN_b(PEN2)': np.int64(22), 'PEN_a(PEN1)': np.int64(20)}
+  NaN: [{'kume': 'EPG', 'n': 51, 'hemibrain_type_nan': 0, 'cell_type_nan': 0}, {'kume': 'PEN', 'n': 42, 'hemibrain_type_nan': 0, 'cell_type_nan': 0}]
+  tip adlarinda SAYI iceren benzersiz etiket: ['PEN_a(PEN1)', 'PEN_b(PEN2)'] -> wedge/glomerul etiketi VAR
+  W: 51 x 42 | kenar=663, sinaps=6852, sifir olmayan hucre: EPG 50 / PEN 42
+=== ADIM 1: ETIKET/NaN SAYIMI ===
+  EPG  n=51 | hemibrain_type: {'EPG': np.int64(47), 'EPGt': np.int64(4)}
+  PEN  n=42 | hemibrain_type: {'PEN_b(PEN2)': np.int64(22), 'PEN_a(PEN1)': np.int64(20)}
+  NaN: [{'kume': 'EPG', 'n': 51, 'hemibrain_type_nan': 0, 'cell_type_nan': 0}, {'kume': 'PEN', 'n': 42, 'hemibrain_type_nan': 0, 'cell_type_nan': 0}]
+  EPG tip adlarinda SAYI: YOK -> wedge/glomerul etiketi YOK
+  (sayi iceren TUM etiketler: ['PEN_a(PEN1)', 'PEN_b(PEN2)'] -> bunlar PEN alt tip adlari, wedge degil)
+  W: 51 x 42 | kenar=663, sinaps=6852, sifir olmayan hucre: EPG 50 / PEN 42
+
+=== ADIM 2: GÖMME (Laplasyen; birincil = en küçük iki SIFIR-DIŞI özvektör) ===
+  M(93x93)    n=93  sifir ozdeger=2 (bagli bilesen) | BIRINCIL r_cv=1.1538 r_mean=0.0963 g_max=86.2 deg Kuiper V=0.421 | LITERAL(indis1,2) r_cv=1.7668 g_max=92.3
+      lam1..6=[ 0.      0.      6.5392  7.6408  9.2639 11.753 ] | ozvektor indisleri: birincil=[2, 3] literal=[1, 2]
+  S(51x51)    n=51  sifir ozdeger=2 (bagli bilesen) | BIRINCIL r_cv=1.6562 r_mean=0.1031 g_max=87.1 deg Kuiper V=0.512 | LITERAL(indis1,2) r_cv=2.0597 g_max=93.7
+      lam1..6=[   0.        0.     1291.0935 1534.1854 1825.1667 2248.0361] | ozvektor indisleri: birincil=[2, 3] literal=[1, 2]
+
+=== ADIM 3: NULL (derece-korunmuş rastgele bağlantı, 1000 örnek) ===
+  kenar=582, takas denemesi/ornek=5820 | gözlenen: M r_cv=1.1538 g_max=86.2 | S r_cv=1.6562 g_max=87.1
+  200/1000 örnek (12s)
+  400/1000 örnek (23s)
+  600/1000 örnek (34s)
+  800/1000 örnek (45s)
+  1000/1000 örnek (56s)
+null bitti (56s) | derece korunumu assert edildi
+
+=== BONUS: gömme açısı vs Faz 6-0 soma açısı (dairesel korelasyon) ===
+  M(93x93)    |r_c| = 0.3000 (isaret ozvektor yonune bagli, |r_c| raporlanir)
+  S(51x51)    |r_c| = 0.3218 (isaret ozvektor yonune bagli, |r_c| raporlanir)
+
+=== ADIM 2: GÖMME (Laplasyen; birincil = en küçük iki SIFIR-DIŞI özvektör) ===
+  M(93x93)    n=93  sifir ozdeger=2 (bagli bilesen) | BIRINCIL r_cv=1.1538 r_mean=0.0963 g_max=86.2 deg Kuiper V=0.421 | LITERAL(indis1,2) r_cv=1.7668 g_max=92.3
+      lam1..6=[ 0.      0.      6.5392  7.6408  9.2639 11.753 ] | ozvektor indisleri: birincil=[2, 3] literal=[1, 2]
+  S(51x51)    n=51  sifir ozdeger=2 (bagli bilesen) | BIRINCIL r_cv=1.6562 r_mean=0.1031 g_max=87.1 deg Kuiper V=0.512 | LITERAL(indis1,2) r_cv=2.0597 g_max=93.7
+      lam1..6=[   0.        0.     1291.0935 1534.1854 1825.1667 2248.0361] | ozvektor indisleri: birincil=[2, 3] literal=[1, 2]
+
+=== GOZLEMLER (birincil M, 93x93) ===
+  H6b.1 r_cv=1.1538 (null 2.8476 +- 0.4753)
+  H6b.2 g_max=86.2 deg (null 71.5 +- 19.4)
+
+=== HOLM (m=2) ===
+  H6b.1 r_cv (M)   p_ham=0.0010 p_holm=0.0020 -> AYRISIR
+  H6b.2 g_max (M)  p_ham=0.6154 p_holm=0.6154 -> ayrisamaz | g_max<60 deg: SAGLANMADI
+  NOT: 1000 ornek -> p >= 1/1001 = 0.00100
+
+=== KO-ANALIZ (S, 51x51; Holm ailesine DAHIL DEGIL) ===
+  S r_cv=1.6562 (null 2.6755 +- 0.1859) p_ham=0.0010
+  S g_max=87.1 deg (null 91.6 +- 14.6) p_ham=0.2088 | g_max<60: SAGLANMADI
+
+=== ADIM 4 KARAR SAYILARI (gommeden) ===
+  M(93x93)    esik    2 deg -> 18 kume (n=93, ort. 5.17 hucre)
+  M(93x93)    esik    5 deg -> 10 kume (n=93, ort. 9.30 hucre)
+  M(93x93)    esik   10 deg -> 7 kume (n=93, ort. 13.29 hucre)
+  M(93x93)    medyan aralik=0.34 deg | en buyuk bosluk=86.2 deg
+  S(51x51)    esik    2 deg -> 17 kume (n=51, ort. 3.00 hucre)
+  S(51x51)    esik    5 deg -> 9 kume (n=51, ort. 5.67 hucre)
+  S(51x51)    esik   10 deg -> 6 kume (n=51, ort. 8.50 hucre)
+  S(51x51)    medyan aralik=1.08 deg | en buyuk bosluk=87.1 deg
+
+=== KEŞİFSEL: BAĞLI BİLEŞENLER (sıfır özdeğer = bileşen sayısı) ===
+
+=== KEŞİFSEL: BAĞLI BİLEŞENLER (sıfır özdeğer = bileşen sayısı) ===
+  M(93x93): 2 bilesen
+    bilesen 0: 92 hucre ({'EPG': 50, 'PEN': 42}) | EPG taraf dagilimi: {'right': 25, 'left': 25}
+    bilesen 1: 1 hucre ({'EPG': 1, 'PEN': 0}) | EPG taraf dagilimi: {'left': 1}
+  S(51x51): 2 bilesen
+    bilesen 0: 50 hucre ({'EPG': 50, 'PEN': 0}) | EPG taraf dagilimi: {'right': 25, 'left': 25}
+    bilesen 1: 1 hucre ({'EPG': 1, 'PEN': 0}) | EPG taraf dagilimi: {'left': 1}
+  null (n=1000): M sifir-ozdeger ort=2.000 | 2 bilesen orani=1.000 | S sifir-ozdeger ort=2.000 | 2 bilesen orani=1.000
+  literal(indis1,2) vs birincil: M r_cv 3.5450 vs 2.8476 | S r_cv 2.9758 vs 2.6755
