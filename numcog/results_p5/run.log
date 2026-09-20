@@ -1,0 +1,225 @@
+
+=== NULL A (shard 3/3): 1843 kenar, 18430 takas denemesi/ornek ===
+
+=== NULL A (shard 2/3): 1843 kenar, 18430 takas denemesi/ornek ===
+
+=== NULL A (shard 1/3): 1843 kenar, 18430 takas denemesi/ornek ===
+  [nullA s2] 20 ornek (5s)
+  [nullA s1] 20 ornek (5s)
+  [nullA s0] 20 ornek (5s)
+  [nullA s1] 40 ornek (11s)
+  [nullA s0] 40 ornek (11s)
+  [nullA s2] 40 ornek (11s)
+  [nullA s0] 60 ornek (16s)
+  [nullA s1] 60 ornek (16s)
+  [nullA s2] 60 ornek (17s)
+  [nullA s0] 80 ornek (22s)
+  [nullA s1] 80 ornek (22s)
+  [nullA s2] 80 ornek (22s)
+  [nullA s0] 100 ornek (28s)
+  [nullA s1] 100 ornek (28s)
+  [nullA s2] 100 ornek (28s)
+  [nullA s0] 120 ornek (33s)
+  [nullA s1] 120 ornek (34s)
+  [nullA s2] 120 ornek (34s)
+  [nullA s0] 140 ornek (39s)
+  [nullA s1] 140 ornek (40s)
+  [nullA s2] 140 ornek (40s)
+  [nullA s0] 160 ornek (46s)
+  [nullA s1] 160 ornek (46s)
+  [nullA s2] 160 ornek (46s)
+  [nullA s0] 180 ornek (51s)
+  [nullA s1] 180 ornek (51s)
+  [nullA s2] 180 ornek (52s)
+  [nullA s0] 200 ornek (57s)
+  [nullA s1] 200 ornek (57s)
+  [nullA s2] 200 ornek (57s)
+  [nullA s0] 220 ornek (63s)
+  [nullA s1] 220 ornek (63s)
+  [nullA s2] 220 ornek (63s)
+  [nullA s0] 240 ornek (69s)
+  [nullA s1] 240 ornek (69s)
+  [nullA s2] 240 ornek (69s)
+  [nullA s0] 260 ornek (74s)
+  [nullA s2] 260 ornek (75s)
+  [nullA s1] 260 ornek (75s)
+  [nullA s0] 280 ornek (80s)
+  [nullA s2] 280 ornek (80s)
+  [nullA s1] 280 ornek (80s)
+  [nullA s0] 300 ornek (86s)
+  [nullA s2] 300 ornek (86s)
+  [nullA s1] 300 ornek (86s)
+  [nullA s0] 320 ornek (92s)
+  [nullA s2] 320 ornek (92s)
+  [nullA s1] 320 ornek (92s)
+NULL A shard 0 bitti: 334 ornek (96s)
+NULL A shard 1 bitti: 333 ornek (96s)
+NULL A shard 2 bitti: 333 ornek (96s)
+
+=== NULL B (shard 3/3): 1843 kenar, 18430 takas denemesi/ornek ===
+
+=== NULL B (shard 1/3): 1843 kenar, 18430 takas denemesi/ornek ===
+
+=== NULL B (shard 2/3): 1843 kenar, 18430 takas denemesi/ornek ===
+  [nullB s2] 20 ornek (5s)
+  [nullB s1] 20 ornek (5s)
+  [nullB s0] 20 ornek (5s)
+  [nullB s2] 40 ornek (11s)
+  [nullB s0] 40 ornek (11s)
+  [nullB s1] 40 ornek (11s)
+  [nullB s2] 60 ornek (16s)
+  [nullB s0] 60 ornek (16s)
+  [nullB s1] 60 ornek (16s)
+  [nullB s2] 80 ornek (21s)
+  [nullB s0] 80 ornek (21s)
+  [nullB s1] 80 ornek (21s)
+  [nullB s2] 100 ornek (25s)
+  [nullB s1] 100 ornek (25s)
+  [nullB s0] 100 ornek (25s)
+  [nullB s2] 120 ornek (31s)
+  [nullB s1] 120 ornek (31s)
+  [nullB s0] 120 ornek (31s)
+  [nullB s2] 140 ornek (36s)
+  [nullB s0] 140 ornek (36s)
+  [nullB s1] 140 ornek (36s)
+  [nullB s2] 160 ornek (41s)
+  [nullB s0] 160 ornek (41s)
+  [nullB s1] 160 ornek (41s)
+  [nullB s2] 180 ornek (47s)
+  [nullB s0] 180 ornek (47s)
+  [nullB s1] 180 ornek (47s)
+  [nullB s2] 200 ornek (52s)
+  [nullB s0] 200 ornek (52s)
+  [nullB s1] 200 ornek (52s)
+  [nullB s2] 220 ornek (57s)
+  [nullB s0] 220 ornek (57s)
+  [nullB s1] 220 ornek (57s)
+  [nullB s2] 240 ornek (63s)
+  [nullB s0] 240 ornek (63s)
+  [nullB s1] 240 ornek (63s)
+  [nullB s2] 260 ornek (68s)
+  [nullB s0] 260 ornek (68s)
+  [nullB s1] 260 ornek (68s)
+  [nullB s2] 280 ornek (74s)
+  [nullB s0] 280 ornek (74s)
+  [nullB s1] 280 ornek (74s)
+  [nullB s2] 300 ornek (79s)
+  [nullB s0] 300 ornek (79s)
+  [nullB s1] 300 ornek (79s)
+  [nullB s2] 320 ornek (84s)
+  [nullB s0] 320 ornek (84s)
+  [nullB s1] 320 ornek (84s)
+NULL B shard 2 bitti: 333 ornek (88s)
+NULL B shard 1 bitti: 333 ornek (88s)
+NULL B shard 0 bitti: 334 ornek (88s)
+
+=== M3 NULL (shard 3/3): KC=5177, VPN girdili=427, ALPN girdili=4887, IKISI=151 ===
+
+=== M3 NULL (shard 1/3): KC=5177, VPN girdili=427, ALPN girdili=4887, IKISI=151 ===
+
+=== M3 NULL (shard 2/3): KC=5177, VPN girdili=427, ALPN girdili=4887, IKISI=151 ===
+M3 shard 2 bitti: 333 ornek (0s)
+M3 shard 0 bitti: 334 ornek (0s)
+M3 shard 1 bitti: 333 ornek (0s)
+
+=== M4 NULL (shard 3/3): 388 KC (KCg-d/KCab-p), gozlenen MI=0.57586 bit ===
+
+=== M4 NULL (shard 2/3): 388 KC (KCg-d/KCab-p), gozlenen MI=0.57586 bit ===
+
+=== M4 NULL (shard 1/3): 388 KC (KCg-d/KCab-p), gozlenen MI=0.57586 bit ===
+M4 shard 2 bitti: 333 ornek (0s)
+M4 shard 1 bitti: 333 ornek (0s)
+M4 shard 0 bitti: 334 ornek (0s)
+=== ADIM 0: ETIKET SAYIMI (dropna=False) ===
+--- kume buyuklukleri ---
+  VPN (super_class=visual_projection): 8038
+  KC  (cell_class=Kenyon_Cell)      : 5177
+  ALPN(cell_class=ALPN)             : 685
+--- sutun bazinda etiketli / NaN ---
+  VPN (super_class=visual_projection)  cell_type                etiketli=8010   NaN=28     benzersiz=326
+  VPN (super_class=visual_projection)  hemibrain_type           etiketli=6906   NaN=1132   benzersiz=196
+  VPN (super_class=visual_projection)  cell_sub_class           etiketli=28     NaN=8010   benzersiz=3
+  VPN (super_class=visual_projection)  supertype                etiketli=3264   NaN=4774   benzersiz=50
+  VPN (super_class=visual_projection)  ito_lee_hemilineage      etiketli=3272   NaN=4766   benzersiz=28
+  VPN (super_class=visual_projection)  hartenstein_hemilineage  etiketli=1261   NaN=6777   benzersiz=22
+  KC (cell_class=Kenyon_Cell)          cell_type                etiketli=5177   NaN=0      benzersiz=11
+  KC (cell_class=Kenyon_Cell)          hemibrain_type           etiketli=5177   NaN=0      benzersiz=12
+  KC (cell_class=Kenyon_Cell)          cell_sub_class           etiketli=4133   NaN=1044   benzersiz=2
+  KC (cell_class=Kenyon_Cell)          supertype                etiketli=5172   NaN=5      benzersiz=4
+  KC (cell_class=Kenyon_Cell)          ito_lee_hemilineage      etiketli=5177   NaN=0      benzersiz=4
+  KC (cell_class=Kenyon_Cell)          hartenstein_hemilineage  etiketli=5177   NaN=0      benzersiz=4
+  ALPN (cell_class=ALPN)               cell_type                etiketli=685    NaN=0      benzersiz=182
+  ALPN (cell_class=ALPN)               hemibrain_type           etiketli=667    NaN=18     benzersiz=173
+  ALPN (cell_class=ALPN)               cell_sub_class           etiketli=677    NaN=8      benzersiz=2
+  ALPN (cell_class=ALPN)               supertype                etiketli=669    NaN=16     benzersiz=118
+  ALPN (cell_class=ALPN)               ito_lee_hemilineage      etiketli=685    NaN=0      benzersiz=7
+  ALPN (cell_class=ALPN)               hartenstein_hemilineage  etiketli=685    NaN=0      benzersiz=7
+--- matris tanimi (min_syn=1) ---
+  W_vpn: 427 KC x 265 VPN | canli KC=427 canli VPN=265
+  W_alpn: 4887 KC x 319 ALPN | canli KC=4887 canli ALPN=319
+  matristeki 265 VPN: hemibrain_type etiketli=192, cell_type etiketli=264
+--- matristeki canli KC'lerin alt tipleri (hemibrain_type) ---
+  g      KCg-d          286
+  ab     KCab-p         102
+  g      KCg-m          29
+  g      KCg-s2         2
+  g      KCg-s1         2
+  ab     KCab-s         2
+  ab     KCab-m         1
+  apbp   KCa'b'-ap1     1
+  apbp   KCa'b'-ap2     1
+  g      KCg-s3         1
+  <30 hucreli alt tipler (alt-tip analizinden CIKARILDI): {'KCg-m': 29, 'KCg-s2': 2, 'KCg-s1': 2, 'KCab-s': 2, 'KCab-m': 1, "KCa'b'-ap1": 1, "KCa'b'-ap2": 1, 'KCg-s3': 1}
+  KCg-d=286, KCab-p=102 (M4'te kullanilacak iki alt tip)
+--- M3 (gercek deger, dogrulama) ---
+  VPN girdili KC=427, ALPN girdili KC=4887, IKISI=151
+  ortusen KC'lerin alt tip dagilimi: {'ab': 55, 'g': 94, 'apbp': 2}
+
+=== GOZLENEN DEGERLER ===
+  kenar=1843, KC=427, VPN=265 | M1=0.25376 | M2=1.42767 (M2 disi KC=0) | M3=151 | M4=0.57586 bit (M4 KC=388, M4 kenar=1657)
+null A: n=1000 ornek | kenar korunumu=True | degisim disi kenar=True
+  M1 x Null A    null=0.25376 +- 0.00000 | gozlenen=0.25376 fark=+0.00000 z=+nan p_ham=0.0010
+  M2 x Null A    null=1.60091 +- 0.00921 | gozlenen=1.42767 fark=-0.17324 z=-18.82 p_ham=0.0010
+null B: n=1000 ornek | kenar korunumu=True | degisim disi kenar=True
+  M1 x Null B    null=0.25376 +- 0.00000 | gozlenen=0.25376 fark=+0.00000 z=+nan p_ham=0.0010
+  M2 x Null B    null=1.46132 +- 0.00988 | gozlenen=1.42767 fark=-0.03365 z=-3.41 p_ham=0.0010
+  M3             null=165.16000 +- 2.60369 | gozlenen=151.00000 fark=-14.16000 z=-5.44 p_ham=0.0010 (n=1000)
+  M4             null=0.04785 +- 0.00613 | gozlenen=0.57586 fark=+0.52801 z=+86.12 p_ham=0.0010 (n=1000)
+
+=== HOLM DUZELTMESI (m=6) ===
+  M1 x Null A    fark=+0.00000 z=+nan p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  M2 x Null A    fark=-0.17324 z=-18.82 p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  M1 x Null B    fark=+0.00000 z=+nan p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  M2 x Null B    fark=-0.03365 z=-3.41 p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  M3             fark=-14.16000 z=-5.44 p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  M4             fark=+0.52801 z=+86.12 p_ham=0.0010 p_holm=0.0060 -> AYRISIR
+  NOT: 1000 ornek -> en kucuk olculebilir p = 1/1001 = 0.00100
+
+=== ADIM 3: CX HALKA ATTRAKTOR VERI KONTROLU (var/yok) ===
+annotation sutunlari (17): ['root_id', 'pos_x', 'pos_y', 'pos_z', 'soma_x', 'soma_y', 'soma_z', 'super_class', 'cell_class', 'cell_sub_class', 'supertype', 'cell_type', 'hemibrain_type', 'ito_lee_hemilineage', 'hartenstein_hemilineage', 'top_nt', 'side']
+  EPG     hucre=51    koordinat(pos_xyz)=51    koordinat(soma_xyz)=51    hemibrain_type etiketli=51
+  PEN     hucre=42    koordinat(pos_xyz)=42    koordinat(soma_xyz)=42    hemibrain_type etiketli=42
+  Delta7  hucre=42    koordinat(pos_xyz)=42    koordinat(soma_xyz)=42    hemibrain_type etiketli=42
+  CX kumesi toplam: 135 hucre
+  baglanti dosyasi sutunlari: ['pre_pt_root_id','post_pt_root_id','neuropil','syn_count','gaba_avg',...] (sinaps BASINA satir YOK; (pre,post,noropil) basina toplam)
+  CX hucrelerine dokunan kenar: 34154 | noropil degerleri (ilk 15): {'EB': 19884, 'PB': 8376, 'NO': 2330, 'GA_L': 1031, 'GA_R': 752, 'FB': 712, 'CRE_R': 411, 'MB_ML_R': 237, 'CRE_L': 149, 'ATL_R': 93, 'LAL_L': 45, 'MB_ML_L': 32, 'ATL_L': 28, 'IB_L': 14, 'ICL_L': 13}
+  PB/EB/glomerul/segment benzeri noropil etiketi: ['EB', 'PB']
+  glomerul/segment/ROI sutunu: YOK
+  SONUC (bu veri surumunde): noron-seviyesi koordinat = BULUNDU; noropil sutunu = BULUNDU (kaba noropil); PB glomerulu / EB segmenti ROI etiketi = BULUNAMADI; sinaps-basina ayri tablo = BULUNAMADI (baglanti dosyasi syn_count ile toplu).
+
+=== KEŞİFSEL — M1 DEGENERASYON KONTROLU ===
+  M1 = (sum_v d_v^2 - E) / (n(n-1))  [yalnizca sutun dereceleri ve kenar sayisi]
+  kapali form = 0.25376302
+  gozlenen M1 = 0.25376302  (mutlak fark = 4.79e-09)
+  null A+B ornekleri: 2000 | benzersiz deger = 1 | min==max: True | std = 0.00e+00
+  -> derece-koruyan null'da M1 DEGISMEZ; permutasyon p'si (0.0010) float32 yuvarlamasi
+     artefaktidir, ayrisma kaniti DEGIL.
+
+=== KEŞİFSEL M2 (hemibrain_type) shard 3/3: gozlenen=0.87222 (etiketli VPN=192/265) ===
+
+=== KEŞİFSEL M2 (hemibrain_type) shard 1/3: gozlenen=0.87222 (etiketli VPN=192/265) ===
+
+=== KEŞİFSEL M2 (hemibrain_type) shard 2/3: gozlenen=0.87222 (etiketli VPN=192/265) ===
+KESIFSEL M2(hemi) shard 2 bitti: 333 ornek (81s)
+KESIFSEL M2(hemi) shard 1 bitti: 333 ornek (84s)
+KESIFSEL M2(hemi) shard 0 bitti: 334 ornek (84s)

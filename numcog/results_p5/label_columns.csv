@@ -1,0 +1,19 @@
+kume,sutun,hucre,etiketli,nan,benzersiz
+VPN (super_class=visual_projection),cell_type,8038,8010,28,326
+VPN (super_class=visual_projection),hemibrain_type,8038,6906,1132,196
+VPN (super_class=visual_projection),cell_sub_class,8038,28,8010,3
+VPN (super_class=visual_projection),supertype,8038,3264,4774,50
+VPN (super_class=visual_projection),ito_lee_hemilineage,8038,3272,4766,28
+VPN (super_class=visual_projection),hartenstein_hemilineage,8038,1261,6777,22
+KC (cell_class=Kenyon_Cell),cell_type,5177,5177,0,11
+KC (cell_class=Kenyon_Cell),hemibrain_type,5177,5177,0,12
+KC (cell_class=Kenyon_Cell),cell_sub_class,5177,4133,1044,2
+KC (cell_class=Kenyon_Cell),supertype,5177,5172,5,4
+KC (cell_class=Kenyon_Cell),ito_lee_hemilineage,5177,5177,0,4
+KC (cell_class=Kenyon_Cell),hartenstein_hemilineage,5177,5177,0,4
+ALPN (cell_class=ALPN),cell_type,685,685,0,182
+ALPN (cell_class=ALPN),hemibrain_type,685,667,18,173
+ALPN (cell_class=ALPN),cell_sub_class,685,677,8,2
+ALPN (cell_class=ALPN),supertype,685,669,16,118
+ALPN (cell_class=ALPN),ito_lee_hemilineage,685,685,0,7
+ALPN (cell_class=ALPN),hartenstein_hemilineage,685,685,0,7
