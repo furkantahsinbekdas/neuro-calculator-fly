@@ -1,0 +1,129 @@
+=== ADIM 1: KONUM/ETIKET SAYIMI ===
+  EPG     soma_xyz  hucre=51   dolu=51   nan=0
+  EPG     pos_xyz   hucre=51   dolu=51   nan=0
+  PEN     soma_xyz  hucre=42   dolu=42   nan=0
+  PEN     pos_xyz   hucre=42   dolu=42   nan=0
+  Delta7  soma_xyz  hucre=42   dolu=42   nan=0
+  Delta7  pos_xyz   hucre=42   dolu=42   nan=0
+  EPG     hemibrain_type: {'EPG': np.int64(47), 'EPGt': np.int64(4)} | side: {'left': np.int64(26), 'right': np.int64(25)}
+  PEN     hemibrain_type: {'PEN_b(PEN2)': np.int64(22), 'PEN_a(PEN1)': np.int64(20)} | side: {'left': np.int64(21), 'right': np.int64(21)}
+  Delta7  hemibrain_type: {'Delta7': np.int64(42)} | side: {'right': np.int64(21), 'left': np.int64(21)}
+  EPG pos<->soma mesafesi: medyan=0.0 ort=1621.6 max=40699.0
+  CX kumesine dokunan kenar=34154, toplam sinaps=184149
+  noropil payi (sinaps): EB=58.1%, PB=24.1%, NO=10.2%, GA_L=3.1%, GA_R=2.4%, FB=0.7%, CRE_R=0.7%, MB_ML_R=0.4%
+
+=== ADIM 2: ACI ATAMASI (birincil: soma_xyz, PCA ilk iki bilesen) ===
+  EPG n=51 | aciklanan varyans: PC1=0.601 PC2=0.398 PC3=0.000
+  EPG aci: min=25.5 medyan=149.2 max=359.7 | aralik: medyan=3.30 min=0.01 max=77.79 (derece)
+  (wedge = medyan aralik = 3.30 derece -> esit tiling tahmini = 109.0 wedge)
+  ikincil (KESIFSEL) pos_xyz acilari: geometry_angles_pos.csv
+
+=== H6.1 (shard 1/1): gozlenen r_cv=0.3357 r_mean=13373.0 g_max=77.8 deg R=0.208 V=0.216 ===
+  kovaryans ozdegerleri: [8.16614380e+04 8.06860263e+07 1.21883670e+08] (tekil mi: False)
+  [h61 s0] 100 ornek (0s)
+  [h61 s0] 200 ornek (0s)
+  [h61 s0] 300 ornek (0s)
+  [h61 s0] 400 ornek (0s)
+  [h61 s0] 500 ornek (0s)
+  [h61 s0] 600 ornek (0s)
+  [h61 s0] 700 ornek (0s)
+  [h61 s0] 800 ornek (0s)
+  [h61 s0] 900 ornek (0s)
+  [h61 s0] 1000 ornek (0s)
+H6.1 shard 0 bitti: 1000 ornek (0s)
+
+=== H6.2: EPG<->PEN yerellik ===
+  EPG->PEN kenar=663 (agirlik=6852) | PEN->EPG kenar=698 (agirlik=9753)
+  yonsuz cift=693, agirlik toplami=16605 | Spearman rho(W, |dtheta|) = 0.0537 (beklenen < 0)
+  permutasyon (EPG acilari, n=1000): ort=0.0091 sd=0.0286 | p(iki-yanli)=0.0669 (2s)
+  KONTROL (derece-korunmus rastgele baglanti, 20 ornek): rho ort=0.0046 sd=0.0323 (gozlenen 0.0537)
+
+=== H6.2: EPG<->PEN yerellik ===
+  EPG->PEN kenar=663 (agirlik=6852) | PEN->EPG kenar=698 (agirlik=9753)
+  yonsuz cift=693, agirlik toplami=16605 | Spearman rho(W, |dtheta|) = 0.0537 (beklenen < 0)
+  permutasyon (EPG acilari, n=1000): ort=0.0091 sd=0.0286 | p(iki-yanli)=0.0669 (2s)
+  KONTROL (derece-korunmus rastgele baglanti, 20 ornek): rho ort=0.0046 sd=0.0323 (gozlenen 0.0537)
+
+=== H6.3: PEN alt tip yon kaymasi (tani) ===
+  EPG girdisi olan PEN: 42 / 42 (PEN_a 20, PEN_b 22)
+  |delta| ort=79.7 deg (delta = EPG-girdi agirlikli aci - PEN soma acisi)
+  dairesel ortalama: PEN_a=+8.2 deg (n=20), PEN_b=+6.9 deg (n=22)
+  |PEN_a - PEN_b| = 1.3 derece
+  permutasyon (alt tip etiketleri, n=1000): ort=65.8 deg sd=38.2 | p=0.9870
+
+=== GOZLEMLER ===
+  H6.1: r_cv=0.3357 (null ort=0.5207 sd=0.0522) | g_max=77.8 deg | R=0.208 | Kuiper V=0.216
+  H6.2: rho=+0.0537 (null ort=+0.0091) | KONTROL (derece-korunmus) rho ort=+0.0046 sd=0.0323
+  H6.3: kayma=1.3 deg (null ort=65.8 deg) | |delta| ort=79.7 deg
+
+=== HOLM (m=3) ===
+  H6.1 r_cv (halka)    fark=-0.1849 z=-3.54 p_ham=0.0010 p_holm=0.0030 -> AYRISIR
+  H6.2 rho (yerellik)  fark=+0.0446 z=+1.56 p_ham=0.1179 p_holm=0.2358 -> ayrisamaz
+  H6.3 kayma (tani)    fark=+0.1262 z=+0.19 p_ham=0.8452 p_holm=0.8452 -> ayrisamaz
+  NOT: 1000 ornek -> p >= 1/1001 = 0.00100
+
+=== ADIM 4 KARAR SAYILARI (yalnizca olcumden) ===
+  n_EPG=51 | medyan aralik=3.30 deg -> esit tiling wedge tahmini=109.0
+  en buyuk bosluk=77.8 deg -> bu bosluga dusen 'eksik' wedge=23.6
+  PEN: 42 (PEN_a 20, PEN_b 22) | Delta7: 42 | EPG girdili PEN: 42
+
+=== KEŞİFSEL (a): SOL/SAĞ YAPISI ===
+  left  n=26  aci araligi [25.5, 359.7] | medyan aralik=2.33 | en buyuk bosluk=226.3
+  right n=25  aci araligi [83.6, 226.3] | medyan aralik=3.96 | en buyuk bosluk=217.3
+  sol->en yakin sag aci farki: medyan=57.24 deg, <5 deg olan: 0/26
+
+=== KEŞİFSEL (b): VERIDEN SLOT (WEDGE) SAYISI ===
+  esik 2 deg -> kume sayisi=33 (ort. kume buyuklugu=1.55)
+  esik 5 deg -> kume sayisi=18 (ort. kume buyuklugu=2.83)
+  esik 10 deg -> kume sayisi=9 (ort. kume buyuklugu=5.67)
+  sol taraf tek basina: kume sayisi (esik 5 deg) = 10
+
+=== KEŞİFSEL (c): pos_xyz SAGLAMLIGI (birincil metrikler pos ile) ===
+  pos_xyz: r_cv=0.3397 g_max=77.5 deg R=0.194
+
+=== KEŞİFSEL (a): SOL/SAĞ YAPISI ===
+  left  n=26  aci araligi [25.5, 359.7] | medyan aralik=2.33 | en buyuk bosluk=226.3
+  right n=25  aci araligi [83.6, 226.3] | medyan aralik=3.96 | en buyuk bosluk=217.3
+  sol->en yakin sag aci farki: medyan=57.24 deg, <5 deg olan: 0/26
+
+=== KEŞİFSEL (b): VERIDEN SLOT (WEDGE) SAYISI ===
+  esik 2 deg -> kume sayisi=33 (ort. kume buyuklugu=1.55)
+  esik 5 deg -> kume sayisi=18 (ort. kume buyuklugu=2.83)
+  esik 10 deg -> kume sayisi=9 (ort. kume buyuklugu=5.67)
+  sol taraf tek basina: kume sayisi (esik 5 deg) = 10
+
+=== KEŞİFSEL (c): pos_xyz SAGLAMLIGI (birincil metrikler pos ile) ===
+  pos_xyz: r_cv=0.3397 g_max=77.5 deg R=0.194
+  pos_xyz: H6.2 rho=0.0571 (birincil soma ile 0.0537)
+
+=== GOZLEMLER ===
+  H6.1: r_cv=0.3357 (null ort=0.5207 sd=0.0522) | g_max=77.8 deg | R=0.208 | Kuiper V=0.216
+  H6.2: rho=+0.0537 (null ort=+0.0091) | KONTROL (derece-korunmus) rho ort=+0.0046 sd=0.0323
+  H6.3: kayma=1.3 deg (null ort=3772.3 deg) | |delta| ort=79.7 deg
+
+=== HOLM (m=3) ===
+  H6.1 r_cv (halka)    fark=-0.1849 z=-3.54 p_ham=0.0010 p_holm=0.0030 -> AYRISIR
+  H6.3 kayma (tani)    fark=-64.5644 z=-1.69 p_ham=0.0340 p_holm=0.0679 -> ayrisamaz
+  H6.2 rho (yerellik)  fark=+0.0446 z=+1.56 p_ham=0.1179 p_holm=0.1179 -> ayrisamaz
+  NOT: 1000 ornek -> p >= 1/1001 = 0.00100
+
+=== ADIM 4 KARAR SAYILARI (yalnizca olcumden) ===
+  n_EPG=51 | medyan aralik=3.30 deg -> esit tiling wedge tahmini=109.0
+  en buyuk bosluk=77.8 deg -> bu bosluga dusen 'eksik' wedge=23.6
+  PEN: 42 (PEN_a 20, PEN_b 22) | Delta7: 42 | EPG girdili PEN: 42
+
+=== GOZLEMLER ===
+  H6.1: r_cv=0.3357 (null ort=0.5207 sd=0.0522) | g_max=77.8 deg | R=0.208 | Kuiper V=0.216
+  H6.2: rho=+0.0537 (null ort=+0.0091) | KONTROL (derece-korunmus) rho ort=+0.0046 sd=0.0323
+  H6.3: kayma=1.3 deg (null ort=65.8 deg +- 38.2) | |delta| ort=79.7 deg
+
+=== HOLM (m=3) ===
+  H6.1 r_cv (halka)    fark=-0.1849 z=-3.54 p_ham=0.0010 p_holm=0.0030 -> AYRISIR
+  H6.3 kayma (tani)    fark=-64.5644 z=-1.69 p_ham=0.0340 p_holm=0.0679 -> ayrisamaz
+  H6.2 rho (yerellik)  fark=+0.0446 z=+1.56 p_ham=0.1179 p_holm=0.1179 -> ayrisamaz
+  NOT: 1000 ornek -> p >= 1/1001 = 0.00100
+
+=== ADIM 4 KARAR SAYILARI (yalnizca olcumden) ===
+  n_EPG=51 | medyan aralik=3.30 deg -> esit tiling wedge tahmini=109.0
+  en buyuk bosluk=77.8 deg -> bu bosluga dusen 'eksik' wedge=23.6
+  PEN: 42 (PEN_a 20, PEN_b 22) | Delta7: 42 | EPG girdili PEN: 42
