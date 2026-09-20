@@ -495,6 +495,57 @@ düzeltilmiş p raporlanır; 1000 örnek → **p ≥ 1/1001**.
 - **"İşlev/hesaplama katkısı" ve "evrimsel tasarım" iddiası YASAK** (Faz 5 yorum kuralı geçerli).
 - Sonradan eklenen her analiz **KEŞİFSEL** başlığı altında.
 
+---
+
+## FAZ 6-0b — Koordinattan bağımsız halka testi (spektral; yalnızca ölçüm)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır. Faz 0–6-0 dosyaları/sonuçları
+DEĞİŞTİRİLMEDİ. Yeni kod: **`numcog/cx_spectral.py`**. **Eşzamanlı süreç: 1. Dinamik simülasyon YOK.**
+
+### Girdi (sabit)
+
+- **Kenar tanımı Faz 4B-0 ile AYNI:** sinaps tablosundan `pre ∈ EPG ∧ post ∈ PEN` (**min_syn eşiği
+  yok**), ağırlık = `syn_count` toplamı. EPG = `hemibrain_type` "EPG*" (51), PEN = "PEN*" (42).
+- **W:** 51×42 (EPG×PEN) ağırlık matrisi. **Simetrikleştirilmiş blok matris**
+  **M = [[0, W], [Wᵀ, 0]]** (93×93, ağırlıklı).
+- **İki-hop EPG↔EPG benzerliği:** **S = W Wᵀ** (51×51, EPG→PEN→EPG); köşegen sıfırlanır.
+- **BİRİNCİL (Holm ailesi): M (93×93).** **S (51×51) ön-kayıtlı KO-ANALİZ**dir: aynı yöntemle
+  ölçülür, ham p'leri raporlanır, **Holm ailesine dahil edilmez**.
+
+### Yöntem (sabit)
+
+- Her matris için **normalize edilmemiş grafik Laplasyeni** `L = D − A`, `np.linalg.eigh` ile
+  özdeğer ayrışımı (artan sıra).
+- **2B gömme: ilk iki NONTİVİAL özvektör** = λ2 ve λ3'e karşılık gelen özvektörler (trivial sabit
+  vektör hariç). Özdeğerler ve **λ2 ≈ λ3 dejenerasyonu** raporlanır.
+- Halka ölçütleri (**Faz 6-0 ile aynı tanım**): merkez = gömmenin 2B ağırlık merkezi;
+  r = ‖x − merkez‖; **r_cv = std(r)/mean(r)**; **Kuiper V** (açısal düzgünlük);
+  **g_max = en büyük açısal boşluk**. Üçü de **döndürmeye duyarsızdır**.
+- **Null (1000 örnek, deterministik tohum `8000 + örnek_no`):** **derece-korunmuş rastgele
+  bağlantı** — W'nin ikili yapısı çift-kenar takasıyla (≥10× kenar denemesi) karıştırılır (EPG
+  satır ve PEN sütun dereceleri birebir korunur), ağırlık kümesi yeni kenarlara rastgele dağıtılır;
+  her örnekte **aynı yöntemle** M/S kurulur, gömme ve ölçütler yeniden hesaplanır.
+
+### Hipotezler (Holm **m = 2**; 1000 örnek → p ≥ 1/1001)
+
+- **H6b.1 (halka kabuğu):** gömme halka kabuğu verir → **r_cv, null dağılımının 5. persentilinin
+  ALTINDA**. p = (1 + #{null r_cv ≤ obs})/(N+1) (tek-kuyruk alt). **Çürütme: p_holm ≥ 0,05.**
+- **H6b.2 (tam tur):** **g_max < 60°** VE null'a göre aşırı düşük
+  (p = (1 + #{null g_max ≤ obs})/(N+1), tek-kuyruk alt). **Çürütme: p_holm ≥ 0,05 VEYA g_max ≥ 60°.**
+- **Bonus (yön beklentisi YOK):** gömme açısı (EPG alt kümesi) ile **Faz 6-0 soma açısı** arasındaki
+  **dairesel korelasyon** (Jammalamadaka–Sarma). Özvektör işareti keyfî olduğundan **|r_c|** raporlanır.
+
+### Zorunlu raporlama
+
+- Sonuç **"bu veri sürümünde, bu yöntemle"** biçiminde yazılır.
+- **Wedge etiketi YOKTUR** (Faz 4B-0 H4b0.5 ve Faz 6-0 §6) ve **açının sıfır noktası/yönü keyfîdir**
+  (özvektör işaretleri ve döndürme belirsizliği) — bu ifadeler raporda **kalır**.
+- **Karar (kod yok):** gömmeden **kaç wedge** çıkıyor (küme sayısı ve eşik duyarlılığı 2°/5°/10°),
+  belirsizlik ne kadar.
+- **İşlev/hesaplama katkısı ve evrimsel tasarım iddiası YASAK** (Faz 5 yorum kuralı).
+- Sonradan eklenen her analiz **KEŞİFSEL** başlığı altında.
+
+
 
 
 ---
