@@ -300,3 +300,259 @@
   (c) KC→MBON kenarı ≥5.000: 35204 -> True
   >>> KAPI G0: GEÇİLDİ
   önbellek: C:\Users\Administrator\Desktop\Genesis_Fly\flyputer\numcog\results_p8\mb_cache.npz (0.3 MB)
+kullanim: explore | pilot | gate1 | runall <nseeds> [kollar...] | merge
+  pilot η=0.01 ρ=0.00 -> validasyon=0.525
+  pilot η=0.01 ρ=0.01 -> validasyon=0.525
+  pilot η=0.01 ρ=0.05 -> validasyon=0.525
+  pilot η=0.03 ρ=0.00 -> validasyon=0.525
+  pilot η=0.03 ρ=0.01 -> validasyon=0.525
+  pilot η=0.03 ρ=0.05 -> validasyon=0.525
+  pilot η=0.10 ρ=0.00 -> validasyon=0.525
+  pilot η=0.10 ρ=0.01 -> validasyon=0.525
+  pilot η=0.10 ρ=0.05 -> validasyon=0.525
+  pilot η=0.30 ρ=0.00 -> validasyon=0.525
+  pilot η=0.30 ρ=0.01 -> validasyon=0.525
+  pilot η=0.30 ρ=0.05 -> validasyon=0.525
+  DONDU: η=0.01 ρ=0.00 (validasyon=0.525; TEST kullanılmadı)
+  pilot η=0.01 ρ=0.00 -> validasyon=0.921
+  pilot η=0.01 ρ=0.01 -> validasyon=0.921
+  pilot η=0.01 ρ=0.05 -> validasyon=0.921
+  pilot η=0.03 ρ=0.00 -> validasyon=0.950
+  pilot η=0.03 ρ=0.01 -> validasyon=0.921
+  pilot η=0.03 ρ=0.05 -> validasyon=0.921
+  pilot η=0.10 ρ=0.00 -> validasyon=0.967
+  pilot η=0.10 ρ=0.01 -> validasyon=0.963
+  pilot η=0.10 ρ=0.05 -> validasyon=0.921
+  pilot η=0.30 ρ=0.00 -> validasyon=0.967
+  pilot η=0.30 ρ=0.01 -> validasyon=0.963
+  pilot η=0.30 ρ=0.05 -> validasyon=0.946
+  DONDU: η=0.30 ρ=0.00 (validasyon=0.967; TEST kullanılmadı)
+
+=== KAPI G1 (η=0.30 ρ=0.00) ===
+  MB_gercek doğruluk = 0.982 ± 0.078 [0.948, 1.017] (n=20) -> GEÇİLDİ
+  MB_gercek            seed00 (5s, toplam 0 dk)
+  MB_gercek            seed01 (5s, toplam 0 dk)
+  MB_gercek            seed02 (4s, toplam 0 dk)
+  MB_gercek            seed03 (4s, toplam 0 dk)
+  MB_gercek            seed04 (4s, toplam 0 dk)
+  MB_gercek            seed05 (4s, toplam 0 dk)
+  MB_gercek            seed06 (4s, toplam 1 dk)
+  MB_gercek            seed07 (4s, toplam 1 dk)
+  MB_gercek            seed08 (4s, toplam 1 dk)
+  MB_gercek            seed09 (4s, toplam 1 dk)
+  MB_gercek            seed10 (4s, toplam 1 dk)
+  MB_gercek            seed11 (4s, toplam 1 dk)
+  MB_gercek            seed12 (4s, toplam 1 dk)
+  MB_gercek            seed13 (4s, toplam 1 dk)
+  MB_gercek            seed14 (4s, toplam 1 dk)
+  MB_gercek            seed15 (4s, toplam 1 dk)
+  MB_gercek            seed16 (4s, toplam 1 dk)
+  MB_gercek            seed17 (4s, toplam 1 dk)
+  MB_gercek            seed18 (4s, toplam 1 dk)
+  MB_gercek            seed19 (4s, toplam 1 dk)
+  MB_KCMBON_shuffle    seed00 (7s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed01 (7s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed02 (7s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed03 (7s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed04 (7s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed05 (18s, toplam 2 dk)
+  MB_KCMBON_shuffle    seed06 (28s, toplam 3 dk)
+  MB_KCMBON_shuffle    seed07 (18s, toplam 3 dk)
+  MB_KCMBON_shuffle    seed08 (13s, toplam 3 dk)
+  MB_KCMBON_shuffle    seed09 (11s, toplam 3 dk)
+  MB_KCMBON_shuffle    seed10 (11s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed11 (9s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed12 (7s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed13 (7s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed14 (7s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed15 (7s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed16 (7s, toplam 4 dk)
+  MB_KCMBON_shuffle    seed17 (7s, toplam 5 dk)
+  MB_KCMBON_shuffle    seed18 (7s, toplam 5 dk)
+  MB_KCMBON_shuffle    seed19 (7s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed00 (6s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed01 (6s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed02 (8s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed03 (6s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed04 (6s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed05 (6s, toplam 5 dk)
+  MB_ALPNKC_shuffle    seed06 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed07 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed08 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed09 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed10 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed11 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed12 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed13 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed14 (6s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed15 (7s, toplam 6 dk)
+  MB_ALPNKC_shuffle    seed16 (6s, toplam 7 dk)
+  MB_ALPNKC_shuffle    seed17 (6s, toplam 7 dk)
+  MB_ALPNKC_shuffle    seed18 (6s, toplam 7 dk)
+  MB_ALPNKC_shuffle    seed19 (6s, toplam 7 dk)
+  MB_ER                seed00 (4s, toplam 7 dk)
+  MB_ER                seed01 (4s, toplam 7 dk)
+  MB_ER                seed02 (4s, toplam 7 dk)
+  MB_ER                seed03 (4s, toplam 7 dk)
+  MB_ER                seed04 (4s, toplam 7 dk)
+  MB_ER                seed05 (4s, toplam 7 dk)
+  MB_ER                seed06 (4s, toplam 7 dk)
+  MB_ER                seed07 (4s, toplam 7 dk)
+  MB_ER                seed08 (4s, toplam 8 dk)
+  MB_ER                seed09 (4s, toplam 8 dk)
+  MB_ER                seed10 (4s, toplam 8 dk)
+  MB_ER                seed11 (4s, toplam 8 dk)
+  MB_ER                seed12 (4s, toplam 8 dk)
+  MB_ER                seed13 (4s, toplam 8 dk)
+  MB_ER                seed14 (4s, toplam 8 dk)
+  MB_ER                seed15 (4s, toplam 8 dk)
+  MB_ER                seed16 (4s, toplam 8 dk)
+  MB_ER                seed17 (4s, toplam 8 dk)
+  MB_ER                seed18 (4s, toplam 8 dk)
+  MB_ER                seed19 (4s, toplam 8 dk)
+  MB_rastgele_bolme    seed00 (4s, toplam 8 dk)
+  MB_rastgele_bolme    seed01 (4s, toplam 8 dk)
+  MB_rastgele_bolme    seed02 (4s, toplam 8 dk)
+  MB_rastgele_bolme    seed03 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed04 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed05 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed06 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed07 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed08 (3s, toplam 9 dk)
+  MB_rastgele_bolme    seed09 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed10 (4s, toplam 9 dk)
+  MB_rastgele_bolme    seed11 (9s, toplam 9 dk)
+  MB_rastgele_bolme    seed12 (9s, toplam 9 dk)
+  MB_rastgele_bolme    seed13 (6s, toplam 9 dk)
+  MB_rastgele_bolme    seed14 (6s, toplam 9 dk)
+  MB_rastgele_bolme    seed15 (5s, toplam 10 dk)
+  MB_rastgele_bolme    seed16 (4s, toplam 10 dk)
+  MB_rastgele_bolme    seed17 (6s, toplam 10 dk)
+  MB_rastgele_bolme    seed18 (7s, toplam 10 dk)
+  MB_rastgele_bolme    seed19 (6s, toplam 10 dk)
+  plastisitesiz        seed00 (3s, toplam 10 dk)
+  plastisitesiz        seed01 (3s, toplam 10 dk)
+  plastisitesiz        seed02 (3s, toplam 10 dk)
+  plastisitesiz        seed03 (3s, toplam 10 dk)
+  plastisitesiz        seed04 (3s, toplam 10 dk)
+  plastisitesiz        seed05 (4s, toplam 10 dk)
+  plastisitesiz        seed06 (3s, toplam 10 dk)
+  plastisitesiz        seed07 (3s, toplam 10 dk)
+  plastisitesiz        seed08 (4s, toplam 10 dk)
+  plastisitesiz        seed09 (4s, toplam 11 dk)
+  plastisitesiz        seed10 (5s, toplam 11 dk)
+  plastisitesiz        seed11 (5s, toplam 11 dk)
+  plastisitesiz        seed12 (4s, toplam 11 dk)
+  plastisitesiz        seed13 (4s, toplam 11 dk)
+  plastisitesiz        seed14 (4s, toplam 11 dk)
+  plastisitesiz        seed15 (4s, toplam 11 dk)
+  plastisitesiz        seed16 (4s, toplam 11 dk)
+  plastisitesiz        seed17 (5s, toplam 11 dk)
+  plastisitesiz        seed18 (3s, toplam 11 dk)
+  plastisitesiz        seed19 (4s, toplam 11 dk)
+  delta_okuma          seed00 (0s, toplam 11 dk)
+  delta_okuma          seed01 (1s, toplam 11 dk)
+  delta_okuma          seed02 (0s, toplam 11 dk)
+  delta_okuma          seed03 (0s, toplam 11 dk)
+  delta_okuma          seed04 (0s, toplam 11 dk)
+  delta_okuma          seed05 (0s, toplam 11 dk)
+  delta_okuma          seed06 (0s, toplam 11 dk)
+  delta_okuma          seed07 (0s, toplam 11 dk)
+  delta_okuma          seed08 (0s, toplam 11 dk)
+  delta_okuma          seed09 (0s, toplam 11 dk)
+  delta_okuma          seed10 (0s, toplam 11 dk)
+  delta_okuma          seed11 (0s, toplam 11 dk)
+  delta_okuma          seed12 (0s, toplam 11 dk)
+  delta_okuma          seed13 (0s, toplam 11 dk)
+  delta_okuma          seed14 (0s, toplam 11 dk)
+  delta_okuma          seed15 (0s, toplam 11 dk)
+  delta_okuma          seed16 (0s, toplam 11 dk)
+  delta_okuma          seed17 (0s, toplam 11 dk)
+  delta_okuma          seed18 (0s, toplam 11 dk)
+  delta_okuma          seed19 (0s, toplam 11 dk)
+runall bitti (11 dk)
+
+=== DONMUŞ KONFİGÜRASYON ===
+  η=0.30 ρ=0.00 (pilot validasyon=0.967; TEST kullanılmadı)
+
+=== T1 AYIRIM + GÜRÜLTÜ (şans 0,50) ===
+  N16_s0.1   MB_gercek 0.948 | MB_KCMBON_shuffle 0.973 | MB_ALPNKC_shuffle 0.977 | MB_ER 1.000 | MB_rastgele_bolme 0.931 | plastisitesiz 0.460 | delta_okuma 1.000
+  N16_s0.3   MB_gercek 0.945 | MB_KCMBON_shuffle 0.950 | MB_ALPNKC_shuffle 0.947 | MB_ER 1.000 | MB_rastgele_bolme 0.891 | plastisitesiz 0.490 | delta_okuma 1.000
+  N16_s0.6   MB_gercek 0.847 | MB_KCMBON_shuffle 0.864 | MB_ALPNKC_shuffle 0.891 | MB_ER 1.000 | MB_rastgele_bolme 0.807 | plastisitesiz 0.486 | delta_okuma 1.000
+  N2_s0.1    MB_gercek 0.975 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 1.000 | MB_ER 1.000 | MB_rastgele_bolme 1.000 | plastisitesiz 0.467 | delta_okuma 1.000
+  N2_s0.3    MB_gercek 0.958 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 1.000 | MB_ER 1.000 | MB_rastgele_bolme 0.992 | plastisitesiz 0.542 | delta_okuma 1.000
+  N2_s0.6    MB_gercek 0.992 | MB_KCMBON_shuffle 0.996 | MB_ALPNKC_shuffle 0.992 | MB_ER 1.000 | MB_rastgele_bolme 0.992 | plastisitesiz 0.492 | delta_okuma 1.000
+  N4_s0.1    MB_gercek 0.973 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 1.000 | MB_ER 1.000 | MB_rastgele_bolme 0.973 | plastisitesiz 0.465 | delta_okuma 1.000
+  N4_s0.3    MB_gercek 0.973 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 0.983 | MB_ER 1.000 | MB_rastgele_bolme 0.973 | plastisitesiz 0.462 | delta_okuma 1.000
+  N4_s0.6    MB_gercek 0.956 | MB_KCMBON_shuffle 0.990 | MB_ALPNKC_shuffle 0.977 | MB_ER 1.000 | MB_rastgele_bolme 0.975 | plastisitesiz 0.438 | delta_okuma 1.000
+  N8_s0.1    MB_gercek 0.947 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 0.992 | MB_ER 1.000 | MB_rastgele_bolme 0.974 | plastisitesiz 0.499 | delta_okuma 1.000
+  N8_s0.3    MB_gercek 0.949 | MB_KCMBON_shuffle 0.993 | MB_ALPNKC_shuffle 0.994 | MB_ER 1.000 | MB_rastgele_bolme 0.975 | plastisitesiz 0.493 | delta_okuma 1.000
+  N8_s0.6    MB_gercek 0.932 | MB_KCMBON_shuffle 0.979 | MB_ALPNKC_shuffle 0.941 | MB_ER 1.000 | MB_rastgele_bolme 0.954 | plastisitesiz 0.485 | delta_okuma 1.000
+
+=== T2 ÖRÜNTÜ TAMAMLAMA (d) ===
+  d0.1   MB_gercek 0.958 | MB_KCMBON_shuffle 0.992 | MB_ALPNKC_shuffle 0.988 | MB_ER 1.000 | MB_rastgele_bolme 0.988 | plastisitesiz 0.454 | delta_okuma 1.000
+  d0.3   MB_gercek 0.942 | MB_KCMBON_shuffle 0.942 | MB_ALPNKC_shuffle 0.935 | MB_ER 1.000 | MB_rastgele_bolme 0.946 | plastisitesiz 0.546 | delta_okuma 1.000
+  d0.5   MB_gercek 0.885 | MB_KCMBON_shuffle 0.863 | MB_ALPNKC_shuffle 0.881 | MB_ER 1.000 | MB_rastgele_bolme 0.885 | plastisitesiz 0.473 | delta_okuma 0.996
+
+=== T3 AZ ÖRNEK (≥%90 için gereken deneme) ===
+  MB_ALPNKC_shuffle    ilk≥0,90: 1 | eğri: 1:1.00 2:1.00 3:1.00 5:1.00 8:1.00 12:1.00 20:1.00
+  MB_ER                ilk≥0,90: 1 | eğri: 1:1.00 2:1.00 3:1.00 5:1.00 8:1.00 12:1.00 20:1.00
+  MB_KCMBON_shuffle    ilk≥0,90: 1 | eğri: 1:1.00 2:1.00 3:1.00 5:1.00 8:1.00 12:1.00 20:1.00
+  MB_gercek            ilk≥0,90: 1 | eğri: 1:0.96 2:1.00 3:1.00 5:1.00 8:1.00 12:1.00 20:1.00
+  MB_rastgele_bolme    ilk≥0,90: 1 | eğri: 1:1.00 2:1.00 3:1.00 5:1.00 8:1.00 12:1.00 20:1.00
+  delta_okuma          ilk≥0,90: None | eğri: 
+  plastisitesiz        ilk≥0,90: None | eğri: 1:0.44 2:0.44 3:0.45 5:0.45 8:0.44 12:0.44 20:0.43
+
+=== T4 SÜREKLİ ÖĞRENME (A-tutma / B) ===
+  nA16_B         MB_gercek 0.899 | MB_KCMBON_shuffle 0.956 | MB_ALPNKC_shuffle 0.960 | MB_ER 1.000 | MB_rastgele_bolme 0.886 | plastisitesiz 0.505
+  nA16_after     MB_gercek 0.931 | MB_KCMBON_shuffle 0.949 | MB_ALPNKC_shuffle 0.936 | MB_ER 1.000 | MB_rastgele_bolme 0.877 | plastisitesiz 0.503
+  nA32_B         MB_gercek 0.830 | MB_KCMBON_shuffle 0.820 | MB_ALPNKC_shuffle 0.830 | MB_ER 1.000 | MB_rastgele_bolme 0.726 | plastisitesiz 0.516
+  nA32_after     MB_gercek 0.790 | MB_KCMBON_shuffle 0.784 | MB_ALPNKC_shuffle 0.818 | MB_ER 1.000 | MB_rastgele_bolme 0.714 | plastisitesiz 0.503
+  nA4_B          MB_gercek 0.949 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 0.969 | MB_ER 1.000 | MB_rastgele_bolme 0.964 | plastisitesiz 0.495
+  nA4_after      MB_gercek 0.988 | MB_KCMBON_shuffle 0.998 | MB_ALPNKC_shuffle 0.994 | MB_ER 1.000 | MB_rastgele_bolme 0.963 | plastisitesiz 0.508
+  nA64_B         MB_gercek 0.615 | MB_KCMBON_shuffle 0.574 | MB_ALPNKC_shuffle 0.626 | MB_ER 0.832 | MB_rastgele_bolme 0.567 | plastisitesiz 0.449
+  nA64_after     MB_gercek 0.619 | MB_KCMBON_shuffle 0.580 | MB_ALPNKC_shuffle 0.646 | MB_ER 0.863 | MB_rastgele_bolme 0.567 | plastisitesiz 0.504
+  nA8_B          MB_gercek 0.951 | MB_KCMBON_shuffle 0.979 | MB_ALPNKC_shuffle 0.952 | MB_ER 1.000 | MB_rastgele_bolme 0.931 | plastisitesiz 0.465
+  nA8_after      MB_gercek 0.965 | MB_KCMBON_shuffle 0.985 | MB_ALPNKC_shuffle 0.985 | MB_ER 1.000 | MB_rastgele_bolme 0.935 | plastisitesiz 0.519
+
+=== T5 GENELLEME (cos) ===
+  cos0.5   MB_gercek 0.904 | MB_KCMBON_shuffle 0.940 | MB_ALPNKC_shuffle 0.933 | MB_ER 1.000 | MB_rastgele_bolme 0.954 | plastisitesiz 0.494
+  cos0.7   MB_gercek 0.940 | MB_KCMBON_shuffle 0.971 | MB_ALPNKC_shuffle 0.960 | MB_ER 1.000 | MB_rastgele_bolme 0.963 | plastisitesiz 0.485
+  cos0.9   MB_gercek 0.948 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 0.933 | MB_ER 1.000 | MB_rastgele_bolme 0.971 | plastisitesiz 0.458
+
+=== T6a NEGATİF DESENLEME (şans 0,50; 'hep yaklaş' 0,667) ===
+  MB_gercek            0.678 ± 0.035
+  MB_KCMBON_shuffle    0.664 ± 0.048
+  MB_ALPNKC_shuffle    0.708 ± 0.041
+  MB_ER                0.714 ± 0.035
+  MB_rastgele_bolme    0.683 ± 0.033
+  plastisitesiz        0.378 ± 0.070
+
+=== T6b TERS ÖĞRENME ===
+  once   MB_gercek 0.900 | MB_KCMBON_shuffle 1.000 | MB_ALPNKC_shuffle 1.000 | MB_ER 1.000 | MB_rastgele_bolme 0.996 | plastisitesiz 0.050
+  sonra  MB_gercek 0.554 | MB_KCMBON_shuffle 0.500 | MB_ALPNKC_shuffle 0.421 | MB_ER 0.500 | MB_rastgele_bolme 0.517 | plastisitesiz 0.921
+
+=== ÖN-KAYITLI ÖLÇÜTLER ===
+  H8.1 (T1'de N≤4 için ≥0,90): ortalama=0.971 (koşullar [0.975, 0.958, 0.992, 0.973, 0.973, 0.956]) -> DESTEK
+  T1    MB_gercek vs plastisitesiz     fark=+0.508 p_holm=0.0000 -> AYRIŞIR
+  T2    MB_gercek vs plastisitesiz     fark=+0.504 p_holm=0.0000 -> AYRIŞIR
+  T6a   MB_gercek vs plastisitesiz     fark=+0.300 p_holm=0.0000 -> AYRIŞIR
+  T2    MB_gercek vs MB_ER             fark=-0.042 p_holm=0.1331 -> ayrışamaz
+  T2    MB_gercek vs MB_KCMBON_shuffle fark=-0.033 p_holm=0.4766 -> ayrışamaz
+  T2    MB_gercek vs MB_rastgele_bolme fark=-0.029 p_holm=0.7623 -> ayrışamaz
+  T2    MB_gercek vs MB_ALPNKC_shuffle fark=-0.029 p_holm=0.7623 -> ayrışamaz
+  T6a   MB_gercek vs MB_ER             fark=-0.036 p_holm=1.0000 -> ayrışamaz
+  T1    MB_gercek vs MB_KCMBON_shuffle fark=-0.027 p_holm=1.0000 -> ayrışamaz
+  T1    MB_gercek vs MB_ALPNKC_shuffle fark=-0.027 p_holm=1.0000 -> ayrışamaz
+  T1    MB_gercek vs MB_ER             fark=-0.027 p_holm=1.0000 -> ayrışamaz
+  T6a   MB_gercek vs MB_ALPNKC_shuffle fark=-0.031 p_holm=1.0000 -> ayrışamaz
+  T6a   MB_gercek vs MB_KCMBON_shuffle fark=+0.014 p_holm=1.0000 -> ayrışamaz
+  T6a   MB_gercek vs MB_rastgele_bolme fark=-0.006 p_holm=1.0000 -> ayrışamaz
+  T1    MB_gercek vs MB_rastgele_bolme fark=+0.000 p_holm=1.0000 -> ayrışamaz
+  H8.2 (MB_gercek ≈ kollar): Holm sonrası 3/15 anlamlı; |fark|≥0,2 olan 3
+  H8.4 (T6a başarısız ≈şans): MB_gercek=0.678 (şans 0,50; hep-yaklaş 0,667) -> DESTEK (çözemedi)
+
+=== SARSICI BULGU ÖLÇÜTÜ (Holm GA-ayrık + etki≥0,2 + en az iki η/ρ ayarı) ===
+  Ana ölçüm DONMUŞ tek ayarda (η=0.30 ρ=0.00) koştu -> 'en az iki ayar' koşulu
+  ana ölçümle SAĞLANAMAZ; pilot ızgarasında kollar denenmedi.
+  -> bu fazda 'connectome'a özgü' DENMEZ; varsa yalnızca ÖN BULGU.

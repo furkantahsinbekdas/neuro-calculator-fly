@@ -1,0 +1,16 @@
+arm,seed,task,cond,value
+delta_okuma,0,T1,N2_s0.1,1.0
+delta_okuma,0,T1,N2_s0.3,1.0
+delta_okuma,0,T1,N2_s0.6,1.0
+delta_okuma,0,T1,N4_s0.1,1.0
+delta_okuma,0,T1,N4_s0.3,1.0
+delta_okuma,0,T1,N4_s0.6,1.0
+delta_okuma,0,T1,N8_s0.1,1.0
+delta_okuma,0,T1,N8_s0.3,1.0
+delta_okuma,0,T1,N8_s0.6,1.0
+delta_okuma,0,T1,N16_s0.1,1.0
+delta_okuma,0,T1,N16_s0.3,1.0
+delta_okuma,0,T1,N16_s0.6,1.0
+delta_okuma,0,T2,d0.1,1.0
+delta_okuma,0,T2,d0.3,1.0
+delta_okuma,0,T2,d0.5,1.0
