@@ -642,6 +642,112 @@ oranı**; **en büyük SCC boyutu**; **NT etiketi kapsaması** (NaN'lar sayılı
 
 **Sonuç dili:** "**bu veri sürümünde, bu seçim kuralıyla**".
 
+---
+
+## FAZ 7-1 — EK ÖN-KAYIT (asıl deney; çerçeveyi gevşetmez, NETLEŞTİRİR ve SIKILAŞTIRIR)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır; bu commit'te **hiçbir deney çalıştırılmadı**.
+Faz 0–7-0 dosyaları/sonuçları DEĞİŞTİRİLMEDİ. Yeni kod: **`numcog/reservoir_run.py`**.
+**Eş zamanlı süreç: 1. Tüm diziler float64. Tohum başına ayrı CSV.**
+
+### Model (7-0'da kilitli; AYNEN)
+
+`x_{t+1} = (1−a)·x_t + a·tanh(g·W·x_t + B·u_t)`, **a = 0,5**; **W** işaretli (NT işareti **VARSAYIM**;
+işaret **pre-nöron başına**, **Dale korunur**), **spektral yarıçap 1'e normalize**.
+Alt ağ: **birincil A = CX çekirdek (EB/PB/FB/NO), N = 4.236, E = 298.532**.
+**Giriş:** iki kanal (+1/−1) ayrık kümeler; **darbe 1 adım**, **darbeler arası 5 adım**.
+
+### Kollar
+
+1. **A_gercek** · 2. **A_derece-shuffle** (işaret korunmuş) · 3. **A_agirlik-shuffle** ·
+4. **Erdős–Rényi** (aynı N ve yoğunluk) · 5. **W=0** (yalnızca sızıntılı giriş) ·
+6. **ideal sayaç** (**DIŞ YARDIM** etiketi; üst sınır) ·
+7. **A_isaret-permutasyon** (aynı +/− oranı nöronlara rastgele; Dale korunur) ·
+8. **A_dengeli-isaret** (nöronların %50'si rastgele −; Dale korunur).
+**9. KEŞİFSEL ("kural dışı" etiketli):** **B_MB_gercek**, **B_MB_derece-shuffle** (N=5.608; 7-0'ın
+SCC sınırı 5.000 bilinerek aşılıyor) ve **B_MB_dengeli-isaret** (fark döngüden mi işaret dengesinden
+mi ayrılsın diye). **Yön beklentisi YOK.**
+
+**Varyant (tüm kollarda aynı):** "ortalama-merkezleme" = `tanh` içinde **popülasyon ortalama
+sürücüsü çıkarılır**. **Birincil = merkezlemesiz**; merkezlemeli sürüm **ikincil ve etiketli**.
+
+### Giriş kuralları (kilitli)
+
+- **Modlar:** **(I1)** tüm alt ağdan tohumlu rastgele **k=50 nöron/kanal** (**birincil**);
+  **(I2)** "girdi-tipi": alt ağ **dışından** gelen sinaps payı en yüksek **%10** hücre içinden tohumlu
+  rastgele k=50/kanal (**ikincil**; dış-girdi payı önce hesaplanıp CSV'ye yazılır). İki kanal
+  **ayrık** kümeler.
+- **Genlik** `amp ∈ {0.5, 1.0}` → **yalnızca validasyonda** seçilir.
+
+### Görevler ve veri bölmesi (ölçümden ÖNCE sabit)
+
+- **Dizi kuralı:** her adımda koşan toplam **[−8, +8]** içinde.
+- **T1:** k ∈ {2,4,6,8,10}; **bekleme H ∈ {0,10,20,40}** adım (girdi tamamen sıfır); okuma **bekleme
+  sonunda** son durum vektöründen.
+- **Bölme (teknik bütçe nedeniyle SIKILAŞTIRILMIŞ — açık sapma):** **eğitim 500, validasyon 200,
+  test 200** dizi/tohum (çakışma yok, **otomatik assert**). *Gerekçe (ölçülmüş):* scipy CSR × yoğun
+  durum matrisi **14,9 ms/adım (B=64, E=298.532)** → 2000/500/500 (3.000 dizi) tasarımı
+  **~70 s/tohum-kol** ve **~7 saat** toplam sürerdi; 900 dizi ile **~21 s/tohum-kol** ve **~2 saat**
+  hedeflenir. Okuma **dual (kernel) ridge** ile çözüldüğü için **500 eğitim örneği 10–21 sınıflı
+  nominal okuma için yeterlidir**. Diğer her şey (ızgara, ölçütler, kollar, 30 tohum) **değişmedi**;
+  sapma raporda ayrıca yazılır.
+- **Okuma her (k,H) koşulu için ayrı eğitilir** (birincil). Tek bir **101 adımlık yörünge**, tüm
+  (k,H) okuma zamanlarını **paylaşır** (nedensellik gereği aynı sonucu verir).
+- **Okuma:** **ridge**, λ yalnızca **validasyonda**; okuma özelliklerine **gözlem gürültüsü
+  sd = 1e-3 × durum std** (**birincil**; gürültüsüz sürüm **KEŞİFSEL** — W=0 kolunun üstel izleri
+  gürültüsüz okumada yapay çözülebilir). Çıktı: **nominal sınıf** (birincil) + **skaler
+  regresyon-yuvarlama** (ikincil; T3 için).
+- **Şans düzeyi:** ulaşılabilir sınıf sayısından (parite dahil) **ölçümden önce** hesaplanıp yazılır;
+  ayrıca **"en sık sınıf"** taban çizgisi.
+- **T2:** standart **Jaeger MC** (rastgele ±1 akışı), gecikme **1..60**; tek akış (2.000 adım).
+- **T3:** eğitimde **|s| ≤ 6**; testte **s ∈ {7,8,9,10}**, her s için **≥50 dizi** (toplam **≥200**),
+  ayrıca eğitimde görülmemiş başlangıç durumları. **Kesin ve ±1 ayrı**.
+- **T4:** **yankı-durum özelliği** (iki farklı başlangıçtan yakınsama) + **g taraması**.
+- **Tanılar (her kol):** doygunluk oranı (|x|>0,9), ortalama aktivite, aktif nöron oranı, durumun
+  **katılım oranı** (efektif boyut). Ölü/doymuş rejim raporlanır.
+- **Seçim ızgarası:** g ∈ {0,5; 0,8; 0,95; 1,1; 1,3} × amp ∈ {0,5; 1,0} × λ ızgarası; **yalnızca
+  validasyon** ve **10 tohumluk pilot** (pilot, teknik bütçe için **k=10, H∈{0,10}** alt kümesinde
+  koşar); sonra **donmuş konfigürasyonla 30 tohum**. **TEST SEÇİMDE KULLANILMAZ** (assert).
+
+### Başarı ölçütleri (7-0'ı SIKILAŞTIRIR)
+
+- **"Ağ durumu taşıyor"** = **A_gercek**, **k = 10 VE H = 10** (bekleme sonrası) **kesin doğruluk
+  ≥ %90** VE **W=0 kolundan %95 GA ayrık**. **Yalnızca H=0 başarısı "çınlama" olabilir; YETERLİ
+  SAYILMAZ.**
+- **"Connectome'a özgü"** = kol 2/3/4'ten **%95 GA ayrık üstünlük**; yoksa raporda
+  "**ağ durumu taşıyor ama connectome'a özgü değil**" yazılır.
+- **"Kural/ekstrapolasyon"** = T3'te **şans üstü** ve **≥ 200 öğe**.
+- **Bellek uzunluğu** = doğruluğun **%90'ın altına düştüğü ilk (k, H)** çifti.
+
+### Hipotezler (beklenti + çürütme eşiği; Holm)
+
+- **H7.1 (beklenti):** kol 1 > kol 5 (T1, H=0). **Çürütme:** kol 1 ile 5'in **%95 GA'ları çakışır**.
+- **H7.2 (beklenti: ayırt edilemez):** kol 1 ≈ kol 2–4. **Çürütme:** kol 1, (2)/(3)/(4)'ten
+  **%95 GA ayrık** üstün → "connectome'a özgü" iddiası **doğar**.
+- **H7.3 (beklenti):** T3 ekstrapolasyon **çöker** (yapısal: tanh doygunluğu). **Çürütme:** T3'te
+  şans üstü ≥ 200 öğe.
+- **H7.4 (beklenti):** doğruluk **k ve H arttıkça monoton düşer**. **Çürütme:** monotonluk bozulursa.
+- **H7.5 (YÖN YOK):** kol 1 vs kol 7/8 → **işaret varsayımının etkisi**.
+- **H7.6 (YÖN YOK):** **A vs B_MB**.
+- **Düzeltme:** **Holm** (ilgili test aileleri); **30 tohum**, ort ± std + **%95 GA**.
+
+### Teknik bütçe (ÖLÇÜLMÜŞ; ölçümden önce)
+
+- scipy CSR × yoğun durum matrisi: **14,9 ms/adım (B=64)**; yoğun BLAS f64: 155 ms/adım (B=500).
+- 900 dizi × 101 adım → **~21 s/tohum-kol** (A, E=298.532); **MB** (E=523.784) → **~37 s**.
+- Tahmini toplam: A kolları (6 matris kolu + 2 bedava) 30 tohum ≈ **70 dk**; MB kolları (3)
+  15 tohum ≈ **28 dk**; pilot ≈ **10 dk**; T2/T3/T4 ekleri ≈ **%25** → **~2 saat**.
+- **MB kolları 15 tohumla** koşar (KEŞİFSEL/"kural dışı" oldukları için; güç sınırı raporda yazılır).
+
+### Sonuç dili ve yasaklar
+
+- Kesin cümle kalıbı: **"bu veride, bu modelde, bu ızgarada"**.
+- "Kanıtladık / kusursuz / kesin kapandı" **YASAK**; **işlev/hesaplama katkısı ve evrimsel tasarım
+  iddiası YASAK** (Faz 5 yorum kuralı).
+- **Ölçüm başladıktan sonra hiçbir ölçüt, parametre ızgarası veya veri bölmesi DEĞİŞTİRİLMEZ**;
+  sonradan eklenen her analiz **KEŞİFSEL** etiketli ayrı bölümde verilir.
+
+
 
 
 
