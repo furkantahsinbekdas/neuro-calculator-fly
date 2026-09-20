@@ -868,6 +868,107 @@ tasarım özelliği, model ölçümü değil):
 - **Toplam ≈ 1,6 saat.** Ölçümden sonra **hiçbir ızgara/ölçüt DEĞİŞTİRİLMEZ**; sonradan eklenen her
   analiz **KEŞİFSEL** etiketli ayrı bölümde verilir. Dil: **"bu veride, bu modelde, bu ızgarada"**.
 
+---
+
+## FAZ 7-3 — EK ÖN-KAYIT (kural/ekstrapolasyon testi T3, 6 adımlık rejim; KISA)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır (bu commit'te hiçbir 7-3 ölçümü yapılmadı).
+Yeni kod: **`numcog/reservoir_rule.py`**; çıktı dizini **`results_p7_3/`**.
+Faz 0–7-2 dosyaları/sonuçları **DEĞİŞTİRİLMEZ** (o dizinlere **yazılmaz**).
+**Eş zamanlı süreç: 1. float64. Seyrek W × yoğun durum matrisi. Tohum başına ayrı CSV.**
+
+### KEŞİFSEL-YENİDEN-TEST BEYANI (ölçütler GEVŞETİLMEDİ)
+
+**Bu faz, 7-2 sonuçları GÖRÜLDÜKTEN SONRA yazılmış bir KEŞİFSEL-YENİDEN-TEST'tir** (HARKing riski
+açıkça kabul edilir ve azaltılamaz). Gerekçe: 7-2'de **adil (kol başına) g** ile gerçek alt ağ
+**k ≤ 8'de durum taşıdı** (k=6'da **0,990**, k=8'de **0,710**; no-recurrence kontrolü A_w0 0,294),
+**ama k=10'da çöktü** (taban 0,248). 7-3, **ağın çalıştığı en büyük k olan k=6'da** T3
+kural/ekstrapolasyon sorusunu sorar. **Ölçütler 7-1/7-2 ile aynı katılıkta tutulur ve
+gevşetilmez**; sonuç 7-2'nin "connectome'a özgü üstünlük yok" bulgusunu **değiştirmez**,
+yalnızca kural boyutunu ekler.
+
+### Model, kollar ve DONMUŞ konfigürasyon (YENİ IZGARA YOK)
+
+- Model 7-1/7-2 ile aynı: `x_{t+1}=(1−a)x_t+a·tanh(g·W·x_t+B·u_t)`, **a=0,5**, işaretli W (NT
+  **VARSAYIM**), **ρ(W)=1**, **I1 giriş** (tohumlu k=50 nöron/kanal), **gözlem gürültüsü 1e-3×std**.
+- Kollar (4) + referans: **A_gercek, A_derece, A_er, A_w0**; **ideal sayaç = DIŞ YARDIM referansı**
+  (simüle edilmez; tanım gereği üst sınır 1,000).
+- **Donmuş (g, amp) 7-2'den AYNEN:** A_gercek **40,0 / 1,0** · A_derece **20,0 / 1,0** ·
+  A_er **20,0 / 1,0** · A_w0 **40,0 / 0,5**. **Yeni ızgara YOK, yeni seçim YOK.**
+  **Iygra sınırı notu:** A_gercek'in g'si 7-2'de ızgaranın **üst ucunda (40)** seçilmişti; bu
+  raporda anılır (g>40 denenmedi).
+
+### Görev ve veri (7-3'e ÖZEL jitter)
+
+- **Diziler:** k=**6** darbe, ±1, koşan toplam **[−8,8]** içinde (k=6 → |koşan|≤6 zaten ✓).
+  **Net toplam s ∈ {−6,−4,−2,0,2,4,6}** (k çift → yalnızca çift s).
+- **JİTTER (7-1/7-2'den SAPMA; etiketli):** darbeler arası aralık her darbede **{4,5,6}'dan
+  RASTGELE** (7-1/7-2'de sabit **5** idi). Gerekçe: s=±6 için tek bir işaret örüntüsü vardır →
+  sabit aralıkla **tek test öğesi** olurdu; jitter ile 3⁵=243 farklı zamanlama → **≥50 FARKLI
+  öğe** mümkün olur. **Tüm** diziler (eğitim/val/test) aynı jitter kuralıyla üretilir ve
+  **örüntüler GLOBAL BENZERSİZ**dir (otomatik assert). Bekleme: **H=10 birincil**, H=0 ve H=20 ikincil.
+- **Bölmeler (her tohum, sabit sayılar):** eğitim **300**, validasyon **150** (eğitimle **aynı s
+  aralığı**), test **her s için 60 öğe**.
+  - **T3-S1:** eğitim s∈{−2,0,2}; test **yakın** s=±4 ve **uzak** s=±6.
+  - **T3-S2:** eğitim |s|≤4; test **s=±6**.
+  - **T3-P (örüntü tutma; İNTERPOLASYON kontrolü):** 1000 benzersiz örüntü havuzu (tüm s) →
+    **650 eğitim + 50 validasyon** (%70 görülür) → **test = kalan 300 örüntü (%30, eğitimde
+    GÖRÜLMEYEN örüntüler)**. **Bu kural kanıtı SAYILMAZ.**
+  - **T3-H (okuma aktarımı, KEŞİFSEL):** okuma **H=10**'da eğitilir, **H=0 ve H=20**'de test edilir.
+- **Okuma:** **(a) nominal sınıf** ridge — *eğitimde görülmemiş sınıfları yapısal olarak
+  üretemez* (bu raporda açıkça belirtilir) → **ikincil**; **(b) skaler regresyon + en yakın ÇİFT
+  tam sayıya yuvarlama → BİRİNCİL** (T3'ün ölçütü buna dayanır). λ **yalnızca validasyonda**;
+  **test seçimde KULLANILMAZ** (assert'lı akış).
+- **Tanılar (her kol):** eğitimde görülmemiş s öğelerinin durum vektörlerinin, eğitim durumlarının
+  **PCA alt uzayına göreli artık uzaklığı** (k=30 bileşen); skaler okumanın **s ile eğimi** ve
+  **eğitim ucuna "takılı kalma" oranı** (|tahmin| ≤ eğitim aralığının ucu); **doygunluk oranı**;
+  **aktif nöron oranı**.
+
+### TASARIM TABANLARI (ölçümden ÖNCE hesaplandı; `results_p7_3/design_baselines.csv`)
+
+| bölme | öğe | sınıf | şans | "en sık sınıf" |
+|---|---|---|---|---|
+| S1 (ALL) | 4.800 | 4 | 0,2500 | 0,2500 |
+| **S1 uzak (\|s\|=6)** | 2.400 | **2** | **0,5000** | **0,5000** |
+| **S2 (s=±6)** | 2.400 | **2** | **0,5000** | **0,5000** |
+| P (ALL, 7 sınıf) | 6.000 | 7 | 0,1429 | 0,1497 |
+
+**Kritik uyarı:** uzak/±6 testlerinde **yalnızca iki olası toplam** vardır → **"hep +6 de" bile
+%50 alır**; bu yüzden ölçüt **şansın (0,50) GA-ayrık ÜSTÜ VE ≥%50** olarak katı tutulmuştur.
+
+### Başarı ölçütleri (7-1/7-2 ile AYNI katılıkta; GEVŞETİLMEZ)
+
+- **"Kural/ekstrapolasyon":** **A_gercek**, **T3-S1 uzak (|s|=6) VE T3-S2**'de kesin doğruluk
+  (i) **şans/"en sık sınıf" tabanının %95 GA'nın ayrık üstünde** (her ikisi de 0,50),
+  (ii) **A_w0'ın %95 GA'sının ayrık üstünde** VE (iii) **≥ %50**.
+- **"Connectome'a özgü kural":** aynı iki alt kümede **A_derece VE A_er**'den **%95 GA ayrık üstünlük**;
+  yoksa raporda "**kural yok / connectome'a özgü değil**".
+- **T3-P kural kanıtı DEĞİLDİR** (interpolasyon kontrolü); rapor yalnızca betimsel verir.
+
+### Hipotezler (beklenti + çürütme eşiği; Holm)
+
+- **H7.11 (beklenti: ekstrapolasyon ÇÖKER):** T3-S1 uzak ve T3-S2'de A_gercek tahminleri
+  **eğitim aralığının ucuna yapışır** (takılı oranı ≥ 0,5; S1'de |tahmin| ≤ 2, S2'de ≤ 4) ve kesin
+  doğruluk şans düzeyine iner. **Çürütme:** yukarıdaki **"kural" ölçütü sağlanırsa**.
+- **H7.12 (beklenti):** **T3-P'de A_gercek ≥ %90** (yakın örüntü tutma çalışır).
+  **Çürütme:** < %90.
+- **H7.13 (beklenti):** **A_gercek ≈ A_derece ≈ A_er** (kural boyutunda da connectome'a özgü fark yok).
+  **Çürütme:** herhangi bir **GA ayrık** fark.
+- **H7.14 (TANI; yön YOK):** eğitim-dışı durumların **PCA alt uzayına uzaklığı** ile **ekstrapolasyon
+  hatası** arasında kollar arası ilişki var mı (Spearman).
+- **Düzeltme:** **Holm** (aile: A_gercek vs {A_w0, A_derece, A_er} × {S1-uzak, S2}, **m=6**);
+  20 tohum, ort ± sd + %95 GA.
+
+### Bütçe (7-2'de ölçülen hızla)
+
+- Dizi sayısı/tohum: S1 690 + S2 570 + P 1000 = **2.260 dizi**; yörünge **≤ 51 adım** (k=6, jitter ≤6,
+  H≤20) → **~113 bin dizi-adımı** → **~26 s** simülasyon + okumalar/SVD (300×300 kernel, 300×4236 SVD)
+  ≈ **~10 s** → **~35 s/tohum-kol**.
+- **Toplam: 4 kol × 20 tohum × ~35 s ≈ 47 dk** (T3-H ve ikincil H'ler aynı simülasyondan gelir ✓).
+- Ölçümden sonra **hiçbir şey DEĞİŞTİRİLMEZ**; sonradan eklenenler **KEŞİFSEL** etiketli ayrı bölümde.
+  Dil: **"bu veride, bu modelde, bu ızgarada"**.
+
+
 
 ### Sonuç dili ve yasaklar
 
