@@ -179,8 +179,12 @@ cd flyputer
 ```
 
 Çıktılar (`numcog/results_p7_1/`): `arms_meta.csv`, `pilot.csv`, `frozen_config.csv`,
-`<kol>_seed<NN>.csv` (tohum başına), `summary_T1.csv`, `criteria.csv`, `hypotheses.csv`, `run.log`.
-Ara `arms_cache.npz` (~12 MB, yeniden üretilebilir) commit edilmedi.
+`<kol>_seed<NN>.csv` (tohum başına), `summary_T1.csv`, `criteria.csv`, `hypotheses.csv`,
+`merge_out.txt`, `run.log`. Ara `arms_cache.npz` (~12 MB, yeniden üretilebilir) commit edilmedi.
+
+**Bütçe ölçüm betikleri** (ön-kayıtta atıf yapılan ms/adım değerlerinin kaynağı):
+`numcog/_bench_csr.py` (CSR × yoğun, 9,8/14,9 ms), `_bench_var.py` (sort_indices etkisi),
+`_bench_dense.py` (yoğun BLAS karşılaştırması), `_bench_spmv.py` (reduceat denemesi).
 
 ## 7. ÖZET (bu veride, bu modelde, bu ızgarada)
 
