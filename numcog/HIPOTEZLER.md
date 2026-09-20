@@ -745,6 +745,22 @@ sürücüsü çıkarılır**. **Birincil = merkezlemesiz**; merkezlemeli sürüm
   k-grubu yapısı:** her k için ayrı yörünge (k'nın ardından gelen darbeler H beklemesini
   bozacağından paylaşılamaz); aynı k içinde 4 H okuması **tek yörüngeyi paylaşır**.
 
+### EK SIKILAŞTIRMA (ölçüm BAŞLAMADAN önce; bütçe nedeniyle)
+
+- **Ölçülen gerçek maliyet:** bir tohum-kol (T1+T3+T2+T4) **~72 s** (A), **~110 s** (MB).
+- **Tohum sayısı kollara göre:** **birincil kollar (A_gercek, A_w0) 30 tohum** (ana ölçüt ve H7.1 için);
+  **kontrol kolları (A_derece, A_agirlik, A_er, A_isaretperm, A_dengeli) 15 tohum**;
+  **MB kolları (B_gercek, B_derece, B_dengeli) 10 tohum**. Gerekçe yalnızca **teknik bütçe**dir;
+  ölçütler/ızgara/veri bölmesi **aynı** kalır, kontrol kolları için **%95 GA genişliği** raporda
+  ayrıca belirtilir.
+- **T2 ve T4 yalnızca A_gercek, A_w0 ve B_gercek** için koşar (diğer kollarda hesaplanmaz;
+  raporda "ölçülmedi" olarak yazılır).
+- **Pilot:** 10 tohum, yalnızca **A_gercek** üzerinden (g, amp) seçimi (validasyon); A_w0 referans
+  olarak raporlanır.
+- **Toplam tahmini süre:** 2×30×72 s + 5×15×57 s + 3×10×110 s + pilot ≈ **3,3 saat**.
+- **Teknik doğrulama koşusu** (smoke test) ile üretilen ara CSV'ler **ölçüm öncesi silinir**;
+  ölçüm, donmuş konfigürasyonla **sıfırdan** başlar.
+
 ### Sonuç dili ve yasaklar
 
 - Kesin cümle kalıbı: **"bu veride, bu modelde, bu ızgarada"**.
