@@ -462,9 +462,10 @@ def merge():
             % (r.arm, r["mean"], r.ci95, r.within2, r.nom, r.stuck, ckP[0]))
     log("\n=== T3-H (KEŞİFSEL: okuma H=%d'de eğitildi, başka H'de test) ===" % H_PRIMARY)
     for H in (0, 20):
-        a = _agg(df, "S2", H, "ALL", train_H=H_PRIMARY)
-        log("  S2 H=%-2d (okuma H=%d'de): " % (H, H_PRIMARY) + " | ".join(
-            "%s %.3f+-%.3f" % (r.arm, r["mean"], r.ci95) for _, r in a.iterrows()))
+        a = _agg(df, "H_xfer", H, "ALL", train_H=H_PRIMARY)
+        log("  S2 H=%-2d (okuma H=%d'de): " % (H, H_PRIMARY) + (" | ".join(
+            "%s %.3f+-%.3f" % (r.arm, r["mean"], r.ci95) for _, r in a.iterrows())
+            if len(a) else "kayıt yok"))
     log("\n=== İDEAL SAYAÇ (DIŞ YARDIM; simüle EDİLMEDİ) ===")
     log("  Durum doğrudan net toplam olduğunda kesin doğruluk tanım gereği = 1,000 (üst sınır);")
     log("  bu bir REFERANSTIR, ağ ölçümü DEĞİLDİR (7-1/7-2 ile aynı etiket).")

@@ -1,0 +1,225 @@
+  A_gercek   seed00 (g=40.0 amp=1.0) -> A_gercek_seed00.csv (156s, toplam 3 dk)
+  A_gercek   seed01 (g=40.0 amp=1.0) -> A_gercek_seed01.csv (151s, toplam 5 dk)
+  A_gercek   seed02 (g=40.0 amp=1.0) -> A_gercek_seed02.csv (108s, toplam 7 dk)
+  A_gercek   seed03 (g=40.0 amp=1.0) -> A_gercek_seed03.csv (107s, toplam 9 dk)
+  A_gercek   seed04 (g=40.0 amp=1.0) -> A_gercek_seed04.csv (96s, toplam 10 dk)
+  A_gercek   seed05 (g=40.0 amp=1.0) -> A_gercek_seed05.csv (98s, toplam 12 dk)
+  A_gercek   seed06 (g=40.0 amp=1.0) -> A_gercek_seed06.csv (168s, toplam 15 dk)
+  A_gercek   seed07 (g=40.0 amp=1.0) -> A_gercek_seed07.csv (217s, toplam 18 dk)
+  A_gercek   seed08 (g=40.0 amp=1.0) -> A_gercek_seed08.csv (166s, toplam 21 dk)
+  A_gercek   seed09 (g=40.0 amp=1.0) -> A_gercek_seed09.csv (178s, toplam 24 dk)
+  A_gercek   seed10 (g=40.0 amp=1.0) -> A_gercek_seed10.csv (168s, toplam 27 dk)
+  A_gercek   seed11 (g=40.0 amp=1.0) -> A_gercek_seed11.csv (236s, toplam 31 dk)
+  A_gercek   seed12 (g=40.0 amp=1.0) -> A_gercek_seed12.csv (161s, toplam 33 dk)
+  A_gercek   seed13 (g=40.0 amp=1.0) -> A_gercek_seed13.csv (155s, toplam 36 dk)
+  A_gercek   seed14 (g=40.0 amp=1.0) -> A_gercek_seed14.csv (150s, toplam 39 dk)
+  A_gercek   seed15 (g=40.0 amp=1.0) -> A_gercek_seed15.csv (61s, toplam 40 dk)
+  A_gercek   seed16 (g=40.0 amp=1.0) -> A_gercek_seed16.csv (44s, toplam 40 dk)
+  A_gercek   seed17 (g=40.0 amp=1.0) -> A_gercek_seed17.csv (44s, toplam 41 dk)
+  A_gercek   seed18 (g=40.0 amp=1.0) -> A_gercek_seed18.csv (44s, toplam 42 dk)
+  A_gercek   seed19 (g=40.0 amp=1.0) -> A_gercek_seed19.csv (45s, toplam 43 dk)
+  A_derece   seed00 (g=20.0 amp=1.0) -> A_derece_seed00.csv (45s, toplam 43 dk)
+  A_derece   seed01 (g=20.0 amp=1.0) -> A_derece_seed01.csv (47s, toplam 44 dk)
+  A_derece   seed02 (g=20.0 amp=1.0) -> A_derece_seed02.csv (45s, toplam 45 dk)
+  A_derece   seed03 (g=20.0 amp=1.0) -> A_derece_seed03.csv (45s, toplam 46 dk)
+  A_derece   seed04 (g=20.0 amp=1.0) -> A_derece_seed04.csv (46s, toplam 46 dk)
+  A_derece   seed05 (g=20.0 amp=1.0) -> A_derece_seed05.csv (47s, toplam 47 dk)
+  A_derece   seed06 (g=20.0 amp=1.0) -> A_derece_seed06.csv (46s, toplam 48 dk)
+  A_derece   seed07 (g=20.0 amp=1.0) -> A_derece_seed07.csv (45s, toplam 49 dk)
+  A_derece   seed08 (g=20.0 amp=1.0) -> A_derece_seed08.csv (55s, toplam 50 dk)
+  A_derece   seed09 (g=20.0 amp=1.0) -> A_derece_seed09.csv (47s, toplam 50 dk)
+  A_derece   seed10 (g=20.0 amp=1.0) -> A_derece_seed10.csv (45s, toplam 51 dk)
+  A_derece   seed11 (g=20.0 amp=1.0) -> A_derece_seed11.csv (46s, toplam 52 dk)
+  A_derece   seed12 (g=20.0 amp=1.0) -> A_derece_seed12.csv (46s, toplam 53 dk)
+  A_derece   seed13 (g=20.0 amp=1.0) -> A_derece_seed13.csv (46s, toplam 53 dk)
+  A_derece   seed14 (g=20.0 amp=1.0) -> A_derece_seed14.csv (48s, toplam 54 dk)
+  A_derece   seed15 (g=20.0 amp=1.0) -> A_derece_seed15.csv (55s, toplam 55 dk)
+  A_derece   seed16 (g=20.0 amp=1.0) -> A_derece_seed16.csv (47s, toplam 56 dk)
+  A_derece   seed17 (g=20.0 amp=1.0) -> A_derece_seed17.csv (46s, toplam 57 dk)
+  A_derece   seed18 (g=20.0 amp=1.0) -> A_derece_seed18.csv (47s, toplam 57 dk)
+  A_derece   seed19 (g=20.0 amp=1.0) -> A_derece_seed19.csv (46s, toplam 58 dk)
+  A_er       seed00 (g=20.0 amp=1.0) -> A_er_seed00.csv (53s, toplam 59 dk)
+  A_er       seed01 (g=20.0 amp=1.0) -> A_er_seed01.csv (50s, toplam 60 dk)
+  A_er       seed02 (g=20.0 amp=1.0) -> A_er_seed02.csv (49s, toplam 61 dk)
+  A_er       seed03 (g=20.0 amp=1.0) -> A_er_seed03.csv (51s, toplam 62 dk)
+  A_er       seed04 (g=20.0 amp=1.0) -> A_er_seed04.csv (51s, toplam 62 dk)
+  A_er       seed05 (g=20.0 amp=1.0) -> A_er_seed05.csv (49s, toplam 63 dk)
+  A_er       seed06 (g=20.0 amp=1.0) -> A_er_seed06.csv (50s, toplam 64 dk)
+  A_er       seed07 (g=20.0 amp=1.0) -> A_er_seed07.csv (48s, toplam 65 dk)
+  A_er       seed08 (g=20.0 amp=1.0) -> A_er_seed08.csv (49s, toplam 66 dk)
+  A_er       seed09 (g=20.0 amp=1.0) -> A_er_seed09.csv (49s, toplam 66 dk)
+  A_er       seed10 (g=20.0 amp=1.0) -> A_er_seed10.csv (48s, toplam 67 dk)
+  A_er       seed11 (g=20.0 amp=1.0) -> A_er_seed11.csv (49s, toplam 68 dk)
+  A_er       seed12 (g=20.0 amp=1.0) -> A_er_seed12.csv (55s, toplam 69 dk)
+  A_er       seed13 (g=20.0 amp=1.0) -> A_er_seed13.csv (41s, toplam 70 dk)
+  A_er       seed14 (g=20.0 amp=1.0) -> A_er_seed14.csv (41s, toplam 70 dk)
+  A_er       seed15 (g=20.0 amp=1.0) -> A_er_seed15.csv (40s, toplam 71 dk)
+  A_er       seed16 (g=20.0 amp=1.0) -> A_er_seed16.csv (40s, toplam 72 dk)
+  A_er       seed17 (g=20.0 amp=1.0) -> A_er_seed17.csv (40s, toplam 72 dk)
+  A_er       seed18 (g=20.0 amp=1.0) -> A_er_seed18.csv (40s, toplam 73 dk)
+  A_er       seed19 (g=20.0 amp=1.0) -> A_er_seed19.csv (41s, toplam 74 dk)
+  A_w0       seed00 (g=40.0 amp=0.5) -> A_w0_seed00.csv (18s, toplam 74 dk)
+  A_w0       seed01 (g=40.0 amp=0.5) -> A_w0_seed01.csv (19s, toplam 74 dk)
+  A_w0       seed02 (g=40.0 amp=0.5) -> A_w0_seed02.csv (18s, toplam 75 dk)
+  A_w0       seed03 (g=40.0 amp=0.5) -> A_w0_seed03.csv (19s, toplam 75 dk)
+  A_w0       seed04 (g=40.0 amp=0.5) -> A_w0_seed04.csv (18s, toplam 75 dk)
+  A_w0       seed05 (g=40.0 amp=0.5) -> A_w0_seed05.csv (20s, toplam 76 dk)
+  A_w0       seed06 (g=40.0 amp=0.5) -> A_w0_seed06.csv (18s, toplam 76 dk)
+  A_w0       seed07 (g=40.0 amp=0.5) -> A_w0_seed07.csv (19s, toplam 76 dk)
+  A_w0       seed08 (g=40.0 amp=0.5) -> A_w0_seed08.csv (18s, toplam 77 dk)
+  A_w0       seed09 (g=40.0 amp=0.5) -> A_w0_seed09.csv (20s, toplam 77 dk)
+  A_w0       seed10 (g=40.0 amp=0.5) -> A_w0_seed10.csv (19s, toplam 77 dk)
+  A_w0       seed11 (g=40.0 amp=0.5) -> A_w0_seed11.csv (18s, toplam 78 dk)
+  A_w0       seed12 (g=40.0 amp=0.5) -> A_w0_seed12.csv (18s, toplam 78 dk)
+  A_w0       seed13 (g=40.0 amp=0.5) -> A_w0_seed13.csv (18s, toplam 78 dk)
+  A_w0       seed14 (g=40.0 amp=0.5) -> A_w0_seed14.csv (18s, toplam 78 dk)
+  A_w0       seed15 (g=40.0 amp=0.5) -> A_w0_seed15.csv (18s, toplam 79 dk)
+  A_w0       seed16 (g=40.0 amp=0.5) -> A_w0_seed16.csv (19s, toplam 79 dk)
+  A_w0       seed17 (g=40.0 amp=0.5) -> A_w0_seed17.csv (19s, toplam 79 dk)
+  A_w0       seed18 (g=40.0 amp=0.5) -> A_w0_seed18.csv (18s, toplam 80 dk)
+  A_w0       seed19 (g=40.0 amp=0.5) -> A_w0_seed19.csv (18s, toplam 80 dk)
+runall bitti (80 dk)
+
+=== DONMUŞ KONFİGÜRASYON (7-2'den alındı; YENİ IZGARA YOK) ===
+  A_gercek   g=40.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_derece   g=20.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_er       g=20.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_w0       g=40.0 amp=0.5   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+
+=== T3-S1 / T3-S2 (BİRİNCİL: H=10; kesin = skaler + en yakın ÇİFT tam sayı) ===
+  S1 ALL (şans=0.250, en sık sınıf=0.250):
+    A_derece   kesin=0.001+-0.002 | ±2=0.198 | nominal=0.000 | pred_ort=+0.01 | takılı=0.97 | PCA_artık=0.580 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.108+-0.067 | ±2=0.592 | nominal=0.000 | pred_ort=+0.03 | takılı=0.43 | PCA_artık=0.100 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.024+-0.022 | ±2=0.264 | nominal=0.000 | pred_ort=+0.11 | takılı=0.80 | PCA_artık=0.167 | doygun=0.266 aktif=0.680
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.01 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+  S1 uzak |s|=6 (şans=0.500, en sık sınıf=0.500):
+    A_derece   kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=+0.03 | takılı=0.96 | PCA_artık=0.595 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.065+-0.056 | ±2=0.385 | nominal=0.000 | pred_ort=+0.04 | takılı=0.30 | PCA_artık=0.106 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.002+-0.002 | ±2=0.117 | nominal=0.000 | pred_ort=+0.15 | takılı=0.76 | PCA_artık=0.171 | doygun=0.266 aktif=0.680
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.01 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+  S2 yalnız s=±6 (şans=0.500, en sık sınıf=0.500):
+    A_derece   kesin=0.005+-0.005 | ±2=0.431 | nominal=0.000 | pred_ort=-0.08 | takılı=0.92 | PCA_artık=0.548 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.230+-0.082 | ±2=0.898 | nominal=0.000 | pred_ort=-0.06 | takılı=0.37 | PCA_artık=0.089 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.128+-0.064 | ±2=0.601 | nominal=0.000 | pred_ort=+0.03 | takılı=0.65 | PCA_artık=0.158 | doygun=0.266 aktif=0.679
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.02 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+
+  Hedef-bazlı ayrıntı (H=10, kesin doğruluk):
+    S1 s=-6  A_derece 0.000 | A_er 0.072 | A_gercek 0.003 | A_w0 0.000
+    S1 s=-4  A_derece 0.003 | A_er 0.152 | A_gercek 0.047 | A_w0 0.000
+    S1 s=4   A_derece 0.001 | A_er 0.150 | A_gercek 0.042 | A_w0 0.000
+    S1 s=6   A_derece 0.000 | A_er 0.057 | A_gercek 0.002 | A_w0 0.000
+    S2 s=-6  A_derece 0.007 | A_er 0.224 | A_gercek 0.121 | A_w0 0.000
+    S2 s=6   A_derece 0.004 | A_er 0.237 | A_gercek 0.136 | A_w0 0.000
+
+=== İKİNCİL: H=0 ve H=20 (okuma yine kendi H'sinde eğitilir) ===
+  S1 H=0 : A_derece 0.106+-0.043 | A_er 0.431+-0.109 | A_gercek 0.361+-0.105 | A_w0 0.000+-0.000
+  S2 H=0 : A_derece 0.387+-0.073 | A_er 0.720+-0.087 | A_gercek 0.660+-0.072 | A_w0 0.000+-0.000
+  S1 H=20: A_derece 0.000+-0.000 | A_er 0.015+-0.010 | A_gercek 0.000+-0.000 | A_w0 0.000+-0.000
+  S2 H=20: A_derece 0.003+-0.004 | A_er 0.059+-0.029 | A_gercek 0.007+-0.008 | A_w0 0.000+-0.000
+
+=== T3-P (örüntü tutma; İNTERPOLASYON kontrolü — KURAL KANITI DEĞİL) ===
+  A_derece   kesin=0.389+-0.020 | ±2=0.890 | nominal=0.429 | takılı=nan (şans 0.143)
+  A_er       kesin=0.626+-0.055 | ±2=0.969 | nominal=0.484 | takılı=nan (şans 0.143)
+  A_gercek   kesin=0.508+-0.051 | ±2=0.912 | nominal=0.376 | takılı=nan (şans 0.143)
+  A_w0       kesin=0.192+-0.013 | ±2=0.588 | nominal=0.284 | takılı=nan (şans 0.143)
+
+=== T3-H (KEŞİFSEL: okuma H=10'de eğitildi, başka H'de test) ===
+  S2 H=0  (okuma H=10'de): 
+  S2 H=20 (okuma H=10'de): 
+
+=== İDEAL SAYAÇ (DIŞ YARDIM; simüle EDİLMEDİ) ===
+  Durum doğrudan net toplam olduğunda kesin doğruluk tanım gereği = 1,000 (üst sınır);
+  bu bir REFERANSTIR, ağ ölçümü DEĞİLDİR (7-1/7-2 ile aynı etiket).
+
+=== ÖN-KAYITLI ÖLÇÜTLER ===
+  "Kural/ekstrapolasyon" (T3-S1 uzak |s|=6): A_gercek 0.002+-0.002 | en sık sınıf 0.500 | A_w0 0.000+-0.000 -> GEÇMEDİ
+  "Connectome'a özgü kural" (T3-S1 uzak |s|=6) vs A_derece  0.000+-0.000 -> GA ayrık üstün=True
+  "Connectome'a özgü kural" (T3-S1 uzak |s|=6) vs A_er      0.065+-0.056 -> GA ayrık üstün=False
+  "Kural/ekstrapolasyon" (T3-S2 (s=±6)): A_gercek 0.128+-0.064 | en sık sınıf 0.500 | A_w0 0.000+-0.000 -> GEÇMEDİ
+  "Connectome'a özgü kural" (T3-S2 (s=±6)) vs A_derece  0.005+-0.005 -> GA ayrık üstün=True
+  "Connectome'a özgü kural" (T3-S2 (s=±6)) vs A_er      0.230+-0.082 -> GA ayrık üstün=False
+
+=== HİPOTEZLER ===
+  H7.11 (T3-S1 uzak): A_gercek takılı_oranı=0.760 (≥0,5 mi: True), kesin=0.002 -> DESTEK (çöktü)
+  H7.11 (T3-S2): A_gercek takılı_oranı=0.653 (≥0,5 mi: True), kesin=0.128 -> DESTEK (çöktü)
+  H7.12 (T3-P A_gercek ≥0,90): 0.508 -> ÇÜRÜDÜ
+  H7.13 (A_gercek ≈ A_derece ≈ A_er):
+    S2       A_gercek vs A_w0       fark=+0.1283 p_ham=0.0009 p_holm=0.0051 -> AYRIŞIR
+    S2       A_gercek vs A_derece   fark=+0.1229 p_ham=0.0012 p_holm=0.0060 -> AYRIŞIR
+    S2       A_gercek vs A_er       fark=-0.1021 p_ham=0.0728 p_holm=0.2912 -> ayrışamaz
+    S1_far   A_gercek vs A_er       fark=-0.0625 p_ham=0.1046 p_holm=0.3139 -> ayrışamaz
+    S1_far   A_gercek vs A_w0       fark=+0.0025 p_ham=0.1625 p_holm=0.3251 -> ayrışamaz
+    S1_far   A_gercek vs A_derece   fark=+0.0025 p_ham=0.1625 p_holm=0.3251 -> ayrışamaz
+  H7.14 (TANI, yön yok): PCA artık uzaklığı ↔ ekstrapolasyon hatası Spearman rho=-0.05 p=0.909 (n=8) -> ilişki gösterilemedi
+
+=== DONMUŞ KONFİGÜRASYON (7-2'den alındı; YENİ IZGARA YOK) ===
+  A_gercek   g=40.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_derece   g=20.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_er       g=20.0 amp=1.0   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+  A_w0       g=40.0 amp=0.5   [results_p7_2/frozen_config.csv (7-2 Adım 1; ızgara sınırı: A_gercek g=40)]
+
+=== T3-S1 / T3-S2 (BİRİNCİL: H=10; kesin = skaler + en yakın ÇİFT tam sayı) ===
+  S1 ALL (şans=0.250, en sık sınıf=0.250):
+    A_derece   kesin=0.001+-0.002 | ±2=0.198 | nominal=0.000 | pred_ort=+0.01 | takılı=0.97 | PCA_artık=0.580 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.108+-0.067 | ±2=0.592 | nominal=0.000 | pred_ort=+0.03 | takılı=0.43 | PCA_artık=0.100 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.024+-0.022 | ±2=0.264 | nominal=0.000 | pred_ort=+0.11 | takılı=0.80 | PCA_artık=0.167 | doygun=0.266 aktif=0.680
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.01 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+  S1 uzak |s|=6 (şans=0.500, en sık sınıf=0.500):
+    A_derece   kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=+0.03 | takılı=0.96 | PCA_artık=0.595 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.065+-0.056 | ±2=0.385 | nominal=0.000 | pred_ort=+0.04 | takılı=0.30 | PCA_artık=0.106 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.002+-0.002 | ±2=0.117 | nominal=0.000 | pred_ort=+0.15 | takılı=0.76 | PCA_artık=0.171 | doygun=0.266 aktif=0.680
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.01 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+  S2 yalnız s=±6 (şans=0.500, en sık sınıf=0.500):
+    A_derece   kesin=0.005+-0.005 | ±2=0.431 | nominal=0.000 | pred_ort=-0.08 | takılı=0.92 | PCA_artık=0.548 | doygun=0.633 aktif=0.976
+    A_er       kesin=0.230+-0.082 | ±2=0.898 | nominal=0.000 | pred_ort=-0.06 | takılı=0.37 | PCA_artık=0.089 | doygun=0.953 aktif=1.000
+    A_gercek   kesin=0.128+-0.064 | ±2=0.601 | nominal=0.000 | pred_ort=+0.03 | takılı=0.65 | PCA_artık=0.158 | doygun=0.266 aktif=0.679
+    A_w0       kesin=0.000+-0.000 | ±2=0.000 | nominal=0.000 | pred_ort=-0.02 | takılı=1.00 | PCA_artık=0.000 | doygun=0.000 aktif=0.000
+
+  Hedef-bazlı ayrıntı (H=10, kesin doğruluk):
+    S1 s=-6  A_derece 0.000 | A_er 0.072 | A_gercek 0.003 | A_w0 0.000
+    S1 s=-4  A_derece 0.003 | A_er 0.152 | A_gercek 0.047 | A_w0 0.000
+    S1 s=4   A_derece 0.001 | A_er 0.150 | A_gercek 0.042 | A_w0 0.000
+    S1 s=6   A_derece 0.000 | A_er 0.057 | A_gercek 0.002 | A_w0 0.000
+    S2 s=-6  A_derece 0.007 | A_er 0.224 | A_gercek 0.121 | A_w0 0.000
+    S2 s=6   A_derece 0.004 | A_er 0.237 | A_gercek 0.136 | A_w0 0.000
+
+=== İKİNCİL: H=0 ve H=20 (okuma yine kendi H'sinde eğitilir) ===
+  S1 H=0 : A_derece 0.106+-0.043 | A_er 0.431+-0.109 | A_gercek 0.361+-0.105 | A_w0 0.000+-0.000
+  S2 H=0 : A_derece 0.387+-0.073 | A_er 0.720+-0.087 | A_gercek 0.660+-0.072 | A_w0 0.000+-0.000
+  S1 H=20: A_derece 0.000+-0.000 | A_er 0.015+-0.010 | A_gercek 0.000+-0.000 | A_w0 0.000+-0.000
+  S2 H=20: A_derece 0.003+-0.004 | A_er 0.059+-0.029 | A_gercek 0.007+-0.008 | A_w0 0.000+-0.000
+
+=== T3-P (örüntü tutma; İNTERPOLASYON kontrolü — KURAL KANITI DEĞİL) ===
+  A_derece   kesin=0.389+-0.020 | ±2=0.890 | nominal=0.429 | takılı=nan (şans 0.143)
+  A_er       kesin=0.626+-0.055 | ±2=0.969 | nominal=0.484 | takılı=nan (şans 0.143)
+  A_gercek   kesin=0.508+-0.051 | ±2=0.912 | nominal=0.376 | takılı=nan (şans 0.143)
+  A_w0       kesin=0.192+-0.013 | ±2=0.588 | nominal=0.284 | takılı=nan (şans 0.143)
+
+=== T3-H (KEŞİFSEL: okuma H=10'de eğitildi, başka H'de test) ===
+  S2 H=0  (okuma H=10'de): A_derece 0.000+-0.000 | A_er 0.052+-0.019 | A_gercek 0.069+-0.028 | A_w0 0.000+-0.000
+  S2 H=20 (okuma H=10'de): A_derece 0.002+-0.002 | A_er 0.060+-0.020 | A_gercek 0.084+-0.030 | A_w0 0.000+-0.000
+
+=== İDEAL SAYAÇ (DIŞ YARDIM; simüle EDİLMEDİ) ===
+  Durum doğrudan net toplam olduğunda kesin doğruluk tanım gereği = 1,000 (üst sınır);
+  bu bir REFERANSTIR, ağ ölçümü DEĞİLDİR (7-1/7-2 ile aynı etiket).
+
+=== ÖN-KAYITLI ÖLÇÜTLER ===
+  "Kural/ekstrapolasyon" (T3-S1 uzak |s|=6): A_gercek 0.002+-0.002 | en sık sınıf 0.500 | A_w0 0.000+-0.000 -> GEÇMEDİ
+  "Connectome'a özgü kural" (T3-S1 uzak |s|=6) vs A_derece  0.000+-0.000 -> GA ayrık üstün=True
+  "Connectome'a özgü kural" (T3-S1 uzak |s|=6) vs A_er      0.065+-0.056 -> GA ayrık üstün=False
+  "Kural/ekstrapolasyon" (T3-S2 (s=±6)): A_gercek 0.128+-0.064 | en sık sınıf 0.500 | A_w0 0.000+-0.000 -> GEÇMEDİ
+  "Connectome'a özgü kural" (T3-S2 (s=±6)) vs A_derece  0.005+-0.005 -> GA ayrık üstün=True
+  "Connectome'a özgü kural" (T3-S2 (s=±6)) vs A_er      0.230+-0.082 -> GA ayrık üstün=False
+
+=== HİPOTEZLER ===
+  H7.11 (T3-S1 uzak): A_gercek takılı_oranı=0.760 (≥0,5 mi: True), kesin=0.002 -> DESTEK (çöktü)
+  H7.11 (T3-S2): A_gercek takılı_oranı=0.653 (≥0,5 mi: True), kesin=0.128 -> DESTEK (çöktü)
+  H7.12 (T3-P A_gercek ≥0,90): 0.508 -> ÇÜRÜDÜ
+  H7.13 (A_gercek ≈ A_derece ≈ A_er):
+    S2       A_gercek vs A_w0       fark=+0.1283 p_ham=0.0009 p_holm=0.0051 -> AYRIŞIR
+    S2       A_gercek vs A_derece   fark=+0.1229 p_ham=0.0012 p_holm=0.0060 -> AYRIŞIR
+    S2       A_gercek vs A_er       fark=-0.1021 p_ham=0.0728 p_holm=0.2912 -> ayrışamaz
+    S1_far   A_gercek vs A_er       fark=-0.0625 p_ham=0.1046 p_holm=0.3139 -> ayrışamaz
+    S1_far   A_gercek vs A_w0       fark=+0.0025 p_ham=0.1625 p_holm=0.3251 -> ayrışamaz
+    S1_far   A_gercek vs A_derece   fark=+0.0025 p_ham=0.1625 p_holm=0.3251 -> ayrışamaz
+  H7.14 (TANI, yön yok): PCA artık uzaklığı ↔ ekstrapolasyon hatası Spearman rho=-0.05 p=0.909 (n=8) -> ilişki gösterilemedi
