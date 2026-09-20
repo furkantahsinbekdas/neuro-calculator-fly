@@ -545,6 +545,105 @@ DEĞİŞTİRİLMEDİ. Yeni kod: **`numcog/cx_spectral.py`**. **Eşzamanlı süre
 - **İşlev/hesaplama katkısı ve evrimsel tasarım iddiası YASAK** (Faz 5 yorum kuralı).
 - Sonradan eklenen her analiz **KEŞİFSEL** başlığı altında.
 
+---
+
+## FAZ 7 — Çerçeve ön-kaydı (v2: durumu AĞ taşısın) — DİNAMİK DENEY YOK
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır (bu commit'te **hiçbir dinamik deney
+çalıştırılmamıştır**). Faz 0–6-0b dosyaları/sonuçları DEĞİŞTİRİLMEDİ. Yeni kod:
+**`numcog/reservoir_discovery.py`** (yalnızca keşif/ölçüm). **Eşzamanlı süreç: 1.**
+**Tüm hesaplar float64** (Faz 4F'deki float32 taşması tekrarlanmasın). Bağlantı dosyası
+**parça parça (chunk)** okunur.
+
+### Amaç
+
+**Sayıyı kontrolcü değil ağın iç durumu taşısın.** Kontrolcü yalnızca ±1 darbesi gönderir; sayaç
+tutmaz, sonucu ağ durumundan bir okuma katmanı çıkarır. (v1'de durum **tamamen** kontrolcüdeydi —
+bkz. `V1_OZET.md`.)
+
+### Model (Faz 7-1'de kullanılacak; burada sabitlenir)
+
+- **Ayrık zamanlı sızıntılı hız modeli:**
+  `x_{t+1} = (1−a)·x_t + a·tanh(g·W·x_t + B·u_t)`, **a = 0,5**.
+- **W:** connectome (pre→post) **syn_count ağırlıklı**, işareti **nörotransmitter tahminine** göre:
+  **ACh / dopamin / serotonin / oktopamin → +1**, **GABA / glutamat → −1**.
+  **Bu bir VARSAYIMDIR** (etiket `known_nt`, yoksa `top_nt`; ikisi de yoksa **işaret atanmaz** ve o
+  kenar **hariç tutulur**); raporda **varsayım** olarak etiketlenir.
+  **Spektral yarıçapı 1'e normalize edilir** (W → W/ρ(W)); **g** serbest parametredir.
+- **Giriş:** **iki ayrı kanal** (+1 ve −1), her biri **tohumla seçilen ayrık k nöronluk** kümeye `B`
+  üzerinden verilir; **darbe genişliği 1 adım**, **darbeler arası 5 adım**.
+- **Okuma:** **ridge regresyonu** — λ **yalnızca validasyonda** seçilir; çıktı nominal sınıf (sayı).
+- **g yalnızca validasyonda seçilir; TEST KÜMESİ SEÇİM İÇİN KULLANILMAZ.**
+
+### Kollar (Faz 7-1)
+
+1. **gerçek alt ağ** (keşifte seçilen aday),
+2. **derece-korunmuş shuffle** (işaret de korunur),
+3. **ağırlık-shuffle** (topoloji aynı, ağırlıklar karıştırılır),
+4. **Erdős–Rényi** (aynı N ve aynı yoğunluk),
+5. **tekrarlama yok** (W=0; yalnızca sızıntılı giriş),
+6. **"ideal sayaç" referansı** (durum = doğrudan toplam; hesabın **üst sınırı**, **dış yardım**
+   olarak etiketlenir — sineğin hesabı DEĞİL).
+
+### Görevler ve ölçütler (kilitli)
+
+- **T1 durum taşıma:** rastgele ±1 dizisi (k = 1..K adım), net toplam s ∈ [−8, +8];
+  **kesin eşleşme doğruluğu k'ya göre**; ayrıca **darbesiz bekleme (gap)** sonrası doğruluk.
+- **T2 bellek kapasitesi:** **Jaeger MC**, standart tanım.
+- **T3 kural/ekstrapolasyon:** eğitim |s| ≤ 6; test s ∈ {7..10} **ve** eğitimde görülmemiş başlangıç
+  durumları; **test kümesi ≥ 30 öğe** (öğe sayısı ölçümden önce yazılır: **her (s, başlangıç) çifti
+  için 5 örnek → toplam ≥ 30**).
+- **T4 kararlılık:** **yankı-durum özelliği** (iki farklı başlangıç durumundan gelen yörüngeler
+  yakınsıyor mu), **g taraması**.
+
+### Başarı ölçütleri (ölçümden ÖNCE)
+
+- **"Ağ durumu taşıyor"** = gerçek alt ağ T1'de **k=10 adımda kesin doğruluk ≥ %90** VE **kol (5)'ten
+  anlamlı iyi** (%95 GA **ayrık**).
+- **"Connectome'a özgü"** = kol (2)/(3)/(4)'e karşı **%95 GA ayrık üstünlük**. Yoksa raporda
+  **"ağ durumu taşıyor ama connectome'a özgü değil"** yazılır.
+- **"Kural"** = T3'te **şans üstü** ve **≥ 30 öğe**.
+
+### Beklentiler ve çürütme eşikleri
+
+- **H7.1:** T1 kol (1) > kol (5). **Çürütme:** kol (1) ile (5) %95 GA'ları **çakışır**.
+- **H7.2:** kol (1) ≈ kol (2)-(4) (**beklenti: ayırt edilemez**). **Çürütme:** (1) ile (2)/(3)/(4)
+  arasında **%95 GA ayrık üstünlük** çıkarsa (bu durumda "connectome'a özgü" iddiası **doğar**).
+- **H7.3:** T3 ekstrapolasyon **çöker** (şans düzeyi). **Çürütme:** T3'te şans üstü ≥ 30 öğe.
+- **H7.4:** doğruluk **k arttıkça monoton düşer**. **Çürütme:** monotonluk bozulursa.
+- **Düzeltme:** **Holm** (T1 kollu testler); **30 tohum**; ort ± std + **%95 GA**.
+
+### Adım C — Alt ağ keşfi (dinamik YOK): adaylar, metrikler, seçim kuralı (ölçümden ÖNCE)
+
+**Adaylar**
+- **A (CX):** `CX_NEUROPILS = {EB, PB, FB, NO}` (çekirdek dört nöropil; sabit). Hücreler = bu
+  nöropillerde **hem ≥1 pre hem ≥1 post** kenarı olan hücreler. EPG/PEN/Delta7 bunun alt kümesidir;
+  etiketli alt kümeler ayrıca raporlanır.
+  **Duyarlılık (etiketli):** genişletilmiş küme
+  `{EB,PB,FB,NO,GA_L,GA_R,CRE_L,CRE_R,LAL_L,LAL_R,IB_L,IB_R,ICL_L,ICL_R}`.
+- **B (MB içi döngü):** hücre tipleri = **KC** (`cell_class="Kenyon_Cell"`) + **MBON**
+  (`hemibrain_type` "MBON*") + **DAN-benzeri** (`hemibrain_type` "PAM*"/"PPL1*"/"PPL2*") + **APL** +
+  **DPM**; kenarlar = bu küme **içindeki** tüm pre→post kenarlar.
+- **C (kontrol; nöropil-kısıtlı rastgele):** 30 tohum için **≥1000 kenarı olan** nöropiller arasından
+  **tohumlu rastgele bir nöropil** seçilir; o nöropilin iç kenar grafiğinin **en büyük güçlü bağlı
+  bileşeni (SCC)** alınır. C'nin metrikleri 30 çekilişin **dağılımı** (medyan/aralık) olarak verilir;
+  ayrıca deterministik referans olarak **en büyük SCC'ye sahip nöropil** raporlanır.
+
+**Metrikler (her aday):** hücre sayısı; kenar ve sinaps sayısı; **karşılıklı (reciprocal) bağlantı
+oranı**; **en büyük SCC boyutu**; **NT etiketi kapsaması** (NaN'lar sayılır, `dropna=False`);
+**uyarıcı/engelleyici oranı**; **işaretli W'nin spektral yarıçapı** (güç iterasyonu, float64).
+
+**Seçim kuralı (sonuca bakarak DEĞİŞTİRİLMEZ):**
+**uygun = SCC boyutu 300–5000 arasında**; **birincil = A uygunsa A, değilse B**;
+**ikincil = kalan uygun aday**.
+
+**Ek (yine dinamik YOK):** yalnızca **doğrusal kararlılık analizi** — `ρ(signed W)·g < 1` bölgesi
+(simülasyon yapılmaz).
+
+**Sonuç dili:** "**bu veri sürümünde, bu seçim kuralıyla**".
+
+
+
 
 
 
