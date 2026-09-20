@@ -148,7 +148,9 @@ cd flyputer
 
 Çıktılar (`numcog/results_p7_0/`): `label_counts.csv`, `neuropil_counts.csv`, `candidates.csv`,
 `c_draws.csv`, `neuropil_scc.csv`, `run.log` (+ ilk koşunun NT-hatalı logu `run_ilk.log`).
-Ara önbellek **`scan_cache.npz` (91 MB)** yeniden üretilebilir olduğu için **commit edilmedi**.
+Ara önbellek **`scan_cache.npz` (91 MB)**: depo hijyeni için **commit'ten çıkarıldı**
+(`git rm --cached`, commit `70bbb0f`); dosya diskte kalır ve `scan` ile **~41 s'de yeniden
+üretilebilir**. Çalışma ağacında **tek izlenmeyen (untracked) dosya** budur.
 
 ## 7. ÖZET
 
