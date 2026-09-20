@@ -242,13 +242,16 @@ def eval_condition(arm, seed, split, H, train_H, Xtr, ytr, Xva, yva, Xte, tg, sm
 
     def pack(ts, m):
         p, q = pred_even[m], tg[m]
+        slope = np.nan
+        if len(q) > 1 and float(np.ptp(q)) > 0:      # sabit hedefte eğim tanımsız (tekil sistem)
+            slope = float(np.polyfit(q.astype(float), pred[m], 1)[0])
         return dict(arm=arm, seed=seed, split=split, H=int(H), train_H=int(train_H),
                     target_s=ts, n=int(m.sum()),
                     acc_exact=float(np.mean(q == p)),
                     acc_within2=float(np.mean(np.abs(q - p) <= 2)),
                     acc_nominal=float(np.mean(nom[m] == q)),
                     pred_mean=float(np.mean(pred[m])),
-                    pred_slope=float(np.polyfit(q, pred[m], 1)[0]) if len(q) > 1 else np.nan,
+                    pred_slope=slope,
                     stuck=stuck_frac(pred[m], smax) if np.isfinite(smax) else np.nan,
                     pca_res=float(np.mean(prv[m])), sat=sat, active=act, lam=float(lam),
                     lam_nom=float(lam2), val_mse=float(vmse), val_acc_nom=float(vacc))
