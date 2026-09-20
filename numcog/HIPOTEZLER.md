@@ -383,6 +383,60 @@ karşılaştırması. **Sinek durum taşımaz, kontrolcü taşır.**
 
 ---
 
+## FAZ 5 — Connectome yapısal analizi (iki parçalı) + kapanış
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır. Faz 0–4F dosyaları/sonuçları DEĞİŞTİRİLMEDİ.
+Yeni kod: `numcog/structural_analysis.py`. **Standart tek parçalı graf metrikleri kullanılmaz.**
+Kenar tanımı ve eşikler Faz 0/1 ile AYNI (KC = `cell_class="Kenyon_Cell"`, VPN =
+`super_class="visual_projection"`, ALPN = `cell_class="ALPN"`, **min_syn=1** → 427 KC × 265 VPN).
+
+### Sabit metrikler (ikili matris; tüm KC çiftleri; en az bir girdisi olan KC'ler)
+
+- **M1:** KC çiftleri arası **ortalama ortak VPN komşu sayısı**.
+- **M2:** KC başına girdi VPN'lerinin **tip çeşitliliği** — Shannon entropisi (log₂), KC ortalaması.
+  **VPN tipi = `cell_type`** (matristeki 265 VPN'in 264'ü etiketli; `hemibrain_type` yalnızca
+  192'sinde var → o sürüm **KEŞİFSEL** bölümde). Etiketli girdisi olmayan KC ortalamadan çıkarılır
+  (sayısı raporlanır).
+- **M3:** hem VPN hem ALPN girdisi alan KC sayısı (gerçek değer **151**).
+- **M4:** KC alt tipi (**KCg-d** vs **KCab-p**; matriste 286 + 102) ile VPN `cell_type`'ı arasındaki
+  **karşılıklı bilgi, bit** — kenarlar (ikili matristeki 1'ler) üzerinde.
+
+### Null modeller (her biri **1000 örnek**, shard'lı; örnek başına deterministik tohum `5000+örnek`)
+
+- **Null A:** derece-korunmuş çift-kenar takası (kenar sayısının **≥10 katı** deneme).
+- **Null B:** **KC-alt-tipi-korunmuş** takas — takaslar yalnızca **aynı `hemibrain_type`** KC'ler arası.
+- **M3 null:** her KC'nin VPN-girdili ve ALPN-girdili olma durumu **alt tip içinde bağımsız**
+  permütasyonla karıştırılır (KC evreni = 5177 KC, alt tip = `hemibrain_type`, dropna=False).
+- **M4 null:** KC alt tip etiketlerinin KC'ler arasında **permütasyonu** (grup büyüklükleri sabit).
+
+### Test ailesi ve düzeltme
+
+**m = 6:** M1×A, M1×B, M2×A, M2×B, M3, M4. İstatistik: iki-yanlı permütasyon
+**p = (1 + #{|null_i − μ| ≥ |obs − μ|}) / (N+1)**, **z = (obs − μ)/σ**. Düzeltme: **Holm**.
+Raporda **ham z, ham fark (etki büyüklüğü), ham p, düzeltilmiş p**. 1000 örnek → **p ≥ 1/1001 ≈
+0.000999** (bu sınır raporda belirtilir).
+
+### Hipotezler
+
+- **H5.1 (beklenti):** M1, Null A'ya karşı Holm sonrası ayrışır (alt tip yapısı nedeniyle).
+  **Çürütme:** p_adj ≥ 0.05.
+- **H5.2 (beklenti):** M4 anlamlıdır (alt tipler farklı VPN tiplerini tercih eder).
+  **Çürütme:** p_adj ≥ 0.05.
+- **H5.3 (YÖN beklentisi YOK):** M3 (151) null'dan ayrışıyor mu?
+
+### Yorum kuralı (bağlayıcı)
+
+İstatistiksel ayrışma = **yapısal fark**tır; **"hesaplamaya katkı"** ya da **"evrimsel tasarım"**
+iddiası **YASAK**tır. Faz 1–4E'de görev performansı gerçek ve shuffle matris arasında ayrışmadı;
+bu yapısal bulguyu bir işlev iddiasına bağlayacak ölçümümüz **yok**; rapor böyle yazılır.
+
+### KEŞİFSEL bölüm
+
+Ön-kayıttan sonra eklenen her analiz raporda ayrı **"KEŞİFSEL"** başlığı altında verilir.
+
+
+---
+
 ## FAZ 4F — N=81: dolgu + σ genişletme (KISA, ön-kayıtlı)
 
 Kayıt tarihi: 2026-09-20. Ölçümden ÖNCE yazılmıştır. Faz 0-4E dosyaları/sonuçları DEĞİŞTİRİLMEDİ.
