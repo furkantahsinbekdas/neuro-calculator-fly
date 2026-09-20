@@ -761,6 +761,114 @@ sürücüsü çıkarılır**. **Birincil = merkezlemesiz**; merkezlemeli sürüm
 - **Teknik doğrulama koşusu** (smoke test) ile üretilen ara CSV'ler **ölçüm öncesi silinir**;
   ölçüm, donmuş konfigürasyonla **sıfırdan** başlar.
 
+---
+
+## FAZ 7-2 — EK ÖN-KAYIT (adil rejim testi: kol başına g + spektrum tanısı; KISA)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır (bu commit'te hiçbir 7-2 ölçümü yapılmadı).
+Yeni kod: **`numcog/reservoir_fair.py`**; çıktı dizini **`results_p7_2/`**.
+Faz 0–7-1 dosyaları/sonuçları **DEĞİŞTİRİLMEZ** (7-1'in `results_p7_1/` dizinine **yazılmaz**).
+**Eş zamanlı süreç: 1. float64. Seyrek W × yoğun durum matrisi. Tohum başına ayrı CSV.**
+
+### TASARIM DEĞİŞİKLİĞİ — AÇIK BEYAN
+
+**Bu faz bir TASARIM DEĞİŞİKLİĞİDİR ve 7-1 sonuçları GÖRÜLDÜKTEN SONRA yazılmıştır.**
+7-1'de (i) "ağ durumu taşıyor" ölçütü geçmedi (A_gercek k=10'da 0,246–0,257), (ii) gerçek alt ağ
+**tüm surrogatlarından anlamlı biçimde daha kötü** çıktı, (iii) tanı **"neredeyse ölü rejim"**i
+gösterdi (aktivite 0,0033; aktif nöron %2,4) ve nedeni **ρ_raw farkı** (gerçek 635, derece-shuffle 116)
+olarak ölçüldü. Buna göre **adil-olmayan rejim** hipotezi doğdu: *tüm kollar aynı g'de koştuğu için
+karşılaştırma adil olmayabilir.* **7-2 tam olarak bunu test eder: kol başına g seçilirse fark kapanır mı?**
+Bu nedenle 7-2 sonuçları **doğrulayıcı değil, keşifsel-yeniden-test** niteliğindedir; **başarı ölçütleri
+7-1 ile AYNIDIR ve GEVŞETİLMEMİŞTİR.**
+
+**Ölçümden önce hesaplanan tasarım tabanları** (`results_p7_2/design_baselines.txt`; tohum 0-9, 5400 dizi;
+tasarım özelliği, model ölçümü değil):
+
+| k | ulaşılabilir sınıf | şans | "en sık sınıf" tabanı |
+|---|---|---|---|
+| 2 | 3 | 0,3333 | 0,4922 |
+| 4 | 5 | 0,2000 | 0,3713 |
+| 6 | 7 | 0,1429 | 0,3096 |
+| 8 | 9 | 0,1111 | 0,2654 |
+| 10 | 9 | 0,1111 | **0,2478** |
+
+### Adım 0 — Spektrum ve bileşen tanısı (simülasyon YOK; tek istisna: aktivite yeniden üretimi)
+
+- **Kollar (4):** **A_gercek**, **A_derece** (derece-shuffle, işaret korunmuş), **A_er** (Erdős–Rényi),
+  **A_w0**. Alt ağ ve model 7-1 ile aynı (CX çekirdek, N=4.236; a=0,5; tanh; I1 girişi; aynı gözlem
+  gürültüsü). **Ham W**, 7-1 ile **aynı kurulum tohumları** (RandomState(7001)) kullanılarak yeniden
+  kurulur (7-1 dosyalarına yazılmaz) ve **normalizasyondan ÖNCE** analiz edilir.
+  **Tutarlılık kontrolü:** A_gercek için E=**298.441**, ρ_raw≈**635** (7-1 ile aynı olmalı).
+- **Yöntem:** `scipy.sparse.linalg.eigs(which='LM', k=50, maxiter=5000)` (ARPACK, float64).
+- **Raporlanan:** spektral yarıçap (max|λ|), **en büyük gerçek kısım**, **"yavaş mod" sayısı**
+  (normalize özdeğerlerde |λ|/ρ ≥ 0,90 olan mod sayısı); en büyük ~50 özdeğerin gerçek/karmaşık kısımları CSV'ye.
+- **Yakınsamazsa:** try/except + uyarı logu → o kol için "**spektrum eksik/yakınsamadı**" işareti; **devam**.
+- **İzole hücre** (alt ağ içinde derecesi 0 olan hücre) sayısı raporlanır; varsa **en büyük güçlü bağlı
+  bileşen (SCC)** üzerinde **aynı analiz tekrarlanır** (`scipy.sparse.csgraph.connected_components`).
+- **Aktivite yeniden üretimi (tek simülasyon istisnası):** 7-1 donmuş **g=1,30**, amp=0,5, I1 girişi,
+  T1 k=10/H=0 yörüngesi, tohum 0 → **aktif nöron oranı + doygunluk**; 7-1 değerleriyle
+  (A_gercek 0,024 / A_derece 0,651 / A_er 0,931 / A_w0 0,024) **tutarlılık kontrolü** olarak raporlanır.
+- **Sonuç ne olursa olsun Adım 1'e devam edilir.**
+
+### Adım 1 — Kol başına g seçimi (pilot, YALNIZCA doğrulama)
+
+- **Izgara (normalize W üzerinde):** g ∈ {0,8; 1,3; 2; 3; 5; 8; 13; 20; 40} × amp ∈ {0,5; 1,0};
+  λ ızgarası 7-1 ile aynı (7 değer, yalnızca validasyonda).
+- **Veri:** **10 tohum** pilot; yalnızca **eğitim (300) + doğrulama (120)** dizileri (7-1 ile aynı tohumlu
+  üretici `RandomState(20000+s)`, aynı cap=8 kuralı). **Test kümesi seçimde KULLANILMAZ (assert).**
+- **Seçim ölçütü — kademeli tie-break (ölçümden ÖNCE sabit; eşitlik = fark < 1e-9):**
+  1. **T1, k=6, H=10** kesin eşleşme doğruluğu (en yüksek; 10 tohumun **ortalaması**),
+  2. eşitlik → **T1, k=4, H=10** doğruluğu (en yüksek),
+  3. eşitlik → **skaler regresyon okumasının doğrulama MSE'si** (en düşük; aynı özellik/gürültü/λ kuralı),
+  4. eşitlik → **en yüksek g**.
+  - `argmax`'ın örtük "ilk eleman" davranışına **güvenilmez**; eşitlik **açıkça** kodlanır ve
+    **hangi basamakta çözüldüğü** her kol için raporlanır.
+  - **Basamak 1'de tüm g'ler eşitse**: "**seçim ölçütü ayırt edici değil**" diye rapora yazılır (2–4 uygulanır).
+- **Izgara sınırı:** seçilen g = **0,8** veya **40** ise "**ızgara sınırı**" diye raporlanır;
+  **ızgara GENİŞLETİLMEZ.**
+- **Tanı (seçim ölçütü DEĞİL):** seçilen g'de **aktif nöron oranı** ve **doygunluk oranı** (1 tohum,
+  T1 k=10/H=0 yörüngesi).
+- **Not:** **A_w0 için g anlamsızdır** (W=0) → seçim basamak 4'e (en yüksek g) düşer; bu **beklenendir**
+  ve raporlanır.
+
+### Adım 2 — Donmuş konfigürasyonla ölçüm
+
+- **20 tohum**; her kol **kendi** donmuş (g, amp) değeriyle; **bölme 7-1 ile AYNI: 300/120/120**
+  (dizi çakışması yok, **assert**); okuma = **dual ridge**, λ yalnızca validasyonda, gürültü 1e-3×std (7-1 ile aynı).
+- **T1:** k ∈ {2,4,6,8,10}, **H ∈ {0,10,20}** (H=40 bu fazda **YOK**).
+- **T2:** Jaeger MC, **gecikme 1..40**; yalnızca **A_gercek ve A_w0** için (diğer kollarda "ölçülmedi").
+- **T3 bu fazda YOK** (7-1'de okuma sınırı görüldü) — **bilinçli daraltma**.
+- Şans düzeyi ve "en sık sınıf" tabanı **yukarıdaki tablo** ile sabittir.
+
+### Başarı ölçütleri (7-1 İLE AYNI; GEVŞETİLMEZ)
+
+- **"Ağ durumu taşıyor":** A_gercek, **k=10 VE H=10** kesin doğruluk **≥ %90** VE **A_w0'dan %95 GA ayrık**.
+- **"Connectome'a özgü":** **A_derece VE A_er**'den **%95 GA ayrık üstünlük**; yoksa
+  "ağ durumu taşıyor ama connectome'a özgü değil".
+- **Ek (yeni, "graded"):** **bellek uzunluğu** = doğruluğun %90'ın altına düştüğü ilk (k,H); ayrıca
+  her kol için **doğruluk–k eğrisi** (H=10 ve H=20).
+
+### Hipotezler (beklenti + çürütme eşiği yazılı; Holm)
+
+- **H7.7 (beklenti):** A_gercek'in **seçilen g'si > 1,3** ve seçilen g'de **aktif nöron oranı %2,4'ün
+  belirgin üstünde**. **Çürütme:** seçilen g ≤ 1,3 **VEYA** aktif oran < **%10**.
+- **H7.8 (beklenti):** kol başına g seçimiyle **A_gercek ile A_derece arasındaki fark KÜÇÜLÜR**
+  (7-1'de ≈ **−0,16**); **yön beklentisi: hâlâ A_gercek ≤ A_derece**.
+  **Çürütme:** A_gercek > A_derece **ve** %95 GA ayrık.
+- **H7.9 (beklenti):** k=10, H=10'da **≥ %90 SAĞLANMAZ**. **Çürütme:** sağlanırsa.
+- **H7.10 (TANI, yön YOK):** "**yavaş mod**" sayısı ile **bellek uzunluğu** arasında **kollar arası**
+  ilişki var mı (4 kol, betimsel).
+- **Düzeltme:** **Holm** (aile: A_gercek vs {A_w0, A_derece, A_er}, m=3); 20 tohum, ort ± sd + %95 GA.
+
+### Bütçe (ölçülmüş; 7-1: 9,8 ms/adım, B=64, E=298.441)
+
+- Adım 0: ARPACK 4 kol × ~30 s + (varsa) SCC tekrarı + aktivite ~1 dk ≈ **~5 dk**.
+- Adım 1: 10 tohum × 4 kol × 9 g × 2 amp × ~2,6 s (420 dizi × 41 adım) ≈ **~31 dk**.
+- Adım 2: 20 tohum × 4 kol × ~45 s (540 dizi × 255 adım + T2 + okumalar) ≈ **~60 dk**.
+- **Toplam ≈ 1,6 saat.** Ölçümden sonra **hiçbir ızgara/ölçüt DEĞİŞTİRİLMEZ**; sonradan eklenen her
+  analiz **KEŞİFSEL** etiketli ayrı bölümde verilir. Dil: **"bu veride, bu modelde, bu ızgarada"**.
+
+
 ### Sonuç dili ve yasaklar
 
 - Kesin cümle kalıbı: **"bu veride, bu modelde, bu ızgarada"**.

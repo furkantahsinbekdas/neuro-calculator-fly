@@ -1,0 +1,6 @@
+Faz 7-2 tasarim tabanlari (tohum 0..9, 5400 dizi)
+k= 2  ulasilabilir sinif= 3  sans=0.3333  en_sik_sinif_tabani=0.4922
+k= 4  ulasilabilir sinif= 5  sans=0.2000  en_sik_sinif_tabani=0.3713
+k= 6  ulasilabilir sinif= 7  sans=0.1429  en_sik_sinif_tabani=0.3096
+k= 8  ulasilabilir sinif= 9  sans=0.1111  en_sik_sinif_tabani=0.2654
+k=10  ulasilabilir sinif= 9  sans=0.1111  en_sik_sinif_tabani=0.2478
