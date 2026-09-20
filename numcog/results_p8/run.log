@@ -1,0 +1,302 @@
+=== AŞAMA 0: KEŞİF (simülasyon YOK) ===
+  KC=5177 | ALPN=685 | MBON=96 | DAN=331
+  KC    cell_type      : NaN=0/5177, 11 farklı
+  KC    hemibrain_type : NaN=0/5177, 12 farklı
+  KC    known_nt       : NaN=0/5177, 2 farklı
+  KC    top_nt         : NaN=0/5177, 3 farklı
+  ALPN  cell_type      : NaN=0/685, 182 farklı
+  ALPN  hemibrain_type : NaN=18/685, 173 farklı
+  ALPN  known_nt       : NaN=75/685, 5 farklı
+  ALPN  top_nt         : NaN=0/685, 3 farklı
+  MBON  cell_type      : NaN=0/96, 35 farklı
+  MBON  hemibrain_type : NaN=0/96, 35 farklı
+  MBON  known_nt       : NaN=28/96, 7 farklı
+  MBON  top_nt         : NaN=0/96, 3 farklı
+  DAN   cell_type      : NaN=0/331, 27 farklı
+  DAN   hemibrain_type : NaN=0/331, 27 farklı
+  DAN   known_nt       : NaN=0/331, 7 farklı
+  DAN   top_nt         : NaN=0/331, 2 farklı
+
+  DAN tipi -> valans (KAYNAK: cell_type/hemibrain_type ÖN EKİ):
+    PAM01      valans=+1  n=41
+    PAM02      valans=+1  n=16
+    PAM03      valans=+1  n=10
+    PAM04      valans=+1  n=32
+    PAM05      valans=+1  n=21
+    PAM06      valans=+1  n=30
+    PAM07      valans=+1  n=18
+    PAM08      valans=+1  n=45
+    PAM09      valans=+1  n=9
+    PAM10      valans=+1  n=15
+    PAM11      valans=+1  n=16
+    PAM12      valans=+1  n=23
+    PAM13      valans=+1  n=12
+    PAM14      valans=+1  n=16
+    PAM15      valans=+1  n=3
+    PPL101     valans=-1  n=2
+    PPL102     valans=-1  n=2
+    PPL103     valans=-1  n=2
+    PPL104     valans=-1  n=2
+    PPL105     valans=-1  n=2
+    PPL106     valans=-1  n=2
+    PPL107     valans=-1  n=2
+    PPL108     valans=-1  n=2
+    PPL201     valans=+0  n=2
+    PPL202     valans=+0  n=2
+    PPL203     valans=+0  n=2
+    PPL204     valans=+0  n=2
+    ödül(PAM)=307  ceza(PPL1)=16  diğer(PPL2/bilinmeyen)=8 (HARİÇ)
+
+  MBON NT işareti (known_nt -> top_nt): +1=51, -1=45, NaN=0
+    MBON top_nt: {'acetylcholine': 52, 'glutamate': 25, 'gaba': 19}
+    MBON known_nt (ilk 6): {nan: 28, 'acetylcholine': 23, 'gaba': 15, 'acetylcholine; acetylcholine': 10, 'glutamate': 8, 'glutamate; glutamate': 8}
+  ALPN->KC   kenar=23618  pre=295   post=4787  sinaps: ort=13.7 med=13 max=69
+  KC->MBON   kenar=35204  pre=5173  post=91    sinaps: ort=5.2 med=4 max=55
+  DAN->MBON  kenar=1338   pre=299   post=82    sinaps: ort=9.7 med=6 max=252
+  MBON->DAN  kenar=877    pre=89    post=238   sinaps: ort=6.6 med=4 max=92
+  DAN->KC    kenar=1923   pre=156   post=1342  sinaps: ort=3.4 med=3 max=11
+  ALPN->KC'de kullanılan ALPN (pres) = 295 (koku girdi boyutu)
+=== AŞAMA 0: KEŞİF (simülasyon YOK) ===
+  KC=5177 | ALPN=685 | MBON=96 | DAN=331
+  KC    cell_type      : NaN=0/5177, 11 farklı
+  KC    hemibrain_type : NaN=0/5177, 12 farklı
+  KC    known_nt       : NaN=0/5177, 2 farklı
+  KC    top_nt         : NaN=0/5177, 3 farklı
+  ALPN  cell_type      : NaN=0/685, 182 farklı
+  ALPN  hemibrain_type : NaN=18/685, 173 farklı
+  ALPN  known_nt       : NaN=75/685, 5 farklı
+  ALPN  top_nt         : NaN=0/685, 3 farklı
+  MBON  cell_type      : NaN=0/96, 35 farklı
+  MBON  hemibrain_type : NaN=0/96, 35 farklı
+  MBON  known_nt       : NaN=28/96, 7 farklı
+  MBON  top_nt         : NaN=0/96, 3 farklı
+  DAN   cell_type      : NaN=0/331, 27 farklı
+  DAN   hemibrain_type : NaN=0/331, 27 farklı
+  DAN   known_nt       : NaN=0/331, 7 farklı
+  DAN   top_nt         : NaN=0/331, 2 farklı
+
+  DAN tipi -> valans (KAYNAK: cell_type/hemibrain_type ÖN EKİ):
+    PAM01      valans=+1  n=41
+    PAM02      valans=+1  n=16
+    PAM03      valans=+1  n=10
+    PAM04      valans=+1  n=32
+    PAM05      valans=+1  n=21
+    PAM06      valans=+1  n=30
+    PAM07      valans=+1  n=18
+    PAM08      valans=+1  n=45
+    PAM09      valans=+1  n=9
+    PAM10      valans=+1  n=15
+    PAM11      valans=+1  n=16
+    PAM12      valans=+1  n=23
+    PAM13      valans=+1  n=12
+    PAM14      valans=+1  n=16
+    PAM15      valans=+1  n=3
+    PPL101     valans=-1  n=2
+    PPL102     valans=-1  n=2
+    PPL103     valans=-1  n=2
+    PPL104     valans=-1  n=2
+    PPL105     valans=-1  n=2
+    PPL106     valans=-1  n=2
+    PPL107     valans=-1  n=2
+    PPL108     valans=-1  n=2
+    PPL201     valans=+0  n=2
+    PPL202     valans=+0  n=2
+    PPL203     valans=+0  n=2
+    PPL204     valans=+0  n=2
+    ödül(PAM)=307  ceza(PPL1)=16  diğer(PPL2/bilinmeyen)=8 (HARİÇ)
+
+  MBON NT işareti (known_nt -> top_nt): +1=51, -1=45, NaN=0
+    MBON top_nt: {'acetylcholine': 52, 'glutamate': 25, 'gaba': 19}
+    MBON known_nt (ilk 6): {nan: 28, 'acetylcholine': 23, 'gaba': 15, 'acetylcholine; acetylcholine': 10, 'glutamate': 8, 'glutamate; glutamate': 8}
+  ALPN->KC   kenar=23618  pre=295   post=4787  sinaps: ort=13.7 med=13 max=69
+  KC->MBON   kenar=35204  pre=5173  post=91    sinaps: ort=5.2 med=4 max=55
+  DAN->MBON  kenar=1338   pre=299   post=82    sinaps: ort=9.7 med=6 max=252
+  MBON->DAN  kenar=877    pre=89    post=238   sinaps: ort=6.6 med=4 max=92
+  DAN->KC    kenar=1923   pre=156   post=1342  sinaps: ort=3.4 med=3 max=11
+  ALPN->KC'de kullanılan ALPN (pres) = 295 (koku girdi boyutu)
+=== AŞAMA 0: KEŞİF (simülasyon YOK) ===
+  KC=5177 | ALPN=685 | MBON=96 | DAN=331
+  KC    cell_type      : NaN=0/5177, 11 farklı
+  KC    hemibrain_type : NaN=0/5177, 12 farklı
+  KC    known_nt       : NaN=0/5177, 2 farklı
+  KC    top_nt         : NaN=0/5177, 3 farklı
+  ALPN  cell_type      : NaN=0/685, 182 farklı
+  ALPN  hemibrain_type : NaN=18/685, 173 farklı
+  ALPN  known_nt       : NaN=75/685, 5 farklı
+  ALPN  top_nt         : NaN=0/685, 3 farklı
+  MBON  cell_type      : NaN=0/96, 35 farklı
+  MBON  hemibrain_type : NaN=0/96, 35 farklı
+  MBON  known_nt       : NaN=28/96, 7 farklı
+  MBON  top_nt         : NaN=0/96, 3 farklı
+  DAN   cell_type      : NaN=0/331, 27 farklı
+  DAN   hemibrain_type : NaN=0/331, 27 farklı
+  DAN   known_nt       : NaN=0/331, 7 farklı
+  DAN   top_nt         : NaN=0/331, 2 farklı
+
+  DAN tipi -> valans (KAYNAK: cell_type/hemibrain_type ÖN EKİ):
+    PAM01      valans=+1  n=41
+    PAM02      valans=+1  n=16
+    PAM03      valans=+1  n=10
+    PAM04      valans=+1  n=32
+    PAM05      valans=+1  n=21
+    PAM06      valans=+1  n=30
+    PAM07      valans=+1  n=18
+    PAM08      valans=+1  n=45
+    PAM09      valans=+1  n=9
+    PAM10      valans=+1  n=15
+    PAM11      valans=+1  n=16
+    PAM12      valans=+1  n=23
+    PAM13      valans=+1  n=12
+    PAM14      valans=+1  n=16
+    PAM15      valans=+1  n=3
+    PPL101     valans=-1  n=2
+    PPL102     valans=-1  n=2
+    PPL103     valans=-1  n=2
+    PPL104     valans=-1  n=2
+    PPL105     valans=-1  n=2
+    PPL106     valans=-1  n=2
+    PPL107     valans=-1  n=2
+    PPL108     valans=-1  n=2
+    PPL201     valans=+0  n=2
+    PPL202     valans=+0  n=2
+    PPL203     valans=+0  n=2
+    PPL204     valans=+0  n=2
+    ödül(PAM)=307  ceza(PPL1)=16  diğer(PPL2/bilinmeyen)=8 (HARİÇ)
+
+  MBON NT işareti (known_nt -> top_nt): +1=51, -1=45, NaN=0
+    MBON top_nt: {'acetylcholine': 52, 'glutamate': 25, 'gaba': 19}
+    MBON known_nt (ilk 6): {nan: 28, 'acetylcholine': 23, 'gaba': 15, 'acetylcholine; acetylcholine': 10, 'glutamate': 8, 'glutamate; glutamate': 8}
+  ALPN->KC   kenar=23618  pre=295   post=4787  sinaps: ort=13.7 med=13 max=69
+  KC->MBON   kenar=35204  pre=5173  post=91    sinaps: ort=5.2 med=4 max=55
+  DAN->MBON  kenar=1338   pre=299   post=82    sinaps: ort=9.7 med=6 max=252
+  MBON->DAN  kenar=877    pre=89    post=238   sinaps: ort=6.6 med=4 max=92
+  DAN->KC    kenar=1923   pre=156   post=1342  sinaps: ort=3.4 med=3 max=11
+  ALPN->KC'de kullanılan ALPN (pres) = 295 (koku girdi boyutu)
+=== AŞAMA 0: KEŞİF (simülasyon YOK) ===
+  KC=5177 | ALPN=685 | MBON=96 | DAN=331
+  KC    cell_type      : NaN=0/5177, 11 farklı
+  KC    hemibrain_type : NaN=0/5177, 12 farklı
+  KC    known_nt       : NaN=0/5177, 2 farklı
+  KC    top_nt         : NaN=0/5177, 3 farklı
+  ALPN  cell_type      : NaN=0/685, 182 farklı
+  ALPN  hemibrain_type : NaN=18/685, 173 farklı
+  ALPN  known_nt       : NaN=75/685, 5 farklı
+  ALPN  top_nt         : NaN=0/685, 3 farklı
+  MBON  cell_type      : NaN=0/96, 35 farklı
+  MBON  hemibrain_type : NaN=0/96, 35 farklı
+  MBON  known_nt       : NaN=28/96, 7 farklı
+  MBON  top_nt         : NaN=0/96, 3 farklı
+  DAN   cell_type      : NaN=0/331, 27 farklı
+  DAN   hemibrain_type : NaN=0/331, 27 farklı
+  DAN   known_nt       : NaN=0/331, 7 farklı
+  DAN   top_nt         : NaN=0/331, 2 farklı
+
+  DAN tipi -> valans (KAYNAK: cell_type/hemibrain_type ÖN EKİ):
+    PAM01      valans=+1  n=41
+    PAM02      valans=+1  n=16
+    PAM03      valans=+1  n=10
+    PAM04      valans=+1  n=32
+    PAM05      valans=+1  n=21
+    PAM06      valans=+1  n=30
+    PAM07      valans=+1  n=18
+    PAM08      valans=+1  n=45
+    PAM09      valans=+1  n=9
+    PAM10      valans=+1  n=15
+    PAM11      valans=+1  n=16
+    PAM12      valans=+1  n=23
+    PAM13      valans=+1  n=12
+    PAM14      valans=+1  n=16
+    PAM15      valans=+1  n=3
+    PPL101     valans=-1  n=2
+    PPL102     valans=-1  n=2
+    PPL103     valans=-1  n=2
+    PPL104     valans=-1  n=2
+    PPL105     valans=-1  n=2
+    PPL106     valans=-1  n=2
+    PPL107     valans=-1  n=2
+    PPL108     valans=-1  n=2
+    PPL201     valans=+0  n=2
+    PPL202     valans=+0  n=2
+    PPL203     valans=+0  n=2
+    PPL204     valans=+0  n=2
+    ödül(PAM)=307  ceza(PPL1)=16  diğer(PPL2/bilinmeyen)=8 (HARİÇ)
+
+  MBON NT işareti (known_nt -> top_nt): +1=51, -1=45, NaN=0
+    MBON top_nt: {'acetylcholine': 52, 'glutamate': 25, 'gaba': 19}
+    MBON known_nt (ilk 6): {nan: 28, 'acetylcholine': 23, 'gaba': 15, 'acetylcholine; acetylcholine': 10, 'glutamate': 8, 'glutamate; glutamate': 8}
+  ALPN->KC   kenar=23618  pre=295   post=4787  sinaps: ort=13.7 med=13 max=69
+  KC->MBON   kenar=35204  pre=5173  post=91    sinaps: ort=5.2 med=4 max=55
+  DAN->MBON  kenar=1338   pre=299   post=82    sinaps: ort=9.7 med=6 max=252
+  MBON->DAN  kenar=877    pre=89    post=238   sinaps: ort=6.6 med=4 max=92
+  DAN->KC    kenar=1923   pre=156   post=1342  sinaps: ort=3.4 med=3 max=11
+  ALPN->KC'de kullanılan ALPN (pres) = 295 (koku girdi boyutu)
+=== AŞAMA 0: KEŞİF (simülasyon YOK) ===
+  KC=5177 | ALPN=685 | MBON=96 | DAN=331
+  KC    cell_type      : NaN=0/5177, 11 farklı
+  KC    hemibrain_type : NaN=0/5177, 12 farklı
+  KC    known_nt       : NaN=0/5177, 2 farklı
+  KC    top_nt         : NaN=0/5177, 3 farklı
+  ALPN  cell_type      : NaN=0/685, 182 farklı
+  ALPN  hemibrain_type : NaN=18/685, 173 farklı
+  ALPN  known_nt       : NaN=75/685, 5 farklı
+  ALPN  top_nt         : NaN=0/685, 3 farklı
+  MBON  cell_type      : NaN=0/96, 35 farklı
+  MBON  hemibrain_type : NaN=0/96, 35 farklı
+  MBON  known_nt       : NaN=28/96, 7 farklı
+  MBON  top_nt         : NaN=0/96, 3 farklı
+  DAN   cell_type      : NaN=0/331, 27 farklı
+  DAN   hemibrain_type : NaN=0/331, 27 farklı
+  DAN   known_nt       : NaN=0/331, 7 farklı
+  DAN   top_nt         : NaN=0/331, 2 farklı
+
+  DAN tipi -> valans (KAYNAK: cell_type/hemibrain_type ÖN EKİ):
+    PAM01      valans=+1  n=41
+    PAM02      valans=+1  n=16
+    PAM03      valans=+1  n=10
+    PAM04      valans=+1  n=32
+    PAM05      valans=+1  n=21
+    PAM06      valans=+1  n=30
+    PAM07      valans=+1  n=18
+    PAM08      valans=+1  n=45
+    PAM09      valans=+1  n=9
+    PAM10      valans=+1  n=15
+    PAM11      valans=+1  n=16
+    PAM12      valans=+1  n=23
+    PAM13      valans=+1  n=12
+    PAM14      valans=+1  n=16
+    PAM15      valans=+1  n=3
+    PPL101     valans=-1  n=2
+    PPL102     valans=-1  n=2
+    PPL103     valans=-1  n=2
+    PPL104     valans=-1  n=2
+    PPL105     valans=-1  n=2
+    PPL106     valans=-1  n=2
+    PPL107     valans=-1  n=2
+    PPL108     valans=-1  n=2
+    PPL201     valans=+0  n=2
+    PPL202     valans=+0  n=2
+    PPL203     valans=+0  n=2
+    PPL204     valans=+0  n=2
+    ödül(PAM)=307  ceza(PPL1)=16  diğer(PPL2/bilinmeyen)=8 (HARİÇ)
+
+  MBON NT işareti (known_nt -> top_nt): +1=51, -1=45, NaN=0
+    MBON top_nt: {'acetylcholine': 52, 'glutamate': 25, 'gaba': 19}
+    MBON known_nt (ilk 6): {nan: 28, 'acetylcholine': 23, 'gaba': 15, 'acetylcholine; acetylcholine': 10, 'glutamate': 8, 'glutamate; glutamate': 8}
+  ALPN->KC   kenar=23618  pre=295   post=4787  sinaps: ort=13.7 med=13 max=69
+  KC->MBON   kenar=35204  pre=5173  post=91    sinaps: ort=5.2 med=4 max=55
+  DAN->MBON  kenar=1338   pre=299   post=82    sinaps: ort=9.7 med=6 max=252
+  MBON->DAN  kenar=877    pre=89    post=238   sinaps: ort=6.6 med=4 max=92
+  DAN->KC    kenar=1923   pre=156   post=1342  sinaps: ort=3.4 med=3 max=11
+  ALPN->KC'de kullanılan ALPN (pres) = 295 (koku girdi boyutu)
+
+  BÖLME ÇIKARIMI (DAN→MBON bipartit matrisi, spektral kümeleme) — ETİKET: ÇIKARIM
+    DAN tipi sayısı=23, MBON=96; k=12 (ön-kayıtlı aralık 8-20); MBON/küme: min=1 ort=8.0 max=51
+    DAN→bölme: 299/331 DAN atandı; bölme başına DAN: [0, 2, 24, 67, 2, 52, 27, 8, 28, 57, 30, 2]
+    bölme başına DAN tipleri: [[], ['PPL106'], ['PAM09', 'PAM10', 'PAM14'], ['PAM02', 'PAM03', 'PAM05', 'PAM06'], ['PPL104'], ['PAM08', 'PAM12', 'PAM13', 'PAM14'], ['PAM04', 'PAM09'], ['PAM01', 'PAM08'], ['PAM11', 'PPL102', 'PPL103', 'PPL105'], ['PAM01', 'PAM07', 'PAM08'], ['PAM01', 'PAM02', 'PAM15'], ['PPL101']]
+
+=== KAPI G0 ===
+  (a) ≥30 MBON etiketli: 96 -> True
+  (b) ≥8 bölme çıkarılabildi: k=12 -> True
+  (c) KC→MBON kenarı ≥5.000: 35204 -> True
+  >>> KAPI G0: GEÇİLDİ
+  önbellek: C:\Users\Administrator\Desktop\Genesis_Fly\flyputer\numcog\results_p8\mb_cache.npz (0.3 MB)

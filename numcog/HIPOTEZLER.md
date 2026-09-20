@@ -1091,6 +1091,68 @@ N=81, σ=1.5; **epoch ∈ {10000, 25000}** × **lr ∈ {0.01, 0.05}** × **top-k
 - **Başarısızsa:** "bu ızgarada ulaşılamadı" diye net raporlanır; **iki haneli yedek** (onlar/birler
   ayrı kanal, elde/borç kontrolcüde) TASARIM olarak etiketlenip uygulanır.
 
+---
+
+## FAZ 8 — ÖN-KAYIT: MB'de biyolojik öğrenme kuralı (DAN-kapılı KC→MBON) + MB'nin doğal görevleri
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır: **Aşama 0 keşiftir (simülasyon YOK)** ve
+sonuçları aşağıda **ölçülmüş** olarak verilmiştir; **Aşama 1 ve 2'nin hiçbir simülasyonu bu commit'te
+çalıştırılmadı**. Yeni kod: **`numcog/mb_learning.py`**; çıktı: **`results_p8/`**.
+Faz 0–7-3 dosyaları/sonuçları **DEĞİŞTİRİLMEZ**. **Eş zamanlı süreç: 1. float64, seyrek matrisler,
+tohum başına ayrı CSV, tüm shuffle'lar tohumlu.**
+**KC işareti +1 (ACh) SABİT** — `top_nt="dopamine"` çelişkisi biliniyor (7-0/7-3).
+
+### AŞAMA 0 — KEŞİF SONUÇLARI ve KAPI G0 (ölçüldü; `results_p8/gate0.csv`)
+
+| öğe | değer |
+|---|---|
+| KC / ALPN / MBON / DAN | 5.177 / 685 / **96** / 331 |
+| DAN valans (KAYNAK: `cell_type` ön eki) | **PAM=307 (ödül)**, **PPL1=16 (ceza)**, PPL2/diğer=8 (**hariç**) |
+| MBON NT işareti (`known_nt`→`top_nt`) | **+1 = 51**, **−1 = 45**, NaN = 0 |
+| MBON `top_nt` | acetylcholine 52 · glutamate 25 · gaba 19 |
+| kenarlar (min_syn=3) | ALPN→KC **23.618** (pre 295, post 4.787) · **KC→MBON 35.204** (pre 5.173, post 91) · DAN→MBON 1.338 · MBON→DAN 877 · DAN→KC 1.923 |
+| **koku girdi boyutu** | **295 ALPN** (ölçüldü; görev metnindeki 319 **değil** — raporda belirtilir) |
+| **bölme çıkarımı** | DAN→MBON bipartit matrisi + spektral kümeleme (eigengap, k∈[8,20]) → **k=12**; MBON/küme min 1, ort 8,0, max 51; **ETİKET: ÇIKARIM** (annotations'ta bölme sütunu YOK, `synonyms` boş) |
+| DAN→bölme | 299/331 DAN atandı (hedef MBON'larının çoğunluk oyu) |
+
+**KAPI G0:** (a) 96 ≥ 30 ✓ (b) k=12 ≥ 8 ✓ (c) KC→MBON 35.204 ≥ 5.000 ✓ → **GEÇİLDİ** ✓.
+
+### MODEL (kilitli)
+
+- **Koku:** P prototip; her biri **295 ALPN** üzerinde tohumlu seyrek örüntü (aktif oran **%20**,
+  genlikler **Gamma**). **Deneme** = prototip + Gauss gürültü (sd **σn**) + rastgele **glomerül
+  düşmesi** (oran d; düşen ALPN'ler sıfırlanır).
+- **KC katmanı:** gerçek **ALPN→KC** matrisi (min_syn=3) + **APL-benzeri global inhibisyon:
+  top-k = 250 KC aktif** (k **SABİT**, ikili aktivite, ayarlanmaz).
+- **MBON_j = ReLU(Σ_i W_ji·KC_i)**; W başlangıçta **gerçek KC→MBON sinaps sayısı**, **MBON başına
+  toplam normalize**, **W ≥ 0**.
+- **Plastisite:** US denemesinde kontrolcü ilgili DAN tipine **DAN_c(t)=1** verir;
+  **ΔW_ji = −η·d_c(j)·KC_i·elig_i** (LTD; yalnızca KC_i aktif), **elig** = deneme içi izlek
+  (= o denemenin KC vektörü), **W ≥ 0 kırpılır**, her denemede **unutma W ← W + ρ(W0 − W)**.
+- **VALANS VARSAYIMI (VARSAYIM, etiketli):** **PAM (ödül)** DAN'ları **kendi bölmesindeki KAÇINMA
+  MBON'larını (s_j = −1)**; **PPL1 (ceza)** DAN'ları **kendi bölmesindeki YAKLAŞMA MBON'larını
+  (s_j = +1)** deprese eder. **Karar skoru = Σ_j s_j·MBON_j**; >0 yaklaş, <0 kaçın, **=0 yanlış**
+  (tanı olarak raporlanır). **Okuma katmanı EĞİTİLMEZ** (kol 6 dış referans).
+- **Kontrolcü** yalnızca koku girer, US verir, skoru okur; **sayaç/hafıza TUTMAZ**.
+- **η ∈ {0,01; 0,03; 0,1; 0,3}, ρ ∈ {0; 0,01; 0,05}** (12 ayar); seçim **yalnızca validasyon**
+  (10 tohum, **ayrı prototip kümeleri**); **test seçimde KULLANILMAZ** (assert).
+
+### KOLLAR (7)
+
+1. **MB_gercek** · 2. **MB_KCMBON_shuffle** (KC→MBON derece-korunmuş; ALPN→KC gerçek) ·
+3. **MB_ALPNKC_shuffle** (ALPN→KC derece-korunmuş; KC→MBON gerçek) ·
+4. **MB_ER** (her iki katmanda aynı N ve yoğunlukta Erdős–Rényi) ·
+5. **MB_rastgele_bolme** (gerçek bağlantı; **DAN→bölme/valans ataması rastgele permüte**) ·
+6. **Delta-okuma tavanı** (gerçek KC + **eğitilmiş doğrusal okuma**) — **DIŞ REFERANS, biyolojik DEĞİL** ·
+7. **Plastisitesiz (η=0)** taban çizgisi
+
+### ŞANS / TABANLAR (ölçümden ÖNCE, tasarımdan)
+
+- Karar **ikili** → T1-T5 ve T6b için **şans = 0,50**, dengeli tasarımda "en sık sınıf" = 0,50.
+- **T6a (negatif desenleme)**: test {A+, B+, AB−} **dengeli** → **şans 0,50**, **"hep yaklaş" tabanı
+  = 2/3 = 0,667** (H8.4'ün çürütme eşiği %70 bunun **üstündedir**).
+- **T7** (kural testi, ≥30 öğe): 11 hedef → **şans = 0,0909**.
+- **T3** tabanı: η=0 ve Δ-okuma eğrileri; **T4** tabanı: A kümesinin öğrenme öncesi doğruluğu = 0,50.
 
 
 
@@ -1100,4 +1162,62 @@ N=81, σ=1.5; **epoch ∈ {10000, 25000}** × **lr ∈ {0.01, 0.05}** × **top-k
 
 
 
+
+
+
+
+### AŞAMA 1 — SANITY ve KAPI G1 (donmuş η/ρ ile)
+
+- 2 koku (biri ödül, biri ceza), **σn=0,1, d=0**, **10 deneme/koku**; **MB_gercek doğruluğu ≥ %90**
+  (**20 tohum ortalaması**, donmuş η/ρ).
+- **Sağlanmazsa:** modelin öğrenmediği raporlanır, `RAPOR_FAZ_8_1.md` yazılır ve **DUR**
+  (parametre sonucu görüp **KURCALANMAZ**; yalnızca yukarıdaki η/ρ ızgarası kullanılır).
+
+### AŞAMA 2 — GÖREVLER (hepsi ÖN-KAYITLI; 20 tohum, ort ± std + %95 GA, Holm)
+
+| görev | koşullar | ölçüm |
+|---|---|---|
+| **T1** ayrım + gürültü dayanıklılığı | **N ∈ {2,4,8,16}** odor × **σn ∈ {0,1; 0,3; 0,6}** (12 koşul) | test doğruluğu (şans 0,50) |
+| **T2** örüntü tamamlama | temiz eğitim; test **d ∈ {0,1; 0,3; 0,5}** glomerül düşmesi | test doğruluğu |
+| **T3** az örnekle öğrenme | deneme sayısı **{1,2,3,5,8,12,20}**/koku | **≥%90'a ulaşan ilk deneme sayısı** |
+| **T4** sürekli öğrenme/unutma | A kümesini öğren → B kümesini öğren → **A'nın tutulması**; kapasite: odor sayısı **{4,8,16,32,64}** | A-tutma doğruluğu, B doğruluğu |
+| **T5** genelleme | eğitimde **görülmeyen**, prototipe **cos ∈ {0,9; 0,7; 0,5}** benzer kokular | test doğruluğu |
+| **T6a** negatif desenleme | **A+, B+, AB−** (dengeli test) | doğruluk (şans 0,50; **"hep yaklaş" 0,667**) |
+| **T6b** ters öğrenme (reversal) | A+/B− öğren → A−/B+ olarak ters çevir → yeni eşlemeyi öğrenme hızı + eski eşlemenin kırılması | doğruluk eğrisi |
+| **T6c** ikinci-derece koşullama | **KEŞİFSEL** (zorunlu değil) | doğruluk |
+| **T7** (KEŞİFSEL, döngüyü kapatma) | Faz 3c Grup 2 kural testi, **≥30 öğe**, VPN sayı kodu + **aynı DAN kuralı** | kural doğruluğu (şans 0,0909) |
+
+**Tüm görevlerde:** eğitim denemeleri US'li, test denemeleri **US'siz**; test doğruluğu deneme ve
+koku üzerinden ortalanır; **hiçbir görevde test kümesi η/ρ/k seçimi için kullanılmaz**.
+
+### ÖN-KAYITLI HİPOTEZLER (beklenti + çürütme eşiği)
+
+- **H8.1 (beklenti):** MB_gercek, T1'de **N ≤ 4** için **≥ %90** doğruluğa ulaşır.
+  **Çürütme:** ulaşmazsa.
+- **H8.2 (beklenti):** **MB_gercek ≈ MB_ER ≈ shuffle kolları** (ayırt edilemez; Holm sonrası).
+  **Çürütme:** herhangi bir görevde **GA-ayrık** fark.
+- **H8.3 (beklenti, yön zayıf):** MB_gercek, **MB_rastgele_bolme**'den **üstün** olur (bölme yapısı
+  katkısı). **Çürütme:** fark yok.
+- **H8.4 (beklenti):** **T6a başarısız** (≈şans) — doğrusal-toplamsal MBON çıktısı XOR-benzeri
+  problemi çözemez. **Çürütme:** **≥ %70** VE kollardan **GA-ayrık**.
+- **H8.5:** **T5** genellemesi yalnızca eğitim desteğine **yakın** kokularda (cos 0,9) çalışır;
+  **T7 şans üstü DEĞİLDİR**. **Çürütme:** T7 **≥ %50** ve tabanlardan **GA-ayrık**.
+- **H8.6 (yön YOK):** T4'te **unutma ile ρ** arasındaki ilişki ve gerçek-vs-kontrol farkı.
+- **Düzeltme:** **Holm** (aile: A_gercek vs {A_w0 eşdeğeri η=0, KCMBON_shuffle, ALPNKC_shuffle, ER,
+  rastgele_bolme} × görev koşulları).
+
+### "SARSICI BULGU" ÖLÇÜTÜ (ölçümden önce; GEVŞETİLMEZ)
+
+Gerçek ağ, **kollar 2, 3, 4 VE 5'in hepsinden** bir T1-T6 görevinde **Holm sonrası GA-ayrık üstün**
+**VE** etki büyüklüğü **≥ 0,2** (doğruluk farkı) **VE** η/ρ ızgarasında **en az iki farklı ayarda aynı
+yön** ise "**connectome'a özgü**" denir. **Tek ayarda** çıkan fark **"ön bulgu"** sayılır; aksi hâlde
+"connectome'a özgü" **denmez**.
+
+### BÜTÇE (tahmin)
+
+- Deneme başına maliyet: 2 seyrek matvec (ALPN→KC 23,6 bin + KC→MBON 35,2 bin kenar) ≈ **0,3 ms**;
+  MB_gercek'in tüm görevleri ≈ 3-4×10⁵ deneme → **~2-5 dk/kol**; 7 kol + pilot (12 ayar × 10 tohum)
+  ≈ **20-40 dk** toplam.
+- Ölçüm başladıktan sonra **ızgara/ölçüt/kapı DEĞİŞMEZ**; sonradan eklenenler **KEŞİFSEL** etiketli
+  ayrı bölümde. Dil: **"bu veride, bu modelde, bu ızgarada"**.
 
