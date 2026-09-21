@@ -2189,23 +2189,23 @@ poll();
 </style>
 <button id="calcpBtn" type="button" data-tr="🧮 Bio-Calculator" data-en="🧮 Calculator">🧮 Bio-Calculator</button>
 <div id="calcpPanel">
-  <h3 data-tr="Bio-Calculator (N=81))" data-en="Fly calculator (N=81)">Bio-Calculator (N=81))</h3>
+  <h3 data-tr="Bio-Calculator (N=81)" data-en="Bio-Calculator (N=81)">Bio-Calculator (N=81)</h3>
   <div class="calcp-row">
     <input id="calcpExpr" placeholder="3+5 · 12-7 · 7x8 · 9/4" autocomplete="off">
-    <button id="calcpGo" type="button" data-tr="Hesapla" data-en="Compute">Hesapla</button>
+    <button id="calcpGo" type="button" data-tr="Calculate" data-en="Calculate">Calculate</button>
   </div>
   <div class="calcp-row">
     <button id="calcpFake" type="button" data-tr="FAKE FLY (NULL CORE)" data-en="FAKE FLY">FAKE FLY (NULL CORE)</button>
     <button id="calcpLang" type="button">EN</button>
-    <button id="calcpBatch" type="button" data-tr="Toplu test (1..9)" data-en="Batch test (1..9)">Toplu test (1..9)</button>
+    <button id="calcpBatch" type="button" data-tr="Batch Test (1..9)" data-en="Batch Test (1..9)">Batch Test (1..9)</button>
   </div>
   <div id="calcpFakeWarn" data-tr="FAKE FLY ON: the core returns random output - answers break."
        data-en="FAKE FLY ON: the core returns random output — answers break.">FAKE FLY ON: the core returns random output - answers break.</div>
   <div id="calcpAns">—</div>
   <div id="calcpMeta"></div>
   <div id="calcpCtrl"></div>
-  <details id="calcpTicksWrap"><summary data-tr="step trace (fly calls))"
-    data-en="step list (fly calls)">step trace (fly calls))</summary>
+  <details id="calcpTicksWrap"><summary data-tr="Step trace (fly calls)"
+    data-en="Step trace (fly calls)">Step trace (fly calls)</summary>
     <table><thead><tr><th>#</th><th>n</th><th>op</th><th data-tr="OUTPUT" data-en="out">OUTPUT</th>
       <th data-tr="confidence" data-en="conf">confidence</th></tr></thead><tbody id="calcpTicks"></tbody></table>
   </details>
@@ -2223,7 +2223,7 @@ poll();
   var fakeBtn = document.getElementById('calcpFake'), warn = document.getElementById('calcpFakeWarn');
   var lim = document.getElementById('calcpLimits'), langBtn = document.getElementById('calcpLang');
   var batchOut = document.getElementById('calcpBatchOut');
-  var lang = 'tr', fake = false;
+  var lang = 'en', fake = false;
   var LIM = {
     tr: "SINIRLAR (bu veride, bu modelde, bu ızgarada)\n" +
         "· sonuç 0..81 (sinek tablosu) · rakamlar 1..9 (ölçülmüş alan)\n" +
@@ -2233,14 +2233,14 @@ poll();
         "· durum sinekte DEĞİL kontrolcüde (sayaç, döngü, durma koşulu, kalan) — sinek yalnızca n→n±1\n" +
         "· kalibrasyon kapısı: 54/100 tohum kabul (%54.0, GA95 [44.3, 63.4]); bu sinek: seed 0\n" +
         "· simülasyon; canlı sinek değil · tek connectome (hemibrain 783)",
-    en: "LIMITS (in this data, in this model, on this grid)\n" +
-        "· result 0..81 (fly's table) · digits 1..9 (measured domain)\n" +
-        "· subtraction: NEGATIVE results are explicitly REJECTED (legacy measurement clipped to 0)\n" +
-        "· division: integer quotient + remainder (no fractions)\n" +
-        "· NO multi-digit arithmetic; the two-digit tens/units design was NOT implemented\n" +
-        "· state is NOT in the fly but in the controller (counter, loop, stop condition, remainder)\n" +
-        "· calibration gate: 54/100 seeds accepted (54.0%, 95%CI [44.3, 63.4]); this fly: seed 0\n" +
-        "· simulation; not a live fly · single connectome (hemibrain 783)"
+en: "BOUNDS / LIMITS (in this dataset, model, and grid)\n" +
+        "· result 0..81 (fly lookup table) · digits 1..9 (empirically tested range)\n" +
+        "· subtraction: NEGATIVE results are explicitly REJECTED (historical benchmark clipped to 0)\n" +
+        "· division: integer quotient + remainder (no floating point)\n" +
+        "· NO 'multi-digit arithmetic'; two-digit tens/units architecture NOT IMPLEMENTED\n" +
+        "· state resides in CONTROLLER, NOT in fly (counter, loop, stop condition, remainder) — fly computes only n→n±1\n" +
+        "· calibration gate: 54/100 seeds passed (54.0%, 95% CI [44.3, 63.4]); active fly: seed 0\n" +
+        "· simulation; not a live organism · single connectome (hemibrain 783)"
   };
   function setLang(l) {
     lang = l;
@@ -2261,13 +2261,13 @@ poll();
     ans.textContent = (r.remainder === null || r.remainder === undefined)
       ? String(r.result) : (r.result + ' ' + (lang === 'tr' ? 'kalan' : 'rem') + ' ' + r.remainder);
     meta.textContent = (lang === 'tr'
-      ? ('fly calls: : ' + r.fly_calls + '  ·  seed: ' + r.seed +
+      ? ('fly calls: ' + r.fly_calls + '  ·  seed: ' + r.seed +
          '  ·  kalibre: ' + (r.calibrated ? 'evet' : 'HAYIR') +
          (r.two_digit ? '  ·  iki haneli (KEŞİFSEL)' : '') + '\n' + r.note)
       : ('fly calls: ' + r.fly_calls + '  ·  seed: ' + r.seed +
          '  ·  calibrated: ' + (r.calibrated ? 'yes' : 'NO') +
          (r.two_digit ? '  ·  two-digit (EXPLORATORY)' : '') + '\n' + r.note));
-    ctrl.textContent = (lang === 'tr' ? 'CONTROLLER: : ' : 'CONTROLLER: ') +
+    ctrl.textContent = (lang === 'tr' ? 'CONTROLLER: ' : 'CONTROLLER: ') +
       (r.controller_ops || []).join(' | ');
     ticks.innerHTML = '';
     (r.ticks || []).forEach(function (t) {
