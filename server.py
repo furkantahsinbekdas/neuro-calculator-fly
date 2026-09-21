@@ -1645,6 +1645,45 @@ class Handler(BaseHTTPRequestHandler):
         except Exception as exc:                                    # noqa: BLE001
             self._json({"ok": False, "error": "beklenmeyen hata: %s" % exc}, 500)
 
+    @staticmethod
+    def _fc_mod():
+        """`numcog/fly_calc` modülünü getirir (yol gerekirse eklenir)."""
+        import sys as _sys
+        here = os.path.dirname(os.path.abspath(__file__))
+        nc = os.path.join(here, "numcog")
+        if nc not in _sys.path:
+            _sys.path.insert(0, nc)
+        import fly_calc as fc
+        return fc
+
+    def _try_chat_calc(self, message, payload, origin):
+        """Sohbet mesajı **aritmetikse** sineğin çekirdeğiyle cevaplar; değilse `False` döner ve
+        `_chat` içindeki MEVCUT akış (sınıflandırıcı → anahtar kelime → reddetme) AYNEN sürer.
+
+        İş bölümü yanıtın içinde yazılır (sinek: n→n±1 adımları · kontrolcü: sayaç/döngü/kalan).
+        Kapsam dışı (sonuç > 81 ya da < 0) istek **açık** hata metniyle döner — sessiz yanlış yok.
+        """
+        try:
+            fc = self._fc_mod()
+        except Exception:                                           # noqa: BLE001
+            return False                       # çekirdek yoksa eski davranış bozulmaz
+        if not fc.looks_arithmetic(message):
+            return False
+        try:
+            res = fc.run(message, fake=bool(payload.get("fake", False)), step_by_step=False)
+        except fc.OutOfRange as exc:
+            res = {"ok": False, "expr": message, "error": str(exc)}
+        except fc.BadExpr as exc:
+            res = {"ok": False, "expr": message, "error": str(exc)}
+        except Exception as exc:                                    # noqa: BLE001
+            res = {"ok": False, "expr": message, "error": "beklenmeyen hata: %s" % exc}
+        text = fc.answer_text(res)
+        if BUS is not None:
+            BUS.publish("say", payload={"text": text, "origin": origin, "mode": "system"})
+        self._json({"ok": True, "job": None, "answer": text, "classifier": None, "calc": res,
+                    "source": "numcog_calculator", "seq": BUS.last_seq() if BUS else 0})
+        return True
+
     # --------------------------------------------------------------- actions #
     def _chat(self, payload):
         """One typed/spoken message — answered **deterministically, with no LLM in the path**.
@@ -1673,6 +1712,11 @@ class Handler(BaseHTTPRequestHandler):
         command = parse_teach_command(message)
         if command is not None:
             self._teach(command, payload, origin)
+            return
+        # --- numcog calculator bridge (ADDITIVE, closing package) ---------------
+        # "5+3=?" gibi mesajlar sineğin HESAP ÇEKİRDEĞİNE gider (numcog/fly_calc).
+        # Diğer bütün mesajlar aşağıdaki mevcut akıştan AYNEN geçer (davranış değişmez).
+        if self._try_chat_calc(message, payload, origin):
             return
         # 1) the connectome: route_message applies the effect and publishes the `classifier` event.
         #    Phase 15 only adds the fixed phrase on top — the caption is not generated anymore.

@@ -87,3 +87,41 @@ kod hatası değil ✗ → test, "negatif çıkarma → **ret** beklenir" olarak
 - **WIP güvenceye alındı:** kullanıcının commit edilmemiş işi `1bf5dfb`'de **içerik değiştirilmeden**
   kaydedildi; köprü `server.py`/`chat3d.html` üzerine **ekleme** olarak yazıldı ✓.
 - Ollama/LLM yolu **kaldırılmadı**; "ölü kod" iddiası `[VERIFY]` olarak duruyor (PREFLIGHT §5).
+
+## 6. Kapanış SONRASI düzeltme (kullanıcı isteği): **sohbet kutusu → sinek çekirdeği**
+
+**Sorun (bildirildi):** sohbet kutusuna `5+3=?` yazıldığında cevap **kelime sınıflandırıcıdan**
+geliyordu ("kelime tanınmıyor · bilinen örnekler …"), yani **sineğin hesap çekirdeği kullanılmıyordu**.
+
+**Düzeltme (ADDITIVE, `_chat` içinde):** `_chat`'te **`/öğret` kontrolünden SONRA**, mevcut
+sınıflandırma akışından **ÖNCE** tek bir kapı eklendi:
+
+```python
+if self._try_chat_calc(message, payload, origin):
+    return
+```
+
+- Kapı **dar**: mesaj, `=` ve `?` temizlendikten sonra **yalnızca** `<tam sayı> <op> <tam sayı>`
+  biçimindeyse (`numcog/fly_calc.looks_arithmetic`) hesap çekirdeğine gider; **harf içeren hiçbir
+  mesaj yakalanmaz** ✓ (ör. `3 tane elma` → eski akış ✓).
+- Cevap, mevcut `say` olayıyla (`mode:"system"`) sohbete düşer ✓ ve **iş bölümünü yazar**:
+  `🧮 5 + 3 = 8 · sinek: 3 adım (n→n±1) · sayaç/döngü kontrolcüde`.
+- `numcog/fly_calc` yüklenemezse `_try_chat_calc` **`False`** döner → **eski davranış bozulmaz** ✓.
+
+**Canlı doğrulama** (`/chat`, yeni kod; sunucu yeniden başlatıldı):
+
+| mesaj | cevap | kaynak |
+|---|---|---|
+| `5+3=?` | **🧮 5 + 3 = 8 · sinek: 3 adım (n→n±1) · sayaç/döngü kontrolcüde** | `numcog_calculator` |
+| `7x8` | 🧮 7 × 8 = **56** · sinek: 56 adım | `numcog_calculator` |
+| `12-7` | 🧮 12 − 7 = **5** · sinek: 7 adım | `numcog_calculator` |
+| `9/4` | 🧮 9 ÷ 4 = **2 (kalan 1)** · sinek: 8 adım · kalan kontrolcüde | `numcog_calculator` |
+| `80+5=?` | 🧮 **açık hata**: "sonuç 85 > 81: sinek tablosu 0..81 ile sınırlı" | `numcog_calculator` |
+| `elma` | "yaklaşıyor · şeker" (**değişmedi**) | `connectome` |
+| `ne haber` | "kelime tanınmıyor · bilinen örnekler (besin)…" (**değişmedi**) | `oov` |
+| `3 tane elma` | connectome (**hesap makinesine gitmiyor**) | `connectome` |
+
+**Test:** `_calc_smoke.py`'ye **4 yeni sohbet kontrolü** eklendi → `KIRMIZI: 0` ✓.
+**Not:** `= ` ve `?` temizlenir; **iki haneli operand** sonuç ≤ 81 ise çalışır; **negatif** ve **> 81**
+sonuçlar **açık hata** verir (sessiz yanlış cevap yok) ✓.
+

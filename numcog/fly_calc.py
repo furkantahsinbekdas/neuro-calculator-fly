@@ -198,6 +198,40 @@ def result_only(expr, **kw):
     return r["result"] if r["remainder"] is None else (r["result"], r["remainder"])
 
 
+def looks_arithmetic(text):
+    """Sohbet mesajı bir aritmetik ifade mi?  '5+3=?' -> True · 'elma' / '3 tane elma' -> False.
+
+    Kural (dar ve güvenli): mesaj, '=' ve '?' temizlendikten sonra YALNIZCA `<tam sayı> <op> <tam
+    sayı>` biçiminde olmalı. Harf içeren hiçbir mesaj yakalanmaz.
+    """
+    s = (text or "").strip().replace("?", " ").replace("=", " ")
+    s = re.sub(r"\s+", " ", s).strip()
+    if not s or len(s) > 24:
+        return False
+    m = _PAT.match(s)
+    if not m:
+        return False
+    try:
+        a, b = int(m.group(1)), int(m.group(3))
+    except Exception:                                       # noqa: BLE001
+        return False
+    return a <= MAX_V and b <= MAX_V
+
+
+def answer_text(r):
+    """Çekirdek yanıtını sohbette gösterilecek tek satıra çevirir (iş bölümü açıkça yazılır)."""
+    if not isinstance(r, dict) or not r.get("ok"):
+        return "\U0001f9ee %s \u2192 %s" % ((r or {}).get("expr", "?"), (r or {}).get("error", "?"))
+    sym = {"add": "+", "subtract": "\u2212", "multiply": "\u00d7", "divide": "\u00f7"}[r["op"]]
+    val = (str(r["result"]) if r["remainder"] is None
+           else "%d (kalan %d)" % (r["result"], r["remainder"]))
+    ctrl = "kalan kontrolc\u00fcde" if r["op"] == "divide" else "saya\u00e7/d\u00f6ng\u00fc kontrolc\u00fcde"
+    tail = "  \u00b7  SAHTE S\u0130NEK ETK\u0130N" if r.get("fake") else ""
+    return ("\U0001f9ee %d %s %d = %s  \u00b7  sinek: %d ad\u0131m (n\u2192n\u00b11)  \u00b7  %s%s"
+            % (r["a"], sym, r["b"], val, r["fly_calls"], ctrl, tail))
+
+
+
 if __name__ == "__main__":
     w = default_weights()
     out = run(sys.argv[1] if len(sys.argv) > 1 else "3+5", weights=w)

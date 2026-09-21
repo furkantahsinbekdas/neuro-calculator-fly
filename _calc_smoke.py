@@ -104,6 +104,24 @@ def main():
         st, r = _req("/calc", {"expr": e})
         check("sınır dışı %s AÇIK hata (HTTP 422)" % e, st == 422 and r.get("out_of_range"),
               "HTTP %s | %s" % (st, str(r.get("error"))[:50]))
+    # --- sohbet kutusu: aritmetik ifade SİNEĞİN ÇEKİRDEĞİNE gider (kapanış sonrası düzeltme) ---
+    st, cc = _req("/chat", {"message": "5+3=?"})
+    check("sohbet: '5+3=?' sineğin çekirdeğiyle cevaplanıyor",
+          st == 200 and "= 8" in str(cc.get("answer", ""))
+          and cc.get("source") == "numcog_calculator",
+          "kaynak=%s | cevap=%s" % (cc.get("source"), str(cc.get("answer"))[:52]))
+    st, cd = _req("/chat", {"message": "9/4"})
+    check("sohbet: '9/4' bölüm+kalan ile cevaplanıyor",
+          st == 200 and "kalan 1" in str(cd.get("answer", ""))
+          and cd.get("source") == "numcog_calculator", str(cd.get("answer"))[:52])
+    st, cw = _req("/chat", {"message": "ne haber"})
+    check("sohbet: kelime yolu DEĞİŞMEDİ ('ne haber' hesap makinesine gitmiyor)",
+          st == 200 and cw.get("source") != "numcog_calculator",
+          "kaynak=%s" % cw.get("source"))
+    st, ce = _req("/chat", {"message": "3 tane elma"})
+    check("sohbet: harf içeren mesaj hesap makinesine GİTMİYOR",
+          st == 200 and ce.get("source") != "numcog_calculator",
+          "kaynak=%s" % ce.get("source"))
     print("\nKIRMIZI: %d" % len(RED))
     for r in RED:
         print("  - %s" % r)
