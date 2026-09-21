@@ -519,78 +519,78 @@
 <body>
 <div id="wrap">
   <div id="viz">
-    <div id="title"><h1 id="ttl">FlyWire 3D</h1><p id="sub">soldaki sohbetten bir şey isteyin &rarr;</p>
+    <div id="title"><h1 id="ttl">FlyWire 3D</h1><p id="sub">ask for something in the chat on the left &rarr;;</p>
       <div id="legend">
-        <span><i class="dot" style="color:#ff8a2a;background:#ff8a2a"></i> girdi</span>
-        <span><i class="dot" style="color:#3aa0ff;background:#3aa0ff"></i> aşağı akış</span>
-        <span><i class="dot" style="color:#4ade80;background:#4ade80"></i> çıktı</span>
-        <span><i class="dot" style="color:#5a6a96;background:#5a6a96"></i> tüm beyin</span>
+        <span><i class="dot" style="color:#ff8a2a;background:#ff8a2a"></i> INPUT</span>
+        <span><i class="dot" style="color:#3aa0ff;background:#3aa0ff"></i> DOWNSTREAM</span>
+        <span><i class="dot" style="color:#4ade80;background:#4ade80"></i> OUTPUT</span>
+        <span><i class="dot" style="color:#5a6a96;background:#5a6a96"></i> WHOLE BRAIN</span>
       </div>
     </div>
     <div id="rpanel"><div id="energy"></div><div id="math"></div><div id="truth"></div><div id="compass"></div><div id="arena"></div><div id="path"></div><div id="swatter"></div><div id="sniff"></div><div id="optic"></div></div>
     <div id="vitals" class="off">
       <div class="vhead">
-        <span class="vname">🪰 SİBERNETİK SİNEK</span>
-        <span class="vmood" id="vmood">uyanıyor…</span>
+        <span class="vname">🪰 CYBERNETIC FLY</span>
+        <span class="vmood" id="vmood">waking up……</span>
       </div>
-      <div class="vrow" data-k="energy"><label>ENERJİ</label>
+      <div class="vrow" data-k="energy"><label>ENERGY</label>
         <div class="vbar"><i id="bar-energy"></i></div><b id="val-energy">–</b>
         <span class="ovr"><button type="button" data-k="energy" data-d="-5">−</button><button type="button" data-k="energy" data-d="5">+</button></span></div>
-      <div class="vrow" data-k="hunger"><label>AÇLIK</label>
+      <div class="vrow" data-k="hunger"><label>HUNGER</label>
         <div class="vbar"><i id="bar-hunger"></i></div><b id="val-hunger">–</b>
         <span class="ovr"><button type="button" data-k="hunger" data-d="-5">−</button><button type="button" data-k="hunger" data-d="5">+</button></span></div>
-      <div class="vrow" data-k="boredom"><label>CAN SIKINTISI</label>
+      <div class="vrow" data-k="boredom"><label>BOREDOM</label>
         <div class="vbar"><i id="bar-boredom"></i></div><b id="val-boredom">–</b>
         <span class="ovr"><button type="button" data-k="boredom" data-d="-5">−</button><button type="button" data-k="boredom" data-d="5">+</button></span></div>
       <div class="vnote" id="ovrnote">− / + = manuel override (debug): değeri doğrudan yazar, simülasyonun parçası değildir</div>
       <div class="vfoot">
-        <label class="tg"><input id="autonomy" type="checkbox" checked> otonom</label>
-        <label class="tg"><input id="buzz" type="checkbox" checked> vızıltı 🔊</label>
-        <label class="tg"><input id="voice" type="checkbox" checked> sesli oku 🗣</label>
-        <label class="tg" title="Web Audio granular pitch-shift katmanı: TTS'in pitch 2.0 tavanının üstüne çıkar (deneysel)"><input id="helium" type="checkbox"> aşırı helyum 🎈</label>
-        <span class="vstat" id="vstat">bağlanıyor…</span>
+        <label class="tg"><input id="autonomy" type="checkbox" checked> AUTONOMOUS</label>
+        <label class="tg"><input id="buzz" type="checkbox" checked> BUZZ 🔊</label>
+        <label class="tg"><input id="voice" type="checkbox" checked> READ ALOUD 🗣</label>
+        <label class="tg" title="Web Audio granular pitch-shift katmanı: TTS'in pitch 2.0 tavanının üstüne çıkar (deneysel)"><input id="helium" type="checkbox"> HIGH HELIUM 🎈</label>
+        <span class="vstat" id="vstat">connecting……</span>
       </div>
     </div>
-    <div id="empty">soldaki sohbetten bir şey isteyin — beyin burada belirecek</div>
+    <div id="empty">ask for something in the chat on the left — the brain will appear here</div>
     <div id="toasts"></div>
     <div id="tip"></div>
     <div id="hud">
-      <span id="cap">yanıt döngüde tekrar oynar</span>
-      <label><input id="brain" type="checkbox" checked> beyin</label>
-      <label><input id="shapes" type="checkbox" checked> şekiller</label>
-      <label><input id="edges" type="checkbox"> kablolama</label>
-      <label><input id="spin" type="checkbox"> döndür</label>
+      <span id="cap">the reply replays in the loop</span>
+      <label><input id="brain" type="checkbox" checked> BRAIN</label>
+      <label><input id="shapes" type="checkbox" checked> SHAPES</label>
+      <label><input id="edges" type="checkbox"> WIRING</label>
+      <label><input id="spin" type="checkbox"> ROTATE</label>
     </div>
   </div>
   <div id="chat">
-    <div id="chead">Sinek beynine kelime ver<small>FlyWire konnektomu · deterministik yanıt (LLM yok) · otonom</small></div>
+    <div id="chead">Input Word to Fly Brain<small>FlyWire connectome · deterministic response (No LLM) · autonomous</small></div>
     <div id="log"></div>
     <div id="controls">
-      <button type="button" data-act="feed">🍯 Besle</button>
-      <button type="button" data-act="poke">👋 Dokun/Kovala</button>
-      <button type="button" data-act="mate">🪰 Dişi sinek göster</button>
+      <button type="button" data-act="feed">🍯 Feed</button>
+      <button type="button" data-act="poke">👋 Poke / Chase</button>
+      <button type="button" data-act="mate">🪰 Show Female Fly</button>
     </div>
     <div id="tools">
-      <button type="button" data-tool="gates">⚙ AND kapısı</button>
-      <button type="button" data-tool="path">🛣 Yol izle</button>
-      <button type="button" data-tool="compass">🧭 Pusula</button>
-      <button type="button" data-tool="smells">👃 İki koku</button>
-      <button type="button" data-tool="eye">👁 Göz</button>
-      <button type="button" data-tool="swatter">🖐 Kaçış oyunu</button>
-      <button type="button" data-tool="navigate">🚶 Yürüyüş</button>
+      <button type="button" data-tool="gates">⚙ AND Gate</button>
+      <button type="button" data-tool="path">🛣 Track Path</button>
+      <button type="button" data-tool="compass">🧭 Compass</button>
+      <button type="button" data-tool="smells">👃 Two Odors</button>
+      <button type="button" data-tool="eye">👁 Eye</button>
+      <button type="button" data-tool="swatter">🖐 Escape Game</button>
+      <button type="button" data-tool="navigate">🚶 Locomotion / Walk</button>
     </div>
     <div id="sugg">
-      <button>Önünde şeker var.</button>
-      <button>Tehlike yaklaşıyor!</button>
-      <button>Selam ver.</button>
-      <button>Sen acıktın mı?</button>
-      <button>Dişi sinek geldi.</button>
-      <button>Hayır, istemem.</button>
+      <button>Sugar ahead.</button>
+      <button>Threat approaching!</button>
+      <button>Say hello.</button>
+      <button>Are you hungry?</button>
+      <button>Female fly arrived.</button>
+      <button>No, I do not want.</button>
     </div>
     <form id="form">
-      <input id="msg" autocomplete="off" placeholder="bilinen bir kelime yaz (şeker · tehlike · merhaba · dişi sinek) ya da /öğret …">
+      <input id="msg" autocomplete="off" placeholder="type a known word (sugar · threat · hello · female fly) or /teach … …">
       <button id="mic" type="button" title="Basılı tut ve Türkçe konuş (tr-TR)">🎙</button>
-      <button id="send" type="submit">Gönder</button>
+      <button id="send" type="submit">Send</button>
     </form>
   </div>
 </div>
@@ -1114,7 +1114,7 @@ const $ = function(id){ return document.getElementById(id); };
  * no free-form LLM chat any more, so there is no "chat" bubble (see the `say` case below).
  */
 const CLS = { think:'bot think', user:'user', sys:'sys', err:'err' };
-const WHO = { user:'SEN', think:'DÜŞÜNÜYOR', sys:'', err:'HATA' };
+const WHO = { user:'SEN', think:'thinking…', sys:'', err:'HATA' };
 
 function bubble(kind, text, who){
   const d = document.createElement('div');
@@ -1145,8 +1145,8 @@ function chip(text, kind){
  * after TOAST_MS or on click. Nothing here decides WHEN a notice exists.
  */
 const TOAST_MS = 5000, TOAST_MAX = 4;
-const TOAST_HEAD = { alert: 'güvenlik sınırı', error: 'komut hatası',
-                     ok: 'öğretim', warn: 'uyarı' };
+const TOAST_HEAD = { alert: 'safety bound', error: 'command error',
+                     ok: 'teaching', warn: 'warning' };
 function toastHead(level){
   return TOAST_HEAD[level] || TOAST_HEAD.warn;
 }
@@ -1849,7 +1849,7 @@ async function ask(text, voice){
   if (!text) return;
   bubble('user', (voice ? '🎙 ' : '') + text);
   const send = $('send'); if (send) send.disabled = true;
-  liveStart(voice ? 'SESLİ TUR' : 'DÜŞÜNÜYOR');
+  liveStart(voice ? 'SESLİ TUR' : 'thinking…');
   try {
     const r = await fetch('/chat', { method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1861,7 +1861,7 @@ async function ask(text, voice){
     // here; teach/warn/alert already arrive as `teach`/`warning` events and must
     // not be said twice.
     if (d.level === 'error' && d.answer) toast(String(d.answer).split('\n')[0], 'error');
-    setStat('düşünüyor…');
+    setStat('thinking……');
   } catch (e){
     liveEnd();
     bubble('err', 'gönderilemedi: ' + e.message);
@@ -1927,7 +1927,7 @@ function initMic(){
   const btn = $('mic');
   if (!SR){
     if (btn){ btn.disabled = true;
-      btn.title = 'Bu tarayıcı Web Speech API desteklemiyor — Chrome/Edge deneyin'; }
+      btn.title = 'This browser does not support the Web Speech API - try Chrome/Edge'; }
     return false;
   }
   rec = new SR();
@@ -1937,7 +1937,7 @@ function initMic(){
   rec.maxAlternatives = 1;
   rec.onstart = function(){
     listening = true;
-    if (btn){ btn.classList.add('live'); btn.title = 'dinliyorum… bırakınca gönderilir'; }
+    if (btn){ btn.classList.add('live'); btn.title = 'listening… release to send'; }
     setStat('dinliyorum…');
     Buzz.beep(430, 70);
   };
@@ -1958,9 +1958,9 @@ function initMic(){
     if (btn){ btn.classList.remove('live'); btn.classList.remove('held');
       btn.title = MIC_IDLE; }
     if (why === 'not-allowed' || why === 'service-not-allowed')
-      micSay('mikrofon izni yok — adres çubuğundan izin ver');
+      micSay('no microphone permission - grant it from the address bar');
     else
-      micSay('anlaşılamadı, tekrar dene (' + why + ')');
+      micSay('not understood, try again (' + why + ')');
   };
   rec.onend = function(){
     listening = false;
@@ -1974,7 +1974,7 @@ function initMic(){
     if (btn){ btn.classList.remove('held'); btn.title = MIC_IDLE; }
     if (!done) return;                         // an end that was never ours
     const said = String(done.text || '').trim();
-    if (!said){ micSay('anlaşılamadı, tekrar dene'); return; }
+    if (!said){ micSay('not understood, try again'); return; }
     Buzz.beep(620, 80);
     const inp = $('msg');
     if (inp) inp.value = said;                 // into the same input …
@@ -2028,7 +2028,7 @@ function interact(action, btn){
   if (btn) btn.disabled = true;
   postJSON('/interact', { action: action }).then(function(d){
     if (d.error) chip('⚠ ' + action + ': ' + d.error, 'warn');
-    setStat('düğme: ' + action);
+    setStat('button: ' + action);
   }).catch(function(){ chip('⚠ düğme gönderilemedi: ' + action, 'warn'); })
     .then(function(){ if (btn) btn.disabled = false; });
 }
@@ -2146,11 +2146,11 @@ initViewer();
 // show a starter scene immediately, then start draining the EventBus
 (function(){
   const empty = $('empty');
-  empty.textContent = 'beyin yükleniyor…';
+  empty.textContent = 'brain loading……';
   fetch('/initial').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (d && d.neurons){ setData(d); empty.style.display = 'none'; }
-    else empty.textContent = 'soldaki sohbetten bir şey isteyin';
-  }).catch(function(){ empty.textContent = 'soldaki sohbetten bir şey isteyin'; });
+    else empty.textContent = 'ask for something in the chat on the left';
+  }).catch(function(){ empty.textContent = 'ask for something in the chat on the left'; });
 })();
 
 poll();
@@ -2187,7 +2187,7 @@ poll();
 #calcpPanel th,#calcpPanel td{border-bottom:1px solid #22303d;padding:2px 4px;text-align:left}
 #calcpErr{color:#f99;font-size:12px}
 </style>
-<button id="calcpBtn" type="button" data-tr="🧮 Hesap Makinesi" data-en="🧮 Calculator">🧮 Hesap Makinesi</button>
+<button id="calcpBtn" type="button" data-tr="🧮 Bio-Calculator" data-en="🧮 Calculator">🧮 Bio-Calculator</button>
 <div id="calcpPanel">
   <h3 data-tr="Sinek hesap makinesi (N=81)" data-en="Fly calculator (N=81)">Sinek hesap makinesi (N=81)</h3>
   <div class="calcp-row">
@@ -2195,19 +2195,19 @@ poll();
     <button id="calcpGo" type="button" data-tr="Hesapla" data-en="Compute">Hesapla</button>
   </div>
   <div class="calcp-row">
-    <button id="calcpFake" type="button" data-tr="SAHTE SİNEK" data-en="FAKE FLY">SAHTE SİNEK</button>
+    <button id="calcpFake" type="button" data-tr="FAKE FLY (NULL CORE)" data-en="FAKE FLY">FAKE FLY (NULL CORE)</button>
     <button id="calcpLang" type="button">EN</button>
     <button id="calcpBatch" type="button" data-tr="Toplu test (1..9)" data-en="Batch test (1..9)">Toplu test (1..9)</button>
   </div>
-  <div id="calcpFakeWarn" data-tr="SAHTE SİNEK ETKİN: çekirdek rastgele çıktı veriyor — cevaplar bozulur."
-       data-en="FAKE FLY ON: the core returns random output — answers break.">SAHTE SİNEK ETKİN: çekirdek rastgele çıktı veriyor — cevaplar bozulur.</div>
+  <div id="calcpFakeWarn" data-tr="FAKE FLY ON: the core returns random output - answers break."
+       data-en="FAKE FLY ON: the core returns random output — answers break.">FAKE FLY ON: the core returns random output - answers break.</div>
   <div id="calcpAns">—</div>
   <div id="calcpMeta"></div>
   <div id="calcpCtrl"></div>
   <details id="calcpTicksWrap"><summary data-tr="adım dökümü (sinek çağrıları)"
     data-en="step list (fly calls)">adım dökümü (sinek çağrıları)</summary>
-    <table><thead><tr><th>#</th><th>n</th><th>op</th><th data-tr="çıktı" data-en="out">çıktı</th>
-      <th data-tr="güven" data-en="conf">güven</th></tr></thead><tbody id="calcpTicks"></tbody></table>
+    <table><thead><tr><th>#</th><th>n</th><th>op</th><th data-tr="OUTPUT" data-en="out">OUTPUT</th>
+      <th data-tr="confidence" data-en="conf">confidence</th></tr></thead><tbody id="calcpTicks"></tbody></table>
   </details>
   <div id="calcpBatchOut"></div>
   <div id="calcpErr"></div>
@@ -2297,7 +2297,7 @@ poll();
     for (var a = 1; a <= 9; a++) {
       for (var b = 1; b <= 9; b++) { ops.forEach(function (s) { jobs.push([a, s, b]); }); }
     }
-    batchOut.textContent = (lang === 'tr' ? 'çalışıyor… ' : 'running… ') + jobs.length;
+    batchOut.textContent = (lang === 'tr' ? 'running… … ' : 'running… ') + jobs.length;
     var i = 0;
     function step() {
       if (i >= jobs.length) {

@@ -1,4 +1,4 @@
-# PHASES.en.md — English digest of every phase (Faz 0 → Faz 8 + closing package)
+# PHASES.md — English digest of every phase (Faz 0 → Faz 8 + closing package)
 
 **What this file is.** A per-phase English digest of the `numcog/` science track: for each phase,
 the *question*, the *design/pre-registration*, the *code and result files*, and the *verdict as
