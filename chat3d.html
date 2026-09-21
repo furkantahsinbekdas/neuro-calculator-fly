@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FlyWire — sinek beyni ile konuş</title>
+<title>FlyWire — talk with a fly brain</title>
 <!-- Phase 16: Inter stands in for figure.ai's licensed neue-haas-grot-text (see the
      design-system note in the stylesheet). Loaded from a CDN like three.js already is;
      if it cannot be fetched the OS UI sans in --sans takes over and only the metrics
@@ -519,7 +519,7 @@
 <body>
 <div id="wrap">
   <div id="viz">
-    <div id="title"><h1 id="ttl">FlyWire 3D</h1><p id="sub">soldaki sohbetten bir şey isteyin &rarr;</p>
+    <div id="title"><h1 id="ttl">FlyWire 3D</h1><p id="sub">ask for something in the chat on the left &rarr;</p>
       <div id="legend">
         <span><i class="dot" style="color:#ff8a2a;background:#ff8a2a"></i> girdi</span>
         <span><i class="dot" style="color:#3aa0ff;background:#3aa0ff"></i> aşağı akış</span>
@@ -530,32 +530,32 @@
     <div id="rpanel"><div id="energy"></div><div id="math"></div><div id="truth"></div><div id="compass"></div><div id="arena"></div><div id="path"></div><div id="swatter"></div><div id="sniff"></div><div id="optic"></div></div>
     <div id="vitals" class="off">
       <div class="vhead">
-        <span class="vname">🪰 SİBERNETİK SİNEK</span>
-        <span class="vmood" id="vmood">uyanıyor…</span>
+        <span class="vname">🪰 CYBERNETIC FLY</span>
+        <span class="vmood" id="vmood">waking up…</span>
       </div>
-      <div class="vrow" data-k="energy"><label>ENERJİ</label>
+      <div class="vrow" data-k="energy"><label>ENERGY</label>
         <div class="vbar"><i id="bar-energy"></i></div><b id="val-energy">–</b>
         <span class="ovr"><button type="button" data-k="energy" data-d="-5">−</button><button type="button" data-k="energy" data-d="5">+</button></span></div>
-      <div class="vrow" data-k="hunger"><label>AÇLIK</label>
+      <div class="vrow" data-k="hunger"><label>HUNGER</label>
         <div class="vbar"><i id="bar-hunger"></i></div><b id="val-hunger">–</b>
         <span class="ovr"><button type="button" data-k="hunger" data-d="-5">−</button><button type="button" data-k="hunger" data-d="5">+</button></span></div>
-      <div class="vrow" data-k="boredom"><label>CAN SIKINTISI</label>
+      <div class="vrow" data-k="boredom"><label>BOREDOM</label>
         <div class="vbar"><i id="bar-boredom"></i></div><b id="val-boredom">–</b>
         <span class="ovr"><button type="button" data-k="boredom" data-d="-5">−</button><button type="button" data-k="boredom" data-d="5">+</button></span></div>
-      <div class="vnote" id="ovrnote">− / + = manuel override (debug): değeri doğrudan yazar, simülasyonun parçası değildir</div>
+      <div class="vnote" id="ovrnote">− / + = manual override (debug): writes the value directly, not part of the simulation</div>
       <div class="vfoot">
         <label class="tg"><input id="autonomy" type="checkbox" checked> otonom</label>
         <label class="tg"><input id="buzz" type="checkbox" checked> vızıltı 🔊</label>
         <label class="tg"><input id="voice" type="checkbox" checked> sesli oku 🗣</label>
-        <label class="tg" title="Web Audio granular pitch-shift katmanı: TTS'in pitch 2.0 tavanının üstüne çıkar (deneysel)"><input id="helium" type="checkbox"> aşırı helyum 🎈</label>
-        <span class="vstat" id="vstat">bağlanıyor…</span>
+        <label class="tg" title="Web Audio granular pitch-shift layer: goes above the TTS pitch-2.0 ceiling (experimental)"><input id="helium" type="checkbox"> excessive helium 🎈</label>
+        <span class="vstat" id="vstat">connecting…</span>
       </div>
     </div>
-    <div id="empty">soldaki sohbetten bir şey isteyin — beyin burada belirecek</div>
+    <div id="empty">ask for something in the chat on the left — the brain will appear here</div>
     <div id="toasts"></div>
     <div id="tip"></div>
     <div id="hud">
-      <span id="cap">yanıt döngüde tekrar oynar</span>
+      <span id="cap">the reply replays in the loop</span>
       <label><input id="brain" type="checkbox" checked> beyin</label>
       <label><input id="shapes" type="checkbox" checked> şekiller</label>
       <label><input id="edges" type="checkbox"> kablolama</label>
@@ -563,34 +563,34 @@
     </div>
   </div>
   <div id="chat">
-    <div id="chead">Sinek beynine kelime ver<small>FlyWire konnektomu · deterministik yanıt (LLM yok) · otonom</small></div>
+    <div id="chead">Give the fly brain a word<small>FlyWire connectome · deterministic answers (no LLM) · autonomous</small></div>
     <div id="log"></div>
     <div id="controls">
-      <button type="button" data-act="feed">🍯 Besle</button>
-      <button type="button" data-act="poke">👋 Dokun/Kovala</button>
-      <button type="button" data-act="mate">🪰 Dişi sinek göster</button>
+      <button type="button" data-act="feed">🍯 Feed</button>
+      <button type="button" data-act="poke">👋 Touch/Chase</button>
+      <button type="button" data-act="mate">🪰 Show a female fly</button>
     </div>
     <div id="tools">
-      <button type="button" data-tool="gates">⚙ AND kapısı</button>
-      <button type="button" data-tool="path">🛣 Yol izle</button>
-      <button type="button" data-tool="compass">🧭 Pusula</button>
-      <button type="button" data-tool="smells">👃 İki koku</button>
-      <button type="button" data-tool="eye">👁 Göz</button>
-      <button type="button" data-tool="swatter">🖐 Kaçış oyunu</button>
-      <button type="button" data-tool="navigate">🚶 Yürüyüş</button>
+      <button type="button" data-tool="gates">⚙ AND gate</button>
+      <button type="button" data-tool="path">🛣 Trace a path</button>
+      <button type="button" data-tool="compass">🧭 Compass</button>
+      <button type="button" data-tool="smells">👃 Two smells</button>
+      <button type="button" data-tool="eye">👁 Eye</button>
+      <button type="button" data-tool="swatter">🖐 Escape game</button>
+      <button type="button" data-tool="navigate">🚶 Walking</button>
     </div>
     <div id="sugg">
-      <button>Önünde şeker var.</button>
-      <button>Tehlike yaklaşıyor!</button>
-      <button>Selam ver.</button>
-      <button>Sen acıktın mı?</button>
-      <button>Dişi sinek geldi.</button>
-      <button>Hayır, istemem.</button>
+      <button>There is sugar in front of you.</button>
+      <button>Danger is approaching!</button>
+      <button>Say hello.</button>
+      <button>Are you hungry?</button>
+      <button>A female fly has arrived.</button>
+      <button>No, I do not want to.</button>
     </div>
     <form id="form">
-      <input id="msg" autocomplete="off" placeholder="bilinen bir kelime yaz (şeker · tehlike · merhaba · dişi sinek) ya da /öğret …">
-      <button id="mic" type="button" title="Basılı tut ve Türkçe konuş (tr-TR)">🎙</button>
-      <button id="send" type="submit">Gönder</button>
+      <input id="msg" autocomplete="off" placeholder="type a known Turkish word (şeker · tehlike · merhaba · dişi sinek) or /teach …">
+      <button id="mic" type="button" title="Hold to speak Turkish (tr-TR)">🎙</button>
+      <button id="send" type="submit">Send</button>
     </form>
   </div>
 </div>
@@ -1114,7 +1114,7 @@ const $ = function(id){ return document.getElementById(id); };
  * no free-form LLM chat any more, so there is no "chat" bubble (see the `say` case below).
  */
 const CLS = { think:'bot think', user:'user', sys:'sys', err:'err' };
-const WHO = { user:'SEN', think:'DÜŞÜNÜYOR', sys:'', err:'HATA' };
+const WHO = { user:'SEN', think:'THINKING', sys:'', err:'HATA' };
 
 function bubble(kind, text, who){
   const d = document.createElement('div');
@@ -1145,8 +1145,8 @@ function chip(text, kind){
  * after TOAST_MS or on click. Nothing here decides WHEN a notice exists.
  */
 const TOAST_MS = 5000, TOAST_MAX = 4;
-const TOAST_HEAD = { alert: 'güvenlik sınırı', error: 'komut hatası',
-                     ok: 'öğretim', warn: 'uyarı' };
+const TOAST_HEAD = { alert: 'safety bound', error: 'command error',
+                     ok: 'teaching', warn: 'warning' };
 function toastHead(level){
   return TOAST_HEAD[level] || TOAST_HEAD.warn;
 }
@@ -1216,7 +1216,7 @@ function setVitals(st){
   setBar('boredom', st.boredom, st.boredom >= 70);
   const idle = Number(st.idle_s || 0);
   // Phase 9: a short-lived flag (startled) can define the mood. Show only the ones the
-  // mood text does not already say, so "ruh hali: ürkmüş" never doubles up.
+  // mood text does not already say, so "mood: startled" never doubles up.
   const flags = (st.flags || []).map(function(f){ return FLAG_TR[f] || f; })
                                 .filter(function(f){ return f !== (st.mood || ''); });
   $('vmood').textContent = 'ruh hali: ' + (st.mood || '?') +
@@ -1231,16 +1231,16 @@ function setStat(text){ const el = $('vstat'); if (el) el.textContent = text; }
  * vitals — arrives as a `classifier` event; the fly's own narration follows over `say`.
  */
 const CAT_TR = { besin: 'yiyecek var', tehlike: 'tehdit', selam: 'selam',
-                 'açlık': 'açlık sorusu', onay: 'onay', red: 'ret',
-                 'eş': 'eş adayı' };
-const VIT_TR = { energy: 'enerji', hunger: 'açlık', boredom: 'can sıkıntısı' };
-const FLAG_TR = { startled: 'ürkmüş', 'heyecanlı': 'heyecanlı' };
+                 'hunger': 'hunger question', onay: 'onay', red: 'ret',
+                 'eş': 'mate candidate' };
+const VIT_TR = { energy: 'enerji', hunger: 'hunger', boredom: 'boredom' };
+const FLAG_TR = { startled: 'startled', 'excited': 'excited' };
 // Phase 15: where the decision came from — the headline must not say "connectome" when a button
 // or a keyword produced it.
 const SRC_HEAD = {
-  connectome: '🧠 sınıflandırıcı kararı — çekirdeğin kendi yanıtı',
-  keyword: '🔤 anahtar kelime — kelime → uyarım',
-  button: '🎯 doğrudan uyarım — düğme',
+  connectome: '🧠 classifier decision — the core's own answer',
+  keyword: '🔤 keyword — word → stimulus',
+  button: '🎯 direct stimulus — button',
 };
 
 /* --------------------- Primary signal + model commentary ---------------- *
@@ -1276,7 +1276,7 @@ function classifierLine(e){
   const conf = (e.confidence == null) ? null : Math.round(100 * Number(e.confidence || 0));
   const label = e.label || CAT_TR[e.category] || e.category || '?';
   const big = label + '  ·  ' + (e.word ? '"' + e.word + '"  ·  ' : '') +
-              (conf == null ? 'düğme' : '%' + conf);
+              (conf == null ? 'button' : '%' + conf);
   // `want` is what the category MEANS, `delta` what actually moved (0..100 clamping):
   // a full fly given sugar moves by ~0, so show the intent and flag the saturation.
   const d = e.want && Object.keys(e.want).length ? e.want : (e.delta || {});
@@ -1288,14 +1288,14 @@ function classifierLine(e){
       return (VIT_TR[k] || k) + ' ' + (v > 0 ? '+' : '') + v;
     }).join(' · '));
     if (e.saturated && e.saturated.length){
-      bits.push('sınırda: ' + e.saturated.map(function(k){ return VIT_TR[k] || k; }).join(', '));
+      bits.push('at the bound: ' + e.saturated.map(function(k){ return VIT_TR[k] || k; }).join(', '));
     }
   } else if (e.noop){
-    bits.push('vital değişmedi');
+    bits.push('vitals unchanged');
   }
   if (e.flag) bits.push('bayrak: ' + (FLAG_TR[e.flag] || e.flag));
   if (e.category) bits.push('kategori: ' + e.category);
-  if (e.alternatives && e.alternatives.length) bits.push('ayrıca: ' + e.alternatives.join(', '));
+  if (e.alternatives && e.alternatives.length) bits.push('also: ' + e.alternatives.join(', '));
   // Phase 15: everything on this line is deterministic — the phrase arrives separately as "yorum".
   bits.push('sabit dizgi');
   return signalBlock(SRC_HEAD[e.source] || SRC_HEAD.connectome, big, bits.join('   ·   '));
@@ -1319,7 +1319,7 @@ function push3d(data){
   const empty = $('empty'); if (empty) empty.style.display = 'none';
   const label = data.query || data.scene || data.title || 'sahne';
   const extra = (data.n_downstream != null) ? ' · ' + data.n_downstream + ' aşağı akış' : '';
-  chip('▲ 3D güncellendi: ' + label + extra, 'viz');
+  chip('▲ 3D updated: ' + label + extra, 'viz');
 }
 
 function toolLine(tool, args){
@@ -1341,7 +1341,7 @@ function resultLine(tool, res){
   if (res.chain) bits.push(res.chain);
   if (res.result) bits.push(res.result);
   if (res.action && res.state) bits.push(res.action + ' (ruh: ' + res.state.mood + ')');
-  if (res.ok === false) bits.push('olmadı');
+  if (res.ok === false) bits.push('failed');
   return '✓ ' + tool + (bits.length ? ': ' + bits.join(' · ') : '');
 }
 
@@ -1351,28 +1351,28 @@ function handleEvent(e){
       chip('● ' + (e.event || 'sistem') + (e.model ? ' · ' + e.model : ''), 'warn');
       break;
     case 'think_start':
-      liveStart(e.origin === 'autonomous' ? 'OTONOM DÜŞÜNÜYOR'
-              : (e.origin === 'sensory' ? 'SESİ ANLIYOR' : 'DÜŞÜNÜYOR'));
-      if (e.meta && e.meta.need) chip('↯ dürtü: ' + e.meta.need, 'warn');
+      liveStart(e.origin === 'autonomous' ? 'AUTONOMOUS THINKING'
+              : (e.origin === 'sensory' ? 'HEARING VOICE' : 'THINKING'));
+      if (e.meta && e.meta.need) chip('↯ impulse: ' + e.meta.need, 'warn');
       break;
     case 'token':       liveToken(e.text || ''); break;
     case 'thought':     chip('💭 ' + String(e.text || '').slice(0, 220), 'warn'); break;
-    case 'tool_call':   livePhase('ARAÇ ÇAĞIRIYOR');
+    case 'tool_call':   livePhase('CALLING A TOOL');
                         chip(toolLine(e.tool, e.args), 'tool'); break;
     case 'tool_result': chip(resultLine(e.tool, e.result), 'tool'); break;
     case 'viz':         push3d(e.data); break;
     case 'classifier':  classifierLine(e); break;
     case 'reflex':
       chip('⚡ refleks: ' + (e.why || e.action || 'beden') +
-           (e.state ? '   (açlık ' + Math.round(e.state.hunger) + '/100)' : ''),
+           (e.state ? '   (hunger ' + Math.round(e.state.hunger) + '/100)' : ''),
            'reflex');
       break;
     case 'event':
-      chip('↯ İÇGÜDÜ: ' + (e.label || e.need) + ' ' +
+      chip('↯ INSTINCT: ' + (e.label || e.need) + ' ' +
            Math.round(Number(e.level) || 0) + '/100', 'warn');
       break;
     case 'state':       setVitals(e.state); break;
-    case 'noop':        liveEnd(); chip('· sessiz kaldı', 'warn'); break;
+    case 'noop':        liveEnd(); chip('· stayed silent', 'warn'); break;
     case 'say': {
       liveEnd();
       const said = e.text || '';
@@ -1385,7 +1385,7 @@ function handleEvent(e){
       else                           chip(said, 'warn');
       // Phase 12B: the browser's own voice reads the fly's line (the wing-buzz is the fallback).
       // Phase 15: only the fly's own phrase is spoken — system notices are UI text, not speech.
-      // Phase 16: "🎈 aşırı helyum" (opt-in) adds the granular-shifted squeak layer under the TTS,
+      // Phase 16: "🎈 excessive helium" (opt-in) adds the granular-shifted squeak layer under the TTS,
       //           and shifts the buzz voice too when that is what ends up speaking.
       if (e.mode === 'phrase'){
         Helium.speak(said);                     // no-op unless the helium switch is on
@@ -1394,21 +1394,21 @@ function handleEvent(e){
       break;
     }
     case 'teach': {     // Phase 11: the chip taught itself a word (measured, not narrated)
-      const head = '🎓 öğretildi: ' + (e.word || '?') + ' → ' + (e.category || '?') +
+      const head = '🎓 taught: ' + (e.word || '?') + ' → ' + (e.category || '?') +
                    (e.created_category ? ' (yeni kategori)' : '');
-      const mark = e.safety_warning ? '   ⛔ GÜVENLİK SINIRI'
+      const mark = e.safety_warning ? '   ⛔ SAFETY BOUND'
                  : ((e.warning || e.size_warning) ? '   ⚠ ' : '');
       chip(head +
-           '   eski sözlük ' + Math.round(100 * Number((e.before || {}).accuracy || 0)) + '% → ' +
+           '   old vocabulary ' + Math.round(100 * Number((e.before || {}).accuracy || 0)) + '% → ' +
            Math.round(100 * Number((e.after || {}).accuracy || 0)) + '%' +
-           '   (sözlük ' + (e.vocabulary || '?') + ' kelime)' + mark,
+           '   (vocabulary ' + (e.vocabulary || '?') + ' kelime)' + mark,
            e.safety_warning ? 'warn' : 'reflex');
       toast(head + mark,              // Phase 12: same words, transient overlay
             e.safety_warning ? 'alert' : (e.level === 'warn' ? 'warn' : 'ok'));
       break;
     }
     case 'warning': {
-      const msg = e.message || 'uyarı';
+      const msg = e.message || 'warning';
       // Phase 12 Task 3: the measured regression / safety line also floats up — the
       // chip right below is the record, this is the bit you cannot miss.
       toast(msg, e.level === 'alert' ? 'alert' : 'warn');
@@ -1416,7 +1416,7 @@ function handleEvent(e){
       break;
     }
     case 'error':       liveEnd(); bubble('err', e.message || 'bilinmeyen hata'); break;
-    case 'mode':        chip('otonomi ' + (e.autonomy ? 'AÇIK' : 'KAPALI'), 'warn'); break;
+    case 'mode':        chip('otonomi ' + (e.autonomy ? 'ON' : 'KAPALI'), 'warn'); break;
     default: break;      // user / queued / accepted are plumbing, not chat
   }
 }
@@ -1429,8 +1429,8 @@ function applyStatus(ex, lp){
     if (box && box.checked !== lp.autonomy) box.checked = lp.autonomy;
   }
   if (ex){
-    setStat(working ? (ex.busy ? 'düşünüyor…' : 'sırada ' + ex.queued)
-                    : (lp && lp.autonomy ? 'boşta · otonom' : 'boşta'));
+    setStat(working ? (ex.busy ? 'thinking…' : 'queued ' + ex.queued)
+                    : (lp && lp.autonomy ? 'idle · autonomous' : 'idle'));
   }
 }
 
@@ -1452,14 +1452,14 @@ async function poll(){
     applyStatus(d.executor, d.loop);
     // Phase 15: the reply is synchronous, so the first word waits for the connectome matrix —
     // say so instead of looking frozen (the flag comes from the server's warm thread).
-    if (d.classifier_ready === false){ setStat('çekirdek yükleniyor…'); }
+    if (d.classifier_ready === false){ setStat('core loading…'); }
     const sb = $('send');                      // …and do not let a click hang on the cold matrix
     if (sb) sb.disabled = sb.disabled || (d.classifier_ready === false);
-    if (firstPoll){ firstPoll = false; setStat('bağlı'); }
+    if (firstPoll){ firstPoll = false; setStat('connected'); }
   } catch (err) {
     pollFails++;
-    if (pollFails === 1) setStat('bağlantı yok…');
-    if (pollFails === 6) bubble('sys', 'Sunucuya ulaşılamıyor — backend (server.py) çalışıyor mu?');
+    if (pollFails === 1) setStat('no connection…');
+    if (pollFails === 6) bubble('sys', 'Cannot reach the server — is the backend (server.py) running?');
   }
   setTimeout(poll, pollFails ? 2500 : 550);
 }
@@ -1637,7 +1637,7 @@ let LANG = 'en-US';   // kapanış paketi: varsayılan İngilizce; hesap panelin
       if (readback === null){
         readback = { pitch: u.pitch, rate: u.rate };   // what this engine actually kept
         if (String(readback.pitch) !== String(PITCH) || String(readback.rate) !== String(RATE)){
-          chip('🗣 motor değerleri kırptı: pitch ' + readback.pitch + ' / rate ' + readback.rate,
+          chip('🗣 engine clamped the values: pitch ' + readback.pitch + ' / rate ' + readback.rate,
                'warn');
         }
       }
@@ -1681,7 +1681,7 @@ let LANG = 'en-US';   // kapanış paketi: varsayılan İngilizce; hesap panelin
  *      is routed through the same shifter, so that path is literally shifted, not
  *      layered.
  *
- * Opt-in only: the "🎈 aşırı helyum" switch in the vitals footer, remembered in
+ * Opt-in only: the "🎈 excessive helium" switch in the vitals footer, remembered in
  * sessionStorage. Off = the voice is byte-for-byte what it was before.
  *
  * Tradeoffs are documented in the README (and reported in the phase notes):
@@ -1857,7 +1857,7 @@ async function ask(text, voice){
   if (!text) return;
   bubble('user', (voice ? '🎙 ' : '') + text);
   const send = $('send'); if (send) send.disabled = true;
-  liveStart(voice ? 'SESLİ TUR' : 'DÜŞÜNÜYOR');
+  liveStart(voice ? 'VOICE TURN' : 'THINKING');
   try {
     const r = await fetch('/chat', { method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1869,10 +1869,10 @@ async function ask(text, voice){
     // here; teach/warn/alert already arrive as `teach`/`warning` events and must
     // not be said twice.
     if (d.level === 'error' && d.answer) toast(String(d.answer).split('\n')[0], 'error');
-    setStat('düşünüyor…');
+    setStat('thinking…');
   } catch (e){
     liveEnd();
-    bubble('err', 'gönderilemedi: ' + e.message);
+    bubble('err', 'could not be sent: ' + e.message);
     if (send) send.disabled = false;
   }
 }
@@ -1893,11 +1893,11 @@ function sendInput(voice){
  * button turns amber while you hold and pulses red while it is really listening.
  * On release the transcript goes into #msg and out through sendInput() — the
  * same route, and the same {message} payload, as text you typed yourself.
- * A hold that hears nothing (or errors) says "anlaşılamadı, tekrar dene" in the
+ * A hold that hears nothing (or errors) says "not understood, try again" in the
  * log; it never fails silently.
  */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-const MIC_IDLE = 'Basılı tut ve Türkçe konuş (tr-TR)';
+const MIC_IDLE = 'Hold to speak Turkish (tr-TR)';
 let rec = null, listening = false, held = false, session = null;
 
 function micSay(text){ bubble('sys', '🎙 ' + text); }
@@ -1918,7 +1918,7 @@ function listen(){
   catch (e){                                  // engine refused: say so, drop the hold
     held = false; session = null;
     const btn = $('mic'); if (btn) btn.classList.remove('held');
-    micSay('mikrofon başlatılamadı: ' + (e.message || e.name || 'hata'));
+    micSay('microphone could not start: ' + (e.message || e.name || 'hata'));
   }
 }
 
@@ -1928,14 +1928,14 @@ function micUp(){
   const btn = $('mic'); if (btn) btn.classList.remove('held');
   if (rec && listening){ try { rec.stop(); } catch (e){} }
   // not listening yet: onstart/onend still arrive, and the (empty) session is what
-  // makes onend report "anlaşılamadı" instead of staying quiet
+  // makes onend report "not understood" instead of staying quiet
 }
 
 function initMic(){
   const btn = $('mic');
   if (!SR){
     if (btn){ btn.disabled = true;
-      btn.title = 'Bu tarayıcı Web Speech API desteklemiyor — Chrome/Edge deneyin'; }
+      btn.title = 'This browser does not support the Web Speech API — try Chrome/Edge'; }
     return false;
   }
   rec = new SR();
@@ -1945,7 +1945,7 @@ function initMic(){
   rec.maxAlternatives = 1;
   rec.onstart = function(){
     listening = true;
-    if (btn){ btn.classList.add('live'); btn.title = 'dinliyorum… bırakınca gönderilir'; }
+    if (btn){ btn.classList.add('live'); btn.title = 'listening… release to send'; }
     setStat('dinliyorum…');
     Buzz.beep(430, 70);
   };
@@ -1966,9 +1966,9 @@ function initMic(){
     if (btn){ btn.classList.remove('live'); btn.classList.remove('held');
       btn.title = MIC_IDLE; }
     if (why === 'not-allowed' || why === 'service-not-allowed')
-      micSay('mikrofon izni yok — adres çubuğundan izin ver');
+      micSay('no microphone permission — grant it from the address bar');
     else
-      micSay('anlaşılamadı, tekrar dene (' + why + ')');
+      micSay('not understood, try again (' + why + ')');
   };
   rec.onend = function(){
     listening = false;
@@ -1982,7 +1982,7 @@ function initMic(){
     if (btn){ btn.classList.remove('held'); btn.title = MIC_IDLE; }
     if (!done) return;                         // an end that was never ours
     const said = String(done.text || '').trim();
-    if (!said){ micSay('anlaşılamadı, tekrar dene'); return; }
+    if (!said){ micSay('not understood, try again'); return; }
     Buzz.beep(620, 80);
     const inp = $('msg');
     if (inp) inp.value = said;                 // into the same input …
@@ -2036,8 +2036,8 @@ function interact(action, btn){
   if (btn) btn.disabled = true;
   postJSON('/interact', { action: action }).then(function(d){
     if (d.error) chip('⚠ ' + action + ': ' + d.error, 'warn');
-    setStat('düğme: ' + action);
-  }).catch(function(){ chip('⚠ düğme gönderilemedi: ' + action, 'warn'); })
+    setStat('button: ' + action);
+  }).catch(function(){ chip('⚠ button could not be sent: ' + action, 'warn'); })
     .then(function(){ if (btn) btn.disabled = false; });
 }
 function runTool(name, btn){
@@ -2046,7 +2046,7 @@ function runTool(name, btn){
   postJSON('/tool', { name: name }).then(function(d){
     if (d.error) chip('⚠ ' + name + ': ' + d.error, 'warn');
     else setStat('sahne: ' + (d.scene || name));
-  }).catch(function(){ chip('⚠ sahne gönderilemedi: ' + name, 'warn'); })
+  }).catch(function(){ chip('⚠ scene could not be sent: ' + name, 'warn'); })
     .then(function(){ if (btn) btn.disabled = false; });
 }
 function nudgeVital(field, delta){
@@ -2055,7 +2055,7 @@ function nudgeVital(field, delta){
   postJSON('/vitals', { field: field, value: value }).then(function(d){
     if (d.error) chip('⚠ manuel override: ' + d.error, 'warn');
     else setStat('manuel override: ' + field + ' = ' + Math.round(d.value));
-  }).catch(function(){ chip('⚠ manuel override gönderilemedi', 'warn'); });
+  }).catch(function(){ chip('⚠ manual override could not be sent', 'warn'); });
 }
 (function(){
   const box = $('controls');
@@ -2102,11 +2102,11 @@ document.querySelectorAll('#sugg button').forEach(function(b){
       voice.onchange = function(){
         Say.setEnabled(voice.checked);
         Buzz.unlock();                                  // a click is the gesture audio needs
-        if (voice.checked){ Buzz.beep(760, 80); Say.speak('Sesli okuma açık Patron.'); }
+        if (voice.checked){ Buzz.beep(760, 80); Say.speak('Spoken read-out is on, Boss.'); }
       };
     } else {
       voice.checked = false; voice.disabled = true;
-      chip('🗣 sesli okuma yok: bu tarayıcı speechSynthesis sunmuyor (Chrome öner)', 'warn');
+      chip('🗣 no read-out: this browser does not provide speechSynthesis (Chrome recommended)', 'warn');
     }
   }
   /* Phase 16 Task 2: the helium layer is opt-in, and only offered where Web Audio exists.
@@ -2119,15 +2119,15 @@ document.querySelectorAll('#sugg button').forEach(function(b){
         Helium.setEnabled(helium.checked);
         Buzz.unlock();                                   // a click is the gesture audio needs
         const s = Helium.settings();
-        chip('🎈 helyum ' + (helium.checked ? 'AÇIK' : 'KAPALI')
-             + (helium.checked ? ' — granüler shift ×' + s.shift + ', taşıyıcı ' + s.fund + ' Hz'
+        chip('🎈 helyum ' + (helium.checked ? 'ON' : 'KAPALI')
+             + (helium.checked ? ' — granular shift ×' + s.shift + ', carrier ' + s.fund + ' Hz'
                                + (s.shifter ? '' : ' (worklet derleniyor: ilk cümle shiftsiz)') : ''),
              'warn');
         if (helium.checked) Buzz.beep(980, 90);
       };
     } else {
       helium.checked = false; helium.disabled = true;
-      helium.title = 'bu tarayıcı Web Audio (AudioWorklet) sunmuyor';
+      helium.title = 'this browser does not provide Web Audio (AudioWorklet)';
     }
   }
   const box = $('autonomy');
@@ -2137,8 +2137,8 @@ document.querySelectorAll('#sugg button').forEach(function(b){
       fetch('/mode', { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ autonomy: box.checked }) })
         .then(function(r){ return r.json(); })
-        .then(function(d){ chip('otonomi ' + (d.autonomy ? 'AÇIK' : 'KAPALI'), 'warn'); })
-        .catch(function(){ chip('otonomi değiştirilemedi', 'warn'); });
+        .then(function(d){ chip('otonomi ' + (d.autonomy ? 'ON' : 'KAPALI'), 'warn'); })
+        .catch(function(){ chip('autonomy could not be changed', 'warn'); });
     };
   }
 })();
@@ -2146,19 +2146,19 @@ document.querySelectorAll('#sugg button').forEach(function(b){
 // browsers only allow audio after a user gesture: arm the synth on the first one
 window.addEventListener('pointerdown', function(){ Buzz.unlock(); }, { once: true });
 
-if (!initMic()) chip('🎙 mikrofon yok: bu tarayıcı Web Speech API sunmuyor (Chrome öner)', 'warn');
-if (!Buzz.available()) chip('🔇 Web Audio yok: vızıltı kapalı', 'warn');
+if (!initMic()) chip('🎙 no microphone: this browser does not provide the Web Speech API (Chrome recommended)', 'warn');
+if (!Buzz.available()) chip('🔇 no Web Audio: buzz is off', 'warn');
 
 initViewer();
 
 // show a starter scene immediately, then start draining the EventBus
 (function(){
   const empty = $('empty');
-  empty.textContent = 'beyin yükleniyor…';
+  empty.textContent = 'brain loading…';
   fetch('/initial').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (d && d.neurons){ setData(d); empty.style.display = 'none'; }
-    else empty.textContent = 'soldaki sohbetten bir şey isteyin';
-  }).catch(function(){ empty.textContent = 'soldaki sohbetten bir şey isteyin'; });
+    else empty.textContent = 'ask for something in the chat on the left';
+  }).catch(function(){ empty.textContent = 'ask for something in the chat on the left'; });
 })();
 
 poll();
@@ -2214,7 +2214,7 @@ poll();
   <div id="calcpCtrl"></div>
   <details id="calcpTicksWrap"><summary data-tr="adım dökümü (sinek çağrıları)"
     data-en="step list (fly calls)">adım dökümü (sinek çağrıları)</summary>
-    <table><thead><tr><th>#</th><th>n</th><th>op</th><th data-tr="çıktı" data-en="out">çıktı</th>
+    <table><thead><tr><th>#</th><th>n</th><th>op</th><th data-tr="output" data-en="out">output</th>
       <th data-tr="güven" data-en="conf">güven</th></tr></thead><tbody id="calcpTicks"></tbody></table>
   </details>
   <div id="calcpBatchOut"></div>
