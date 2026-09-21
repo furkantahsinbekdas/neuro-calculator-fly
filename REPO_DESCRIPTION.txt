@@ -1,0 +1,1 @@
+Genesis Fly — bio-calculator and fly-brain-based communication interface: a gated arithmetic core driven by a real Drosophila connectome simulation, plus an interactive chat/3D front end (FlyWire).
