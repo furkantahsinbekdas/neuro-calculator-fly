@@ -65,7 +65,7 @@ that permission exists — a calm caption never sees the list at all.
 Phase 15 — no more generated text anywhere in the live path. A message is answered by the
 connectome (or the "eş" keyword route, or an /interact button), and the words the user reads come
 from `PHRASE_BANKS`: hand-written, ≤4 words, picked at random (preferring the stressed half under
-stress). An unknown word gets a deterministic "word not recognised" plus example vocabulary. The
+stress). An unknown word gets a deterministic "kelime tanınmıyor" plus example vocabulary. The
 autonomous impulse is deterministic too (`run_impulse`: real scene + reflex + fixed phrase), so the
 LLM is now used by **nothing** in the running server — `run_agent` and the prompt blocks below stay
 in the file (dead by design, still exercised by the harness phases) but no live code path reaches
@@ -681,7 +681,7 @@ KEYWORD_ROUTES = (
     ("eş", ("dişi sinek", "dişi", "eş", "çiftleş", "kur yap", "eşleş")),
 )
 
-OOV_HEAD = "word not recognised"
+OOV_HEAD = "kelime tanınmıyor"
 
 
 def _fold(text):
@@ -734,7 +734,7 @@ def oov_reply():
         words = random.sample(list(cognitive_matrix.VOCAB[category]), 4)
     except Exception:                                   # noqa: BLE001
         return OOV_HEAD
-    return "%s · known examples (%s): %s" % (OOV_HEAD, category, ", ".join(words))
+    return "%s · bilinen örnekler (%s): %s" % (OOV_HEAD, category, ", ".join(words))
 
 
 # --------------------------------------------------------------------------- #
@@ -804,7 +804,7 @@ def run_impulse(need, tool=None, args=None):
             scene = export3d.build_sniff_scene()
     except Exception as e:                              # noqa: BLE001
         if BUS is not None:
-            BUS.publish("error", payload={"message": "could not build the scene: %s: %s"
+            BUS.publish("error", payload={"message": "sahne kurulamadı: %s: %s"
                                                      % (type(e).__name__, e)})
     if scene is not None and BUS is not None:
         BUS.publish("viz", payload={"data": scene})
@@ -828,7 +828,7 @@ def run_impulse(need, tool=None, args=None):
                 "flag": res.get("flag"), "want": res.get("want"),
                 "saturated": res.get("saturated"),
                 "why": (effect or {}).get("why", ""),
-                "triggered_by": "impulse (deterministic)", "state": res.get("state")})
+                "triggered_by": "dürtü (deterministik)", "state": res.get("state")})
         phrase = random.choice(NEED_PHRASES.get(need.get("need")) or [""])
         if phrase:
             BUS.publish("say", payload={"text": phrase, "origin": "autonomous", "mode": "phrase",
@@ -921,7 +921,7 @@ def route_message(message, origin="user"):
                              % (category, alias, effect.get("why", "")))
         else:
             effect = {"delta": {},
-                      "why": "live taught category: no row in the effect table"}
+                      "why": "canlı öğretilmiş kategori: etki tablosunda satırı yok"}
     applied = game_loop.apply_effect(STATE, effect, reason="classifier:" + top["word"])
     hit = dict(top, label=cognitive_matrix.CATEGORY_TR.get(category, category))
     decision = {"word": hit["word"], "token": hit["token"], "category": category,
@@ -1116,7 +1116,7 @@ def handle_teach_command(command):
     if verb == "undo":
         res = cognitive_matrix.undo_last_teach()
         if not res.get("ok"):
-            return "nothing to undo (%s)" % res.get("error"), res, "error"
+            return "geri alınacak öğretim yok (%s)" % res.get("error"), res, "error"
         return ("geri alındı: \"%s\" (%s) — okuma ve defter önceki hâline döndü. "
                 "Sözlük: %d kelime, öğretilmiş %d."
                 % (res["undone"], res["category"], res["vocabulary"], res["taught_total"]),
@@ -1142,7 +1142,7 @@ def handle_teach_command(command):
     except ValueError as e:
         return str(e), None, "error"
     except RuntimeError as e:                   # no connectome: nothing to teach
-        return "no connectome, teaching failed: %s" % e, None, "error"
+        return "konnektom yok, öğretim yapılamadı: %s" % e, None, "error"
     _PENDING_TEACH.pop(cognitive_matrix.fold(word), None)
     if res.get("safety_warning"):
         level = "alert"                         # Phase 11.5: stronger than "warn"
@@ -1207,7 +1207,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
             k = "AND"
         g = logic.find_gate(k)
         if not g:
-            return {"error": "no clean %s gate found in the connectome" % k}
+            return {"error": "konnektomda temiz bir %s kapısı bulunamadı" % k}
         data = export3d.build_gate_scene(g)
         viz["data"] = data
         pub("viz", data=data)
@@ -1219,7 +1219,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
         try:
             a, b = max(0, int(a)), max(0, int(b))
         except Exception:                                   # noqa: BLE001
-            return {"error": "a and b must be small integers"}
+            return {"error": "a ve b küçük tam sayılar olmalı"}
         data = export3d.build_math_scene(a, b, op=str(op))
         viz["data"] = data
         pub("viz", data=data)
@@ -1287,7 +1287,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
             return {"error": "yol yok %s -> %s: %s" % (start, end, p.get("reason", ""))}
         return {"shown_in_3d": True, "scene": "path", "start": start, "end": end,
                 "n_synapses": p["n_synapses"], "chain": " -> ".join(p["hops"]),
-                "note": "a shortest wiring path (topology, not signal timing)"}
+                "note": "bir en kısa kablolama yolu (topoloji, sinyal zamanlaması değil)"}
 
     def dodge_swatter():
         data = export3d.build_swatter_scene()
@@ -1332,7 +1332,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
     # ------------------------------------------------------------ life actions #
     def _life(action, amount=1.0):
         if STATE is None:
-            return {"ok": False, "error": "the state manager is not ready"}
+            return {"ok": False, "error": "durum yöneticisi hazır değil"}
         res = STATE.apply(action, amount)
         STATE.touch(calm=5.0)
         if BUS is not None:
@@ -1400,7 +1400,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
         raw = _chat_json(msgs, on_token=on_token)
         call = agent._parse_json(raw)
         if call is None:
-            pub("warning", message="the model did not produce valid JSON, retrying")
+            pub("warning", message="model geçerli JSON üretmedi, yeniden deniyorum")
             msgs.append({"role": "assistant", "content": str(raw)[:2000]})
             msgs.append({"role": "user",
                          "content": "Sadece TEK bir geçerli JSON nesnesi yaz — "
@@ -1420,7 +1420,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
                                           "args": args or {"query": "sugar",
                                                            "seeds": 40, "dur_ms": 200}},
                                          ensure_ascii=False)
-                    pub("warning", message="talking without running a tool was rejected (%d/2)"
+                    pub("warning", message="araç çalıştırmadan konuşma reddedildi (%d/2)"
                         % refusals)
                     msgs.append({"role": "assistant", "content": str(raw)[:1000]})
                     msgs.append({"role": "user", "content":
@@ -1434,7 +1434,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
                 fn = tools.get(tool)
                 pub("tool_call", tool=str(tool), args=args, forced=True)
                 try:
-                    result = fn(**args) if fn else {"error": "unknown tool '%s'" % tool}
+                    result = fn(**args) if fn else {"error": "bilinmeyen araç '%s'" % tool}
                 except Exception as e:                      # noqa: BLE001
                     result = {"error": "%s: %s" % (type(e).__name__, e)}
                 pub("tool_result", tool=str(tool), result=result, forced=True)
@@ -1462,7 +1462,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
                 pub("noop")
                 return None, viz.get("data")
             # the human asked something: never let the fly shrug it off
-            pub("warning", message="noop on a user turn; an answer is required")
+            pub("warning", message="kullanıcı turunda noop; cevap isteniyor")
             msgs.append({"role": "assistant", "content": str(raw)[:1000]})
             msgs.append({"role": "user",
                          "content": "Patron sana bir şey sordu. {\"noop\"} kullanma; "
@@ -1475,7 +1475,7 @@ def run_agent(message, max_steps=8, emit=None, origin="user", meta=None):
         pub("tool_call", tool=str(tool), args=args)
         fn = tools.get(tool)
         try:
-            result = fn(**args) if fn else {"error": "unknown tool '%s'" % tool}
+            result = fn(**args) if fn else {"error": "bilinmeyen araç '%s'" % tool}
         except Exception as e:                              # noqa: BLE001
             result = {"error": "%s: %s" % (type(e).__name__, e)}
         pub("tool_result", tool=str(tool), result=result)
@@ -1548,7 +1548,7 @@ class Handler(BaseHTTPRequestHandler):
                 with open(os.path.join(HERE, "chat3d.html"), "r", encoding="utf-8") as fh:
                     html = fh.read()
             except OSError:
-                self._send(500, "chat3d.html not found", "text/plain; charset=utf-8")
+                self._send(500, "chat3d.html bulunamadı", "text/plain; charset=utf-8")
                 return
             self._send(200, html, "text/html; charset=utf-8")
         elif path == "/initial":
@@ -1578,7 +1578,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json({"ok": True, "model": MODEL,
                         "seq": BUS.last_seq() if BUS else 0})
         else:
-            self._send(404, "not found", "text/plain; charset=utf-8")
+            self._send(404, "bulunamadı", "text/plain; charset=utf-8")
 
     # ----------------------------------------------------------------- POST #
     def do_POST(self):
@@ -1588,7 +1588,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             payload = json.loads(raw or b"{}")
         except Exception:                                   # noqa: BLE001
-            self._json({"error": "invalid JSON"}, 400)
+            self._json({"error": "geçersiz JSON"}, 400)
             return
         if not isinstance(payload, dict):
             payload = {}
@@ -1607,7 +1607,7 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/calc":
             self._calc(payload)
         else:
-            self._send(404, "not found", "text/plain; charset=utf-8")
+            self._send(404, "bulunamadı", "text/plain; charset=utf-8")
 
     # ------------------------------------------- numcog calculator bridge (yeni) #
     def _calc(self, payload):
@@ -1623,7 +1623,7 @@ class Handler(BaseHTTPRequestHandler):
         fake = bool(payload.get("fake", False))
         steps = bool(payload.get("step_by_step", True))
         if not expr:
-            self._json({"ok": False, "error": "expr is empty (e.g. '3+5', '9/4')"}, 400)
+            self._json({"ok": False, "error": "expr boş (ör. '3+5', '9/4')"}, 400)
             return
         try:
             import sys as _sys
@@ -1633,7 +1633,7 @@ class Handler(BaseHTTPRequestHandler):
                 _sys.path.insert(0, _numcog)
             import fly_calc as fc
         except Exception as exc:                                    # noqa: BLE001
-            self._json({"ok": False, "error": "could not load numcog/fly_calc: %s" % exc}, 503)
+            self._json({"ok": False, "error": "numcog/fly_calc yüklenemedi: %s" % exc}, 503)
             return
         try:
             self._json(fc.run(expr, fake=fake, step_by_step=steps))
@@ -1647,7 +1647,7 @@ class Handler(BaseHTTPRequestHandler):
 
     @staticmethod
     def _fc_mod():
-        """imports the `numcog/fly_calc` module (the path is added if needed)."""
+        """`numcog/fly_calc` modülünü getirir (yol gerekirse eklenir)."""
         import sys as _sys
         here = os.path.dirname(os.path.abspath(__file__))
         nc = os.path.join(here, "numcog")
@@ -1677,7 +1677,7 @@ class Handler(BaseHTTPRequestHandler):
             res = {"ok": False, "expr": message, "error": str(exc)}
         except Exception as exc:                                    # noqa: BLE001
             res = {"ok": False, "expr": message, "error": "beklenmeyen hata: %s" % exc}
-        text = fc.answer_text(res, lang=str(payload.get("lang") or "en"))
+        text = fc.answer_text(res)
         if BUS is not None:
             BUS.publish("say", payload={"text": text, "origin": origin, "mode": "system"})
         self._json({"ok": True, "job": None, "answer": text, "classifier": None, "calc": res,
@@ -1695,16 +1695,16 @@ class Handler(BaseHTTPRequestHandler):
         """
         message = str(payload.get("message", "") or "").strip()
         if not message:
-            self._json({"error": "message is empty"}, 400)
+            self._json({"error": "message boş"}, 400)
             return
         if STATE is None:
-            self._json({"error": "the core is not ready"}, 503)
+            self._json({"error": "çekirdek hazır değil"}, 503)
             return
         STATE.touch()      # insan konuştu: can sıkıntısı düşer, idle sıfırlanır
         sensory = bool(payload.get("sensory"))
         origin = "sensory" if sensory else "user"
         if sensory:
-            message = "The user spoke: " + message
+            message = "Kullanıcı sesli konuştu: " + message
         if BUS is not None:
             BUS.publish("user", payload={"text": message, "origin": origin})
         # Phase 11: "/öğret ..." is a command, not a question — the classifier learns it and
@@ -1777,10 +1777,10 @@ class Handler(BaseHTTPRequestHandler):
         try:
             data = specs[name]()
         except Exception as e:                          # noqa: BLE001
-            self._json({"error": "could not build the scene: %s: %s" % (type(e).__name__, e)}, 500)
+            self._json({"error": "sahne kurulamadı: %s: %s" % (type(e).__name__, e)}, 500)
             return
         if not data:
-            self._json({"error": "the scene came back empty"}, 500)
+            self._json({"error": "sahne boş döndü"}, 500)
             return
         if BUS is not None:
             BUS.publish("viz", payload={"data": data})
@@ -1800,12 +1800,12 @@ class Handler(BaseHTTPRequestHandler):
                         "allowed": sorted(self.INTERACTIONS)}, 400)
             return
         if STATE is None:
-            self._json({"error": "the core is not ready"}, 503)
+            self._json({"error": "çekirdek hazır değil"}, 503)
             return
         category, label = self.INTERACTIONS[action]
         STATE.touch(calm=0.0)      # human contact resets the idle clock, without double-counting
         if BUS is not None:
-            BUS.publish("user", payload={"text": "[button] " + label, "origin": "user",
+            BUS.publish("user", payload={"text": "[düğme] " + label, "origin": "user",
                                          "action": action})
         decision, phrase = publish_decision(category, source="button", label=label,
                                            origin="user", extra={"action_name": action,
@@ -1823,10 +1823,10 @@ class Handler(BaseHTTPRequestHandler):
         try:
             value = float(payload.get("value"))
         except (TypeError, ValueError):
-            self._json({"error": "value must be a number"}, 400)
+            self._json({"error": "value sayı olmalı"}, 400)
             return
         if STATE is None:
-            self._json({"error": "the core is not ready"}, 503)
+            self._json({"error": "çekirdek hazır değil"}, 503)
             return
         before = float(STATE.snapshot()[field])
         res = STATE.apply_delta({field: value - before}, action="manual")
@@ -1855,7 +1855,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             reply, info, level = handle_teach_command(command)
         except Exception as e:                                  # noqa: BLE001
-            reply, info, level = ("teaching failed: %s: %s" % (type(e).__name__, e)), None, "error"
+            reply, info, level = ("öğretim başarısız: %s: %s" % (type(e).__name__, e)), None, "error"
         if level != "ok":
             print("  /öğret [%s] %s" % (level, reply.replace("\n", " | ")), file=sys.stderr)
         if BUS is not None:
@@ -1885,7 +1885,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def _mode(self, payload):
         if STATE is None:
-            self._json({"error": "the state is not ready"}, 503)
+            self._json({"error": "durum hazır değil"}, 503)
             return
         on = bool(payload.get("autonomy", True))
         STATE.set_autonomy(on)
@@ -1930,7 +1930,7 @@ def shutdown_core():
 
 def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
           require_tool="autonomous"):
-    print("Loading the connectome (the first launch is slow, ~5s)...", file=sys.stderr)
+    print("Konnektom yükleniyor (ilk açılış yavaş, ~5sn)...", file=sys.stderr)
     flysim._ensure_conn()
     global _INITIAL, PORT, REQUIRE_TOOL
     PORT = int(port)
@@ -1939,7 +1939,7 @@ def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
     try:
         _INITIAL = json.dumps(export3d.resting_data(), default=str)
     except Exception as e:                                  # noqa: BLE001
-        print("could not build the initial scene: %s" % e, file=sys.stderr)
+        print("başlangıç sahnesi kurulamadı: %s" % e, file=sys.stderr)
 
     def _warm():
         # keep the first real request fast: gates, routing graph, escape/sniff/optic
@@ -1959,30 +1959,30 @@ def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
             learned = cognitive_matrix.load_learned()
             w = learned.get("weights") or {}
             if learned["loaded"]:
-                print("  %d live-taught words restored (%.1f s): %s%s"
+                print("  canlı öğretilmiş %d kelime geri yüklendi (%.1f sn): %s%s"
                       % (learned["loaded"], learned["seconds"],
                          ", ".join("%s→%s" % (k, v) for k, v in learned["words"].items()),
                          "" if w.get("match") else
-                         "   [.npy mismatch: %s]" % (w.get("max_delta") or w.get("error")
-                                                      or "the shape differs")), file=sys.stderr)
+                         "   [.npy uyuşmuyor: %s]" % (w.get("max_delta") or w.get("error")
+                                                      or "şekil farklı")), file=sys.stderr)
             elif learned.get("error"):
-                print("  could not load the live-teaching book: %s" % learned["error"],
+                print("  canlı öğretim defteri yüklenemedi: %s" % learned["error"],
                       file=sys.stderr)
             elif learned.get("skipped"):
-                print("  skipped taught words: %s" % learned["skipped"], file=sys.stderr)
+                print("  atlanan öğretilmiş kelimeler: %s" % learned["skipped"], file=sys.stderr)
         except Exception as e:                              # noqa: BLE001
-            print("  could not read the live-teaching book: %s" % e, file=sys.stderr)
+            print("  canlı öğretim defteri okunamadı: %s" % e, file=sys.stderr)
         try:                                                # gerçek ALPN→KC sınıflandırıcısı
             cl = cognitive_matrix.status()
             if cl.get("loaded"):
-                print("  classifier ready: %d PN -> %d KC (%s active, %.2f%%) -> %d MBON; "
-                      "delta rule, %d epochs'ta %.0f%%"
+                print("  sınıflandırıcı hazır: %d PN -> %d KC (%s aktif, %.2f%%) -> %d MBON; "
+                      "delta kuralı %d epoch'ta %.0f%%"
                       % (cl["pn_dim"], cl["kc_dim"], cl["kc_active_range"],
                          100.0 * cl["kc_density"], cl["mbon_dim"], cl["epochs"],
                          100.0 * cl["train_accuracy"]), file=sys.stderr)
             else:
-                print("  could not load the classifier: %s\n"
-                      "  (messages still work, they just skip the classifier)"
+                print("  sınıflandırıcı yüklenemedi: %s\n"
+                      "  (mesajlar yine çalışır, sadece sınıflandırıcıya uğramaz)"
                       % cl.get("error"), file=sys.stderr)
         except Exception:                                   # noqa: BLE001
             pass
@@ -1998,16 +1998,16 @@ def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
     build_core(autonomy=autonomy, tick=tick, cooldown=cooldown)
 
     url = "http://localhost:%d" % PORT
-    print("Ready -> %s   (autonomy=%s, tick=%.1fs, think interval=%.0fs, force_tool=%s)"
-          % (url, "on" if autonomy else "off", tick, cooldown, REQUIRE_TOOL),
+    print("Hazır -> %s   (otonomi=%s, tick=%.1fs, düşünme aralığı=%.0fs, zorunlu_araç=%s)"
+          % (url, "açık" if autonomy else "kapalı", tick, cooldown, REQUIRE_TOOL),
           file=sys.stderr)
     learned_now = cognitive_matrix.learned_status()
-    print("Classifier: %d factory categories, %d words (%d live-taught; book %s%s) | "
-          "the real ALPN→KC matrix is being built in a warm-up thread (first launch ~10 s); "
-          "live teaching is on, via /teach <word> <category>"
+    print("Sınıflandırıcı: %d fabrika kategorisi, %d kelime (%d canlı öğretilmiş; defter %s%s) | "
+          "gerçek ALPN→KC matrisi ısınma iş parçacığında kuruluyor (ilk açılış ~10 sn); "
+          "/öğret <kelime> <kategori> ile canlı öğretim açık"
           % (len(cognitive_matrix.CATEGORIES),
              cognitive_matrix.VOCAB_SIZE + learned_now["taught"], learned_now["taught"],
-             learned_now["file"], "" if learned_now["exists"] else ", none yet"), file=sys.stderr)
+             learned_now["file"], "" if learned_now["exists"] else ", henüz yok"), file=sys.stderr)
     if open_browser:
         try:
             webbrowser.open(url)
@@ -2016,10 +2016,10 @@ def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
     try:
         ThreadingHTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
     except KeyboardInterrupt:
-        print("\nshutting down...", file=sys.stderr)
+        print("\nkapatılıyor...", file=sys.stderr)
     except OSError as e:
-        print("\ncould not start on port %d: %s\n"
-              "Another server may still be running (netstat -ano | findstr %d).\n"
+        print("\n%d portunda başlatılamadı: %s\n"
+              "Başka bir sunucu hâlâ çalışıyor olabilir (netstat -ano | findstr %d).\n"
               % (PORT, e, PORT), file=sys.stderr)
         raise
     finally:
@@ -2029,18 +2029,18 @@ def serve(open_browser=True, port=PORT, autonomy=True, tick=1.0, cooldown=30.0,
 def build_parser():
     p = argparse.ArgumentParser(
         prog="server.py",
-        description="Autonomous cybernetic fly — web + 3D + LLM core")
+        description="Otonom sibernetik sinek — web + 3D + LLM çekirdeği")
     p.add_argument("--port", type=int, default=PORT)
     p.add_argument("--no-autonomy", action="store_true",
-                   help="turn autonomous impulses off (the initial value)")
-    p.add_argument("--tick", type=float, default=1.0, help="game-loop tick interval (s)")
+                   help="otonom dürtüleri kapat (başlangıç değeri)")
+    p.add_argument("--tick", type=float, default=1.0, help="oyun döngüsü tick süresi (sn)")
     p.add_argument("--cooldown", type=float, default=30.0,
-                   help="minimum time between two autonomous thoughts (s)")
+                   help="otonom düşünmeler arası minimum süre (sn)")
     p.add_argument("--require-tool", choices=("autonomous", "always", "never"),
                    default="autonomous",
                    help="araç çalıştırmadan konuşmayı engelle: otonom turlarda (varsayılan), "
-                        "always, or never")
-    p.add_argument("--no-browser", action="store_true", help="do not open the browser")
+                        "her zaman, ya da hiç")
+    p.add_argument("--no-browser", action="store_true", help="tarayıcıyı açma")
     return p
 
 
