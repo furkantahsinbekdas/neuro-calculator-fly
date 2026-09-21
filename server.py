@@ -1602,8 +1602,48 @@ class Handler(BaseHTTPRequestHandler):
             self._vitals(payload)
         elif path == "/mode":
             self._mode(payload)
+        # --- numcog calculator bridge (closing package) ---------------------------
+        # ADDITIVE: yeni uç; yukarıdaki hiçbir rotanın davranışı değiştirilmedi.
+        elif path == "/calc":
+            self._calc(payload)
         else:
             self._send(404, "bulunamadı", "text/plain; charset=utf-8")
+
+    # ------------------------------------------- numcog calculator bridge (yeni) #
+    def _calc(self, payload):
+        """Sinek hesap makinesi (`numcog/fly_calc.py`). **Yeni uç; başka uca dokunmaz.**
+
+        POST /calc {expr, fake, step_by_step} ->
+          {ok, result, remainder, fly_calls, ticks[], controller_ops[], seed, calibrated,
+           two_digit, note, error?}
+        İŞ BÖLÜMÜ: sinek yalnızca `n -> n±1`; sayaç/döngü/durma koşulu/kalan **KONTROLCÜDE**.
+        SINIR: sonuç 0..81 dışındaysa **AÇIK hata** (sessiz yanlış cevap yok).
+        """
+        expr = str(payload.get("expr", payload.get("message", "")) or "").strip()
+        fake = bool(payload.get("fake", False))
+        steps = bool(payload.get("step_by_step", True))
+        if not expr:
+            self._json({"ok": False, "error": "expr boş (ör. '3+5', '9/4')"}, 400)
+            return
+        try:
+            import sys as _sys
+            _here = os.path.dirname(os.path.abspath(__file__))
+            _numcog = os.path.join(_here, "numcog")
+            if _numcog not in _sys.path:
+                _sys.path.insert(0, _numcog)
+            import fly_calc as fc
+        except Exception as exc:                                    # noqa: BLE001
+            self._json({"ok": False, "error": "numcog/fly_calc yüklenemedi: %s" % exc}, 503)
+            return
+        try:
+            self._json(fc.run(expr, fake=fake, step_by_step=steps))
+        except fc.OutOfRange as exc:
+            self._json({"ok": False, "out_of_range": True, "expr": expr,
+                        "error": str(exc), "limit": "0..81"}, 422)
+        except fc.BadExpr as exc:
+            self._json({"ok": False, "bad_expr": True, "expr": expr, "error": str(exc)}, 400)
+        except Exception as exc:                                    # noqa: BLE001
+            self._json({"ok": False, "error": "beklenmeyen hata: %s" % exc}, 500)
 
     # --------------------------------------------------------------- actions #
     def _chat(self, payload):
