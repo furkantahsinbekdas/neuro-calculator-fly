@@ -1,0 +1,58 @@
+# CITATION.cff — DRAFT (repository owner: fill in the fields below)
+# Eksik alanlar kasten boş bırakıldı; bkz. RELEASE_CHECKLIST.md ve NOTICE.md.
+cff-version: 1.2.0
+message: "If you use this software or the FlyWire data, please cite the sources listed in CITATION.md (and complete this file)."
+title: "flyputer / numcog — connectome simulations on the FlyWire adult Drosophila brain"
+abstract: >-
+  Simulation study on the FlyWire (hemibrain 783) connectome: number/operator coding,
+  a gated table-based calculator (the fly core computes n->n+-1; the controller carries the
+  state), reservoir dynamics in a CX sub-network, and DAN-gated KC->MBON plasticity in the
+  mushroom body. No connectome-specific task advantage was demonstrated in this data, in this
+  model, on this grid. See numcog/RESULTS_SUMMARY.md and numcog/PROJE_KAPANIS.md.
+version: "1.0.0-draft"
+date-released: "TODO"
+# ---------------------------------------------------------------------------------------
+# YAZAR ALANI BOŞ — yayın sahibi dolduracak. LICENSE'daki telif adı ("Migen Karriqi") ile
+# git yazarı ("Furkan Tahsin Bekdaş") UYUŞMUYOR; karar sahibine ait (RELEASE_CHECKLIST.md).
+authors:
+  - family-names: "TODO"
+    given-names: "TODO"
+    # affiliation: "[VERIFY: institution]"
+    # orcid: "[VERIFY: ORCID]"
+# contact:
+#   - family-names: "TODO"
+#     given-names: "TODO"
+license: MIT            # kod için (LICENSE); VERİ için CC BY-NC 4.0 (CITATION.md, DATA.md)
+repository-code: "TODO"  # [VERIFY: public repository URL — git push YAPILMADI]
+# identifiers:
+#   - type: url
+#     value: "[VERIFY: DOI/Zenodo release of the data: https://zenodo.org/records/10676866]"
+references:
+  - type: article
+    title: "Neuronal wiring diagram of an adult brain"
+    authors:
+      - family-names: "Dorkenwald"
+        given-names: "S."
+    journal: "Nature"
+    volume: 634
+    year: 2024
+    notes: "Atıf, mevcut CITATION.md'den alındı; sayfa/DOI doğrulanmadı -> [VERIFY: pages/DOI]"
+  - type: article
+    title: "Whole-brain annotation and multi-connectome cell typing of Drosophila"
+    authors:
+      - family-names: "Schlegel"
+        given-names: "P."
+    journal: "Nature"
+    year: 2024
+    notes: "CITATION.md'den; cilt/sayfa/DOI doğrulanmadı -> [VERIFY: volume/pages/DOI]"
+  - type: article
+    title: "A complete electron microscopy volume of the brain of adult Drosophila melanogaster"
+    authors:
+      - family-names: "Zheng"
+        given-names: "Z."
+      - family-names: "Lauritzen"
+        given-names: "J. S."
+    journal: "Cell"
+    volume: 174
+    year: 2018
+    notes: "CITATION.md'den; sayfa/DOI doğrulanmadı -> [VERIFY: pages/DOI]"

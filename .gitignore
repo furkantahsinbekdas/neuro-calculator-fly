@@ -20,3 +20,12 @@ models/
 _srv.out.log
 _srv.err.log
 _run_server.log
+
+# --- numcog (kapanış paketi): yeniden üretilebilir ara önbellekler -----------------
+# Hepsi betiklerle yeniden üretilir; boyutları nedeniyle depoda TUTULMAZ.
+numcog/results_p7_0/scan_cache.npz
+numcog/results_p7_1/arms_cache.npz
+numcog/results_p7_2/arms_raw_cache.npz
+numcog/results_p8/mb_cache.npz
+# NOT: numcog/fly_weights/*.npz TUTULUR (0.14 MB, <5 MB sınırı) — hesap makinesi ağırlıkları
+# NOT: numcog/results_release/git_history.txt ve iki_digit.csv TUTULUR (küçük)

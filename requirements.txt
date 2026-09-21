@@ -1,6 +1,20 @@
-pandas>=2.0
-pyarrow>=14
-numpy>=1.24
-ollama>=0.3
-matplotlib>=3.7
-cloud-volume>=8.0   # optional: real neuron shapes (hero arbors) in the 3D view
+# flyputer — runtime requirements
+# Python 3.12.10 (kaynak: `.venv`, `python --version`; bkz. RELEASE_CHECKLIST.md)
+# Sürümler kurulu ortamdan sabitlendi (`pip freeze`), uydurulmadı.
+
+# --- v1/v2 numcog bilimsel hattı (Faz 0-8) + hesap makinesi -----------------------
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1        # numcog: sparse, stats, cluster, sparse.linalg (Faz 7-1'den beri; ÖNCEKİ
+                     # requirements.txt'te EKSİKTİ -> kapanış paketinde eklendi)
+matplotlib==3.11.2
+pyarrow==25.0.1      # .feather bağlantı dosyası
+
+# --- flyputer uygulaması (3D beyin + kelime sohbeti; AYRI kod tabanı) -------------
+ollama==0.6.2        # agent.py / game_loop.py LLM yolu (statü: [VERIFY], bkz. RELEASE_PREFLIGHT §5)
+networkx==3.6.1
+mujoco==3.13.0       # flybody modeli (opsiyonel; `models/` depoda tutulmaz)
+
+# --- opsiyonel -----------------------------------------------------------------------------
+# cloud-volume>=8.0  # gerçek nöron şekilleri (hero arbors) — kurulu değilse 3D görünüm sade çalışır
+

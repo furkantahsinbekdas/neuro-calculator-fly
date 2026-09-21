@@ -738,3 +738,79 @@ clocked MAC (Horowitz); the chip clock is priced at a physical 1 kHz, not the si
 A sibling project turns the ~88-neuron central-complex "compass" circuit into an actual
 **chip blueprint** (connectome → Verilog → GDSII layout, free on a laptop). The compass and
 closed-loop steering demos here are the on-ramp to it.
+
+---
+
+> ### ⚠ İKİ AYRI PROJE — aynı depoda / two separate projects in one repository
+> Yukarıdaki `flyputer` uygulaması (3D beyin + kelime sohbeti, Gemma/Ollama) **değiştirilmedi**.
+> Aşağıdaki **`numcog/`** bölümü, ayrı bir **bilimsel** çalışmadır (Faz 0–8 + kapanış paketi):
+> connectome üzerinde **sayı/kod, hesap makinesi, rezervuar ve MB öğrenme** deneyleri.
+> Kod: **MIT**; **veri CC BY-NC 4.0** (`CITATION.md`, `DATA.md`, `NOTICE.md`).
+
+# numcog — connectome simulations on the FlyWire brain (science track)
+
+**What this is (one honest paragraph).** A simulation study, not a live fly. On the FlyWire
+hemibrain connectome we built: (i) **number/operator codes** from real VPN→KC / ALPN→KC wiring;
+(ii) a **gated, table-based calculator** at N=81 where the **fly core only computes `n → n±1`** and a
+Python **controller** carries the counter, loop and remainder; (iii) **reservoir dynamics** in a
+CX-core sub-network (A: N=4,236); and (iv) **DAN-gated KC→MBON plasticity** in the mushroom body with
+odour/decision tasks. Results: the calculator works **exactly** (add/sub/mul/div = 1.0000, chain
+k=0..81 correct) **only in the 54/100 seeds that pass a calibration gate**; the biological learning
+rule **does learn** (sanity gate 0.982; T1 N≤4: 0.971) but its performance is **not** better than
+degree-preserving/ER surrogates; the CX reservoir carries state for k≤8 in a fair (per-arm gain)
+regime but **collapses at k=10** and is **not** superior to surrogates; rule/extrapolation (T3) is
+**below chance**. In short: **connectome-derived circuits act as memorisation/pattern-separation
+tables; there is no rule transfer, and no wiring-specific advantage on the tasks we designed.**
+In this data, in this model, on this grid.
+
+## Quick start / Hızlı başlangıç
+
+```bash
+pip install -r requirements.txt          # Python 3.12.10
+bash get_data.sh                          # FlyWire v783 (~812 MB) — not committed (see DATA.md)
+
+python -X utf8 server.py                  # http://127.0.0.1:8000  (chat + 3D + calculator tab)
+# sağ üst: "🧮 Hesap Makinesi / Calculator" → 3+5 · 12-7 · 7x8 · 9/4 · adım dökümü · SAHTE SİNEK
+
+python -X utf8 -m numcog.tests.test_calculator_integrity   # 34 checks, ~1 s, no heavy training
+python -X utf8 _calc_smoke.py                              # interface smoke test (server running)
+python -X utf8 numcog/build_fly.py                         # train the calculator fly (~16 s/seed)
+```
+
+## Results table (sourced) / Sonuç tablosu
+
+- **`numcog/RESULTS_SUMMARY.md`** — TR/EN table: question · hypothesis → result · key numbers ·
+  source file · pre-registration → result commit.
+- **`numcog/PROJE_KAPANIS.md`** — full closing report (goals, what was measured, what could not be
+  measured, what the fly vs the controller did, artifacts caught, limitations, **what we do NOT
+  claim**, future work).
+- **`numcog/PREREG_LOG.md`** — pre-registration vs result commit order (exceptions stated).
+- **`numcog/RELEASE_PREFLIGHT.md`** — pre-release measurement (repo state, sizes, history blobs,
+  privacy scan, dead-code status, **missing tests**).
+- **`numcog/V1_OZET.md`**, `RAPOR_FAZ_0.md` … `RAPOR_FAZ_8.md`, `RAPOR_HESAP_MAKINESI_BUTUNLUK.md`,
+  `RAPOR_ARAYUZ.md`, `RAPOR_IKI_HANELI.md` — phase reports.
+
+## Limits (read before asking the fly anything)
+
+`1..9` digits (measured); **result 0..81**; `x`/`*` = multiplication, `/` = **integer quotient +
+remainder**; subtraction with a **negative** result is **rejected** (the legacy measurement clipped to
+0); **no multi-digit arithmetic** (the two-digit tens/units design was **never implemented**); the
+**state lives in the controller, not in the fly**; a random seed has ~46% chance of being rejected by
+the calibration gate (the shipped fly is **seed 0**, accepted). Full list in the calculator panel and
+in `numcog/RAPOR_ARAYUZ.md`.
+
+## What we do NOT claim / İddia etmediklerimiz
+
+Not "the fly does mathematics" (the core is an exact `n→n±1` table; the controller loops) · not
+"multi-digit arithmetic" (not implemented) · not "language logic" (no language model exists in
+`numcog/`; the word classifier is the separate `flyputer` app) · not "connectome gives a special
+advantage" (it did not separate on any task) · not "it learns rules" (rule tests were at/below
+chance) · not "state is carried by the network" (k≤8 only, and not better than surrogates).
+**Simulation**, one connectome (hemibrain 783), NT signs assumed, MB compartments inferred,
+input-neuron choice arbitrary.
+
+## Translations / Çeviriler
+
+`docs/en/` — English translations (Turkish originals remain authoritative, stay in place).
+See `docs/en/INDEX.md` for the coverage list (and what is still pending).
+
