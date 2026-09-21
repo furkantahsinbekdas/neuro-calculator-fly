@@ -24,7 +24,7 @@ Tarih: 2026-09-20. Her madde **✓/✗ + kanıt**. `git push` **YAPILMADI**, rem
 | 17 | Ölü LLM kodu | **✗ işaretlenmedi** | `server.py` (53) / `game_loop.py` (23) **referans ediyor** → "dead code" **iddiası doğrulanamadı** → `[VERIFY]`; **silinmedi** ✓ |
 | 18 | WIP güvenliği | **✓** | kullanıcının commit edilmemiş işi **`1bf5dfb`** ile **içerik değiştirilmeden** kaydedildi |
 | 19 | Sunucu durumu | **not** | kapanış sırasında **çalışır bırakıldı** (PID 2228, port 8000) → `Stop-Process -Id 2228` |
-| 20 | `git push` / remote | **✓ yapılmadı** | talimat gereği |
+| 20 | `git push` / remote | **✓ push yapılmadı** | talimat gereği **push yapılmadı**; **remote EKLENMEDİ** — ancak `origin` **önceden vardı** (`https://github.com/migkapa/flyputer.git`, kullanıcının önceki işinden) → **bu pakette hiçbir push işlemi çalıştırılmadı** ✓ |
 
 ## Karar bekleyen maddeler (sahibine)
 
