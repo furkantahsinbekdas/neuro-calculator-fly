@@ -1677,7 +1677,7 @@ class Handler(BaseHTTPRequestHandler):
             res = {"ok": False, "expr": message, "error": str(exc)}
         except Exception as exc:                                    # noqa: BLE001
             res = {"ok": False, "expr": message, "error": "beklenmeyen hata: %s" % exc}
-        text = fc.answer_text(res)
+        text = fc.answer_text(res, lang=str(payload.get("lang") or "en"))
         if BUS is not None:
             BUS.publish("say", payload={"text": text, "origin": origin, "mode": "system"})
         self._json({"ok": True, "job": None, "answer": text, "classifier": None, "calc": res,

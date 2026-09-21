@@ -218,17 +218,51 @@ def looks_arithmetic(text):
     return a <= MAX_V and b <= MAX_V
 
 
-def answer_text(r):
-    """Çekirdek yanıtını sohbette gösterilecek tek satıra çevirir (iş bölümü açıkça yazılır)."""
+_EN_ERR = ((r"sonu\u00e7 (-?\d+) > (\d+)",
+            "result %s exceeds %s: the fly's table is limited to 0..81"),
+           (r"sonu\u00e7 (-?\d+) < (\d+)",
+            "result %s is below %s: the fly's table is limited to 0..81 (no negatives)"),
+           (r"b\u00f6l\u00fcm (\d+) >= (\d+)",
+            "quotient %s reaches %s: the controller's stop bound (q < 50) truncates the result"),
+           (r"operand > (\d+)", "operand above %s: not present in the fly's table"))
+
+
+def error_text(msg, lang="en"):
+    """Hata metnini dile çevirir (Türkçe metin aynen durur; İngilizcesi eşlenir)."""
+    if lang != "en":
+        return msg
+    for pat, rep in _EN_ERR:
+        m = re.search(pat, msg)
+        if m:
+            return rep % m.groups()
+    return msg
+
+
+def answer_text(r, lang="en"):
+    """Çekirdek yanıtını sohbette gösterilecek tek satıra çevirir (iş bölümü açıkça yazılır).
+
+    `lang`: 'en' (varsayılan) | 'tr'.
+    """
+    en = (lang != "tr")
     if not isinstance(r, dict) or not r.get("ok"):
-        return "\U0001f9ee %s \u2192 %s" % ((r or {}).get("expr", "?"), (r or {}).get("error", "?"))
+        msg = error_text(str((r or {}).get("error", "?")), "en" if en else "tr")
+        return "\U0001f9ee %s \u2192 %s" % ((r or {}).get("expr", "?"), msg)
     sym = {"add": "+", "subtract": "\u2212", "multiply": "\u00d7", "divide": "\u00f7"}[r["op"]]
+    if en:
+        val = (str(r["result"]) if r["remainder"] is None
+               else "%d (remainder %d)" % (r["result"], r["remainder"]))
+        ctrl = ("remainder in the controller" if r["op"] == "divide"
+                else "counter/loop in the controller")
+        tail = "  \u00b7  FAKE FLY ON" if r.get("fake") else ""
+        return ("\U0001f9ee %d %s %d = %s  \u00b7  fly: %d steps (n\u2192n\u00b11)  \u00b7  %s%s"
+                % (r["a"], sym, r["b"], val, r["fly_calls"], ctrl, tail))
     val = (str(r["result"]) if r["remainder"] is None
            else "%d (kalan %d)" % (r["result"], r["remainder"]))
     ctrl = "kalan kontrolc\u00fcde" if r["op"] == "divide" else "saya\u00e7/d\u00f6ng\u00fc kontrolc\u00fcde"
     tail = "  \u00b7  SAHTE S\u0130NEK ETK\u0130N" if r.get("fake") else ""
     return ("\U0001f9ee %d %s %d = %s  \u00b7  sinek: %d ad\u0131m (n\u2192n\u00b11)  \u00b7  %s%s"
             % (r["a"], sym, r["b"], val, r["fly_calls"], ctrl, tail))
+
 
 
 

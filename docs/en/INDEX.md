@@ -18,14 +18,17 @@ Ambiguities are flagged with `[TRANSLATOR NOTE: ...]`.
 | `RAPOR_ARAYUZ.md` | `docs/en/RAPOR_ARAYUZ.en.md` | **complete (compact)** ✓ |
 | `RESULTS_SUMMARY.md` | (already bilingual TR/EN in one file) | **complete** ✓ |
 | `RELEASE_PREFLIGHT.md` | `docs/en/RELEASE_PREFLIGHT.en.md` | **complete (compact)** ✓ |
-| `RAPOR_FAZ_0.md` … `RAPOR_FAZ_8.md` (21 phase reports) | — | **PENDING** ✗ — not translated in this package; see the note below |
-| `HIPOTEZLER.md` (pre-registration log, ~1,260 lines) | — | **PENDING** ✗ — not translated in this package; see the note below |
+| `RAPOR_FAZ_0.md` … `RAPOR_FAZ_8.md` (21 phase reports) | `docs/en/PHASES.en.md` | **covered by the per-phase English digest** ✓ — every phase: question, pre-registration, code/result files and the stated verdict (a digest, not a word-for-word translation; the Turkish text stays authoritative) |
+| `HIPOTEZLER.md` (pre-registration log, ~1,260 lines) | `docs/en/PHASES.en.md` (provenance rule + per-phase pre-registration commits) | **partly covered** ✓ — the rule and the per-phase commits are in the digest; the 1,260-line log itself is still **PENDING** ✗ |
 | `README.md` (root) | (bilingual section added in place) | **complete** ✓ |
 | `NOTICE.md`, `DATA.md`, `REPRODUCE.md`, `CITATION.cff` | (written in English first) | **complete** ✓ |
 
 ## [TRANSLATOR NOTE: pending volume]
 
-The 21 `RAPOR_FAZ_*.md` phase reports and `HIPOTEZLER.md` were **not** translated in this package.
+The 21 `RAPOR_FAZ_*.md` phase reports are now covered by **`docs/en/PHASES.en.md`** (per-phase English
+digest: question, design/pre-registration, code and result files, stated verdict). `HIPOTEZLER.md`
+is partly covered (provenance rule + the per-phase pre-registration commits) and remains **PENDING**
+as a full line-by-line translation.
 This is stated openly rather than silently skipped: translating them faithfully is a mechanical but
 large job (≈200 KB of Turkish prose covering phases 0–8, including many tables of measurements).
 **The Turkish originals remain the authoritative record**; the English reader is pointed to

@@ -112,7 +112,9 @@ def main():
           "kaynak=%s | cevap=%s" % (cc.get("source"), str(cc.get("answer"))[:52]))
     st, cd = _req("/chat", {"message": "9/4"})
     check("sohbet: '9/4' bölüm+kalan ile cevaplanıyor",
-          st == 200 and "kalan 1" in str(cd.get("answer", ""))
+          st == 200 and "2" in str(cd.get("answer", ""))
+          and ("kalan 1" in str(cd.get("answer", ""))
+               or "remainder 1" in str(cd.get("answer", "")))
           and cd.get("source") == "numcog_calculator", str(cd.get("answer"))[:52])
     st, cw = _req("/chat", {"message": "ne haber"})
     check("sohbet: kelime yolu DEĞİŞMEDİ ('ne haber' hesap makinesine gitmiyor)",

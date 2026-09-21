@@ -1592,7 +1592,8 @@ const Buzz = (function(){
  * sessionStorage; it is never sent to the server.
  */
 const Say = (function(){
-  const PITCH = 2.0, RATE = 1.5, LANG = 'tr-TR', KEY = 'fly.voice';
+  const PITCH = 2.0, RATE = 1.5, KEY = 'fly.voice';
+let LANG = 'en-US';   // kapanış paketi: varsayılan İngilizce; hesap panelindeki TR/EN düğmesi bunu değiştirir
   const synth = window.speechSynthesis;
   const Utter = window.SpeechSynthesisUtterance;
   const TRAILING = /\s*\[[^\]]*\]\s*$/;   // the Task 3 contract: one [...] at the very end
@@ -1606,9 +1607,15 @@ const Say = (function(){
     } catch (e){ /* private mode: the switch still works, it is just not remembered */ }
   }
 
-  /* what is actually spoken: the English in brackets is Patron's to read, not the fly's */
+  /* what is actually spoken: TR modunda parantezdeki İngilizce atılır; EN modunda (kapanış
+   * paketi) metnin sonundaki [English] okunur; yoksa metnin tamamı okunur. */
   function clean(text){
     let s = String(text == null ? '' : text);
+    if (String(LANG).slice(0, 2).toLowerCase() === 'en') {
+      const m = s.match(/\[([^\]]+)\]\s*$/);
+      if (m) return m[1].replace(/\s+/g, ' ').trim();
+      return s.replace(BRACKETS, ' ').replace(/\s+/g, ' ').trim();
+    }
     while (TRAILING.test(s)) s = s.replace(TRAILING, '');
     if (s.indexOf('[') >= 0) s = s.replace(BRACKETS, ' ');
     return s.replace(/\s+/g, ' ').trim();
@@ -1651,7 +1658,8 @@ const Say = (function(){
     speak: speak, clean: clean, setEnabled: setEnabled, cancel: cancel,
     isEnabled: function(){ return enabled; },
     available: function(){ return !!(synth && typeof Utter === 'function'); },
-    settings: function(){ return { pitch: PITCH, rate: RATE, lang: LANG, readback: readback }; }
+    settings: function(){ return { pitch: PITCH, rate: RATE, lang: LANG, readback: readback }; },
+    setLang: function(l){ LANG = String(l || 'en-US'); }     // kapanış paketi: ses dili (en-US/tr-TR)
   };
 })();
 
@@ -2187,9 +2195,9 @@ poll();
 #calcpPanel th,#calcpPanel td{border-bottom:1px solid #22303d;padding:2px 4px;text-align:left}
 #calcpErr{color:#f99;font-size:12px}
 </style>
-<button id="calcpBtn" type="button" data-tr="🧮 Hesap Makinesi" data-en="🧮 Calculator">🧮 Hesap Makinesi</button>
+<button id="calcpBtn" type="button" data-tr="🧮 Sineğin Beyniyle Matematik" data-en="🧮 Math with the Fly's Brain">🧮 Math with the Fly's Brain</button>
 <div id="calcpPanel">
-  <h3 data-tr="Sinek hesap makinesi (N=81)" data-en="Fly calculator (N=81)">Sinek hesap makinesi (N=81)</h3>
+  <h3 data-tr="Sineğin Beyniyle Matematik (N=81)" data-en="Math with the Fly's Brain (N=81)">Math with the Fly's Brain (N=81)</h3>
   <div class="calcp-row">
     <input id="calcpExpr" placeholder="3+5 · 12-7 · 7x8 · 9/4" autocomplete="off">
     <button id="calcpGo" type="button" data-tr="Hesapla" data-en="Compute">Hesapla</button>
@@ -2249,6 +2257,8 @@ poll();
     });
     langBtn.textContent = (lang === 'tr') ? 'EN' : 'TR';
     lim.textContent = LIM[lang];
+    // ses (Web Speech) dilini arayüz diliyle eşle (kapanış paketi): EN -> en-US, TR -> tr-TR
+    try { Say.setLang((lang === 'tr') ? 'tr-TR' : 'en-US'); } catch (e) { /* uygulama yoksa yoksay */ }
   }
   function show(r, st) {
     if (st === 422 || (r && r.out_of_range)) {
