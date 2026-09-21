@@ -580,12 +580,14 @@
       <button type="button" data-tool="navigate">🚶 Walking</button>
     </div>
     <div id="sugg">
-      <button>There is sugar in front of you.</button>
-      <button>Danger is approaching!</button>
-      <button>Say hello.</button>
-      <button>Are you hungry?</button>
-      <button>A female fly has arrived.</button>
-      <button>No, I do not want to.</button>
+      <!-- kapanış paketi: bu çipler sınıflandırıcıya GİDEN uyarım metnidir (Türkçe sözlük),
+           bu yüzden metin Türkçe kalır; İngilizcesi tooltip'te (title) gösterilir. -->
+      <button title="There is sugar in front of you.">Önünde şeker var.</button>
+      <button title="Danger is approaching!">Tehlike yaklaşıyor!</button>
+      <button title="Say hello.">Selam ver.</button>
+      <button title="Are you hungry?">Sen acıktın mı?</button>
+      <button title="A female fly has arrived.">Dişi sinek geldi.</button>
+      <button title="No, I do not want to.">Hayır, istemem.</button>
     </div>
     <form id="form">
       <input id="msg" autocomplete="off" placeholder="type a known Turkish word (şeker · tehlike · merhaba · dişi sinek) or /teach …">
