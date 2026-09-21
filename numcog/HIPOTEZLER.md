@@ -1221,3 +1221,40 @@ yön** ise "**connectome'a özgü**" denir. **Tek ayarda** çıkan fark **"ön b
 - Ölçüm başladıktan sonra **ızgara/ölçüt/kapı DEĞİŞMEZ**; sonradan eklenenler **KEŞİFSEL** etiketli
   ayrı bölümde. Dil: **"bu veride, bu modelde, bu ızgarada"**.
 
+
+---
+
+## KAPANIŞ PAKETİ — KEŞİFSEL ön-kayıt: İKİ HANELİ GİRDİ ölçümü (AŞAMA 3)
+
+Kayıt tarihi: 2026-09-20. **Ölçümden ÖNCE** yazılmıştır (bu commit'te iki haneli ölçüm
+çalıştırılmadı). Kod: **`numcog/two_digit_probe.py`**; çıktı: `numcog/results_release/`.
+Faz 0–8 sonuç dosyaları **DEĞİŞTİRİLMEZ**.
+
+### Soru ve beklenti
+
+- **Soru:** Hesap makinesi **iki haneli girdilerle** (en az bir operand ≥ 10) çalışır mı?
+- **Beklenti (ön-kayıtlı):** **sonuç ≤ 81 ise ÇALIŞIR.** Gerekçe (mekanik): çekirdek yalnızca
+  `n → n±1` **tablosudur** (durum 0..81); **operandın büyüklüğü** döngü sayısını değiştirir,
+  tabloyu değiştirmez. Yani iki haneli girdi, çekirdek için **yeni bir şey değildir**.
+- **Çürütme eşiği:** doğruluk **< %99** (her işlemde).
+- **81 üstü işlemler ÖLÇÜLMEZ**; arayüz bunları **"desteklenmiyor"** diye reddeder ✓
+  (sessiz yanlış cevap yok).
+
+### Tasarım (ölçümden önce sabit)
+
+| öğe | değer |
+|---|---|
+| tohumlar | **≥20 kabul edilen tohum** (`results_p4e/final81_seeds.csv`, `table == 1.0`) |
+| örnekleme | tohum başına rastgele **tam sayı** `a,b ∈ [1,81]`, **en az bir operand ≥ 10** |
+| süzgeç | beklenen sonuç **[0,81]** (çıkarmada `a ≥ b`, toplamada `a+b ≤ 81`, çarpmada `a·b ≤ 81`, bölmede `b ≥ 1`) |
+| öğe sayısı | **her işlem için ≥200 çift** |
+| ölçüt | beklenen sonuç == çekirdek+kontrolcü sonucu (bölmede **bölüm ve kalan**) |
+| rapor | işlem başına doğruluk + genel; %99 eşiğine karşı |
+
+### Kapsam uyarıları (etiketli)
+
+- **"Çok haneli aritmetik" YOKTUR**; **iki haneli (onlar/birler) tasarımı UYGULANMADI** —
+  bu ölçüm yalnızca **girdi büyüklüğünün** sonucu değiştirip değiştirmediğini sınar.
+- Ölçüm **KEŞİFSEL**tir (kapanış paketi); Faz 4E'nin ön-kayıtlı ölçütlerini **değiştirmez**.
+- Dil: **"bu veride, bu modelde, bu ızgarada"**.
+
