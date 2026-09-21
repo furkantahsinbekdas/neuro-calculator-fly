@@ -25,6 +25,7 @@ import calculator as cal                      # tarihsel kontrolcü (DOKUNULMADI
 from operator_diagnosis import clip_result    # tarihsel kırpma tanımı (beklenen değer için)
 
 MIN_V, MAX_V = 0, 81
+DIV_Q_CAP = 50           # kontrolcünün tarihsel durma sınırı: `while n >= b and q < 50`
 WEIGHTS_DIR = os.path.join(HERE, "fly_weights")
 
 
@@ -157,6 +158,12 @@ def run(expr, fake=False, weights=None, step_by_step=True):
                          % (val, MIN_V, MAX_V))
     if a > MAX_V or b > MAX_V:
         raise OutOfRange("operand > %d: sinek tablosunda yok" % MAX_V)
+    if op == "divide" and val >= DIV_Q_CAP:
+        # Kontrolcünün tarihsel durma sınırı: `while n >= b and q < 50`.
+        # Bölüm 50'ye ulaşırsa döngü erken durur -> sonuç kırpılır. Sessiz yanlış cevap olmasın.
+        raise OutOfRange("bölüm %d >= %d: kontrolcünün durma sınırı (q < %d) sonucu kırpar; "
+                         "sinek tablosu 0..%d ama kontrolcü döngüsü erken duruyor"
+                         % (val, DIV_Q_CAP, DIV_Q_CAP, MAX_V))
     path = weights or default_weights()
     if fake:
         core = FakeCore(seed=abs(hash(expr)) % 1000)
