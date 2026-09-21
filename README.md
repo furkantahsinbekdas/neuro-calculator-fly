@@ -1,9 +1,3 @@
-Terminali (Git Bash, WSL veya Linux) aç, aşağıdaki bloğu olduğu gibi kopyalayıp yapıştır ve Enter'a bas.
-
-Tek tırnaklı `'EOF'` kullandığım için hiçbir değişken (`$`), formül ya da karakter karışmayacak; dosya UTF-8 olarak doğrudan diske yazılacak:
-
-```bash
-cat << 'EOF' > README.md
 # Ask the Fly Brain 🪰🧠
 
 A computational framework utilizing the FlyWire fruit-fly connectome simulation. Query the biological circuit to observe how the real connectome (the ~140k-neuron wiring diagram of an adult Drosophila) processes inputs through spiking simulations, logic gates, arithmetic tables, heading memories, and escape reflexes.
@@ -191,12 +185,3 @@ python -X utf8 numcog/two_digit_probe.py
 
 * **Code:** MIT License. Copyright (c) 2026 Migen Karriqi (original architecture), Copyright (c) 2026 Furkan Tahsin Bekdaş (modifications, neuro-calculator, and benchmark suite).
 * **Connectome Data:** FlyWire Drosophila connectome data is licensed under CC BY-NC 4.0 (Non-Commercial). See `DATA.md` and `CITATION.md` for upstream citations.
-EOF
-
-```
-
----
-
-*(Eğer bash değil de doğrudan standart **Windows PowerShell** ekranındaysan, tek satırda dosya oluşturmak için PowerShell'e şunu yapıştırabilirsin: `Get-Clipboard | Out-File -FilePath README.md -Encoding utf8`)*
-
-```
