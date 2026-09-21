@@ -38,7 +38,8 @@ def _ids(cell_type, side):
     flysim._ensure_ann()
     ANN = flysim.ANN
     m = ANN["cell_type"].astype(str).str.fullmatch(cell_type, case=False, na=False).to_numpy()
-    m &= (ANN["side"].astype(str).str.lower() == side).to_numpy()
+    # non-in-place: to_numpy() is read-only under pandas/numpy 2 (see fly.dn_ids)
+    m = m & (ANN["side"].astype(str).str.lower() == side).to_numpy()
     return [int(r) for r in ANN.root_id[m].tolist()]
 
 

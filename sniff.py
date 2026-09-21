@@ -16,7 +16,9 @@ HONESTY: this demonstrates the architectural MECHANISM (sparse, near-disjoint co
 NOT a rigged race — a dense net on random high-dimensional odors can separate them too; the
 point is HOW the fly does it. The KC code is a thresholded coincidence code tuned to be sparse
 (threshold 3 ≈ a Kenyon cell needing several coincident inputs), not a calibrated firing rate,
-and the disjointness is a MEAN property (rare odor pairs collide more).
+and the disjointness is a MEAN property (rare odor pairs collide more). Measured on this
+wiring: with 11% of the 685 ALPNs active, threshold 3 leaves ~1.3% of the 5177 KCs firing
+(12-212 cells per word), i.e. sparser than the ~3-5% the headline quotes.
 
 CLI:
     .venv/bin/python sniff.py
@@ -30,6 +32,10 @@ import flysim
 PN_CLASS = "ALPN"          # antennal-lobe projection neurons (odor input)
 KC_CLASS = "Kenyon_Cell"   # mushroom-body Kenyon cells (sparse expansion layer)
 MBON_CLASS = "MBON"        # mushroom-body output neurons (valence readout)
+
+# The Phase 9 text classifier (cognitive_matrix.py) reuses circuit() and kc_code() *verbatim*:
+# same Wpk, same coincidence threshold, so it reports "connectome": true. Keep the mechanism
+# here — do not fork a second copy of it, or that claim stops being true.
 
 _CIRC = None
 

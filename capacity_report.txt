@@ -1,0 +1,111 @@
+====================================================================================================
+Phase 10 — FlyWire mushroom-body capacity benchmark  (two ceilings, kept apart)
+====================================================================================================
+corpus     : REAL corpus: C:\Users\Administrator\Desktop\Genesis_Fly\flyputer\data\tr_50k.txt
+           hermitdave/FrequencyWords 2018/tr (OpenSubtitles), CC-BY-SA 4.0
+             50000 lines -> 48376 distinct words kept (1317 fold-duplicates collapsed onto an existing code, 307 non-words dropped)
+             grid N = 55, 100, 150, 200, 300, 500 = the N most frequent words (nested prefixes: N=55 ⊂ N=100 ⊂ …)
+pipeline   : cm.pn_code() -> cm.encode() == sniff.kc_code(pn, coincidence=3) [imported]
+             685 ALPN -> 5177 KC  (mean 68.3 active/code, 1.32% density, range 2-278)  -> readout
+readout    : cm.readout() — the production delta rule, called as-is (no re-implementation)
+hyper      : lr = 1/mean-active, ±1 targets, ≤4000 epochs, tol 0.02, T=0.4, floor 0.4
+
+PIPELINE PARITY — production vocabulary, measured before any global is repointed
+  6 categories / 55 words -> 100% training accuracy in 1422 epochs (lr=0.01435, min correct 0.98)
+  classify(): 55/55 vocabulary words correct, confidence 0.965-0.968 (floor 0.40)
+  encoder identity: cm.encode(w) == sniff.kc_code(cm.pn_code(w), 3) on 3 probes  [OK]
+  batched benchmark math reproduced cm.classify() exactly on 3 words at N=55  [OK]
+
+CEILING A — raw KC code geometry (readout-independent: the codes alone, no training)
+     N   meanAct   dens%    pairs    meanJ     p95J     maxJ  meanNN_J   identical   J>0.80   J>0.50
+    55      73.9   1.427     1485   0.0146   0.0446   0.1800    0.0764           0        0        0
+   100      74.9   1.446     4950   0.0141   0.0444   0.2313    0.0931           0        0        0
+   150      76.1   1.470    11175   0.0147   0.0452   0.4227    0.0998           0        0        0
+   200      73.2   1.414    19900   0.0141   0.0448   0.4227    0.1029           0        0        0
+   300      71.2   1.375    44850   0.0137   0.0443   0.4227    0.1166           0        0        0
+   500      68.3   1.320   124750   0.0132   0.0438   0.4720    0.1274           0        0        0
+  first IDENTICAL codes (same active cells)  : — none up to N=500
+  first true collision (Jaccard > 0.80)       : — none up to N=500
+  first suspect overlap (Jaccard > 0.50)      : — none up to N=500
+  codes involved in a collision at N=500       : 0 of 500
+  pairs sharing >80% of the smaller code   : 2 at N=500 (first at N=281), max containment 0.930
+    (the task's "overlap above 80% shared cells" read as containment, not Jaccard: a short
+     code can be nearly swallowed by a longer one while their union stays large)
+  most similar code pairs at N=500 (Jaccard | containment | shared-prefix):
+    "kendini" vs "kendine"   J=0.472  cont=0.685  active=111/126  LCP=6 chars
+    "teşekkürler" vs "teşekkür"   J=0.423  cont=0.745  active=55/83  LCP=8 chars
+    "nerede" vs "nereden"   J=0.387  cont=0.930  active=133/57  LCP=6 chars
+  reading: independent random 68-cell subsets of 5177 would average J≈0.0066; the measured meanJ sits ~2×
+           above that — 8 salts per n-gram over 685 PNs collide by construction — and only the tail above it
+           is shared letters (morphology).
+
+CEILING B1 — the delta-rule readout, one output per word (N outputs: strictest test)
+  deviation from production: the output layer grows with N; every hyper-parameter is production's
+     N  epochs  conv     acc  wrong  minCorr minMargin  fragile inConf%min  oovFix max  oovAdj max    sec
+    55    1467   yes   1.000      0    0.980     1.971        0     0.7198      0.0494      0.0105    2.7
+   100    3232   yes   1.000      0    0.980     1.970        0     0.5869      0.0315      0.0948   13.5
+   150    4000   CAP   1.000      0    0.947     1.924        0     0.4617      0.0228      0.0094   26.8
+   200    4000   CAP   1.000      0    0.880     1.836        0     0.3468      0.0165      0.0131   34.3
+   300    4000   CAP   1.000      0    0.424     1.281        0     0.0865      0.0093      0.0247   55.4
+   500    4000   CAP   1.000      0   -0.402     0.386        0     0.0059      0.0083      0.0083  147.0
+  conv = met production's ±1 tolerance (max|err| < 0.02) inside the cap; CAP = ran out of epochs, i.e. the
+  separation never got every output within ±1 — accuracy can still be 100%%, which is why both columns are reported.
+  accuracy first drops below 100% at N=— never in this grid (max N=500)
+  epoch pressure: most epochs used = 4000/4000 at N=150 (100% of the cap) — hit the cap at N=[150, 200, 300, 500]
+  separation margin at N=500: min correct-vs-runner-up gap 0.386, 0 word(s) within 0.10 of a tie
+  routing floor: min in-vocabulary confidence 0.0059 at N=500 vs floor 0.40 (familiarity is exactly 1.0 on a learned word, so this is pure softmax)
+     → with N outputs the winner's probability is 1/(1+(N-1)e^-2/T), which crosses 0.40 at N=224
+  OOV fixed set (ranks 501-600, outside every tested N): max confidence per N = 55:0.049, 100:0.031, 150:0.023, 200:0.017, 300:0.009, 500:0.008
+  OOV adjacent set (ranks N+1…N+100, the hardest words for that size): max = 55:0.010, 100:0.095, 150:0.009, 200:0.013, 300:0.025, 500:0.008
+     (B1's values are also shrunk by the N-way softmax denominator; the same gate with 6 outputs reads up
+      to 0.2685 at N=500 — more learned codes also means more near-miss familiarity for words the fly never learned)
+  OOV words that cleared the floor across every probe: 0 (0 = the gate never invents a decision)
+
+CEILING B2 — production shape: the same 6 outputs, only the vocabulary grows
+  (production's own category list, words assigned round-robin → "does the substrate still hold N words?")
+     N  epochs  conv  catAcc  wrong  minCorr minMargin   conf%min  conf%mean belowFloor  oovFix max  oovAdj max
+    55    1442   yes   1.000      0    0.980     1.968     0.9650     0.9674          0      0.1793      0.0856
+   100    3258   yes   1.000      0    0.980     1.972     0.9655     0.9673          0      0.1388      0.2484
+   150    4000   CAP   1.000      0    0.948     1.923     0.9621     0.9673          0      0.1546      0.1196
+   200    4000   CAP   1.000      0    0.891     1.831     0.9541     0.9670          0      0.1442      0.1975
+   300    4000   CAP   1.000      0    0.421     1.203     0.8150     0.9653          0      0.1253      0.2178
+   500    4000   CAP   1.000      0   -0.118     0.418     0.4251     0.9538          0      0.2685      0.2685
+  conv = same ±1 tolerance test as above. belowFloor = learned words whose production confidence has fallen
+  under 0.40 (unroutable even though the argmax is right).
+  category accuracy first drops below 100% at N=— never (6 outputs, vocabulary up to N=500)
+  words below the routing floor: none — every learned word stays routable
+  note: a 6-output softmax does not suffer the N-output normalisation collapse (floor-crossing needs N≈224 classes).
+
+VERDICT
+  Ceiling A (code collision)   : no true collision up to N=500 — max Jaccard 0.472, 0 pair(s) above 0.50
+  Ceiling B (misclassification): never below 100% up to N=500 — one output/word
+  first identical codes         : — none
+  first suspect overlap (J>0.50) : — none
+  containment (>80% of smaller code)  : 2 pair(s) at N=500, max 0.930, first at N=281
+  ±1 tolerance (±0.02) not met from : N=150 (one output/word), N=150 (6 outputs)
+  in-vocab confidence, per-word   : 55:0.720  100:0.587  150:0.462  200:0.347  300:0.087  500:0.006
+  in-vocab confidence, 6 outputs  : 55:0.965  100:0.965  150:0.962  200:0.954  300:0.815  500:0.425
+  → the routing floor (0.40) is crossed by the weak end of the vocabulary at N=200 (one output/word)
+    while every argmax is still correct: the readout runs out of *confidence* well before it runs out of accuracy.
+  (analytic cross-check: with N outputs and perfect ±1 separation the floor would need N≈224 classes;
+   it breaks earlier in practice because the winner's own score also sags below +1 — measured -0.402 at N=500)
+  → the most similar pair at N=500 is "kendini"/"kendine" (J=0.472, shared prefix 6 chars). The tail
+    is our encoder (shared stems + n-gram hash collisions), not an exhausted 5177-cell code space, so any
+    capacity claim has to be measured on inflected forms — which is what a frequency list gives you.
+
+HONEST NOTES
+  * B1 uses one output per word — a deliberate deviation from production's 6 outputs, required to ask
+    "can these two words be told apart at all?". B2 keeps production's output layer and grows only the vocabulary.
+  * The word→ALPN pattern (char 3/4-grams → 75 of 685 PNs) is OUR encoding; only the ALPN→KC step is measured.
+    A different input encoding moves both ceilings: these numbers bound this pipeline, not "the fly".
+  * 1317 surface forms in the corpus fold onto a code that already exists (ş/ı/ğ/ü/ö/ç → ASCII), so they are
+    unrepresentable at the input layer no matter how large the mushroom body is.
+  * Training is deterministic but the grid is re-trained per N on nested prefixes, so rows are related, not
+    independent samples; a single N is one draw, not a distribution.
+  * Runtime is dominated by B1 at large N: when the delta rule cannot separate everything it runs to the
+    4000-epoch cap, and that is exactly the measurement.
+  * The grid stops at N=500 (the Phase 10 request). Beyond it the B1 cost grows ~N² per epoch, so the
+    crossing should be re-measured rather than extrapolated — --n takes any sizes the corpus covers (48376 words).
+
+  encoder 10.7 ms/word (6.4 s for 600 words)  |  total wall clock 335.8 s
+  rerun: python capacity_benchmark.py --n 55,100,150,200,300,500 [--log capacity_report.txt]

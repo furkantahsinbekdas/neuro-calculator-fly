@@ -3,9 +3,20 @@ __pycache__/
 # Large data files — download via get_data.sh, don't commit
 proofread_connections_783.feather
 annotations_783.tsv
+# Turkish word-frequency list for capacity_benchmark.py (the script re-downloads it on demand)
+data/tr_50k.txt
 
 # generated artifacts / virtualenv
 .venv/
 fly_response.png
 fly3d_data.js
 hero_cache/
+# Phase 11: the saved readout (learned_words.json is the editable source of truth and IS kept)
+learned_weights.npy
+learned_bias.npy
+
+# downloaded flybody body model (Phase 9 removed the code that used it, the data stays)
+models/
+_srv.out.log
+_srv.err.log
+_run_server.log

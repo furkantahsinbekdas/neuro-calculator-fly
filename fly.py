@@ -52,7 +52,9 @@ def dn_ids(cell_type, side=None):
     ANN = flysim.ANN
     m = ANN["cell_type"].astype(str).str.fullmatch(cell_type, case=False, na=False).to_numpy()
     if side and "side" in ANN.columns:
-        m &= (ANN["side"].astype(str).str.lower() == side).to_numpy()
+        # NOT `m &= ...`: pandas/numpy 2 hand back a read-only view from to_numpy(),
+        # so the in-place AND raised "output array is read-only" on every side query.
+        m = m & (ANN["side"].astype(str).str.lower() == side).to_numpy()
     return [int(r) for r in ANN.root_id[m].tolist()]
 
 
